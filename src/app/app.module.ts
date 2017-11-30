@@ -22,6 +22,8 @@ import { BurnDownChartItemComponent } from './burn-down/burn-down-chart-item/bur
 import { IterationItemComponent } from './burn-down/iteration-item/iteration-item.component';
 import { TimeSlotItemComponent } from './roadmap/time-slot-item/time-slot-item.component';
 import { TimeSlotListComponent } from './Roadmap/time-slot-list/time-slot-list.component';
+import { LogInComponent } from './log-in/log-in.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { TimeSlotListComponent } from './Roadmap/time-slot-list/time-slot-list.c
     BurnDownChartItemComponent,
     IterationItemComponent,
     TimeSlotItemComponent,
-    TimeSlotListComponent
+    TimeSlotListComponent,
+    LogInComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule
