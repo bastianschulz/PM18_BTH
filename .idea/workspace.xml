@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="43b8f65c-04b2-445e-a239-112f298bea50" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.html" afterPath="$PROJECT_DIR$/src/app/header/header.component.html" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/header.component.ts" afterPath="$PROJECT_DIR$/src/app/header/header.component.ts" />
-      <change beforePath="$PROJECT_DIR$/src/app/log-in/log-in.component.html" afterPath="$PROJECT_DIR$/src/app/log-in/log-in.component.html" />
-      <change beforePath="$PROJECT_DIR$/src/app/log-in/log-in.component.ts" afterPath="$PROJECT_DIR$/src/app/log-in/log-in.component.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -196,7 +192,7 @@
       <workItem from="1511978508239" duration="604000" />
       <workItem from="1512039508608" duration="2194000" />
       <workItem from="1512075510403" duration="50000" />
-      <workItem from="1512075728127" duration="4027000" />
+      <workItem from="1512075728127" duration="4065000" />
     </task>
     <task id="LOCAL-00001" summary="Hab mal das Ganze auf eine Seite gepackt.">
       <created>1512077649802</created>
@@ -205,11 +201,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512077649802</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Hab die Startseite etwas verändert.">
+      <created>1512079796905</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512079796905</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7455000" />
+    <option name="totallyTimeSpent" value="7493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -274,7 +277,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hab mal am LogIn geschraubt" />
     <MESSAGE value="Hab mal das Ganze auf eine Seite gepackt." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hab mal das Ganze auf eine Seite gepackt." />
+    <MESSAGE value="Hab die Startseite etwas verändert." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hab die Startseite etwas verändert." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
