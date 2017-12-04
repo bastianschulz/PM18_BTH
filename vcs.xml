@@ -14,4 +14,7 @@
     </option>
     <option name="cloneParentDir" value="C:\Users\Harald\WebstormProjects" />
   </component>
+  <component name="VcsApplicationSettings">
+    <option name="SHOW_WHITESPACES_IN_LST" value="false" />
+  </component>
 </application>
