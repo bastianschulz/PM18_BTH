@@ -30,11 +30,16 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { LogOutComponent } from './auth/log-out/log-out.component';
 import {AuthService} from "./auth/auth.service/auth.service";
+import { BacklogComponent } from './backlog/backlog/backlog.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes = [
-  {path: '', component: LogInComponent},
+  {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'LogIn', component: LogInComponent},
+  {path: 'BackLog', component: BacklogComponent}
+  {path: 'SprintPlanning', component: SprintComponent}
+
 ];
 
 @NgModule({
@@ -64,7 +69,9 @@ const appRoutes:Routes = [
     HeaderAfterLogInComponent,
     UsersComponent,
     UserComponent,
-    LogOutComponent
+    LogOutComponent,
+    BacklogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

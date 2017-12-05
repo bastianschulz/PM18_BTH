@@ -2,29 +2,38 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="#" class="navbar-brand">WeScrum</a>
+
+    </div>
+    <!--Nur wenn der Nutzer angemeldet ist, soll er die volle Navbar sehen...-->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/BackLog">
+          Backlog</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/SprintPlanning">
+          SprintPlanning</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/ScrumBoard">
+          ScrumBoard</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/PlanningPoker">
+          PlanningPoker</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/BurnDown">
+          BurnDown</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/Roadmap">
+          Roadmap</a></li>
+
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a href="#" class="dropdown-toggle">Benutzer<span class="caret"></span> </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Benutzereinstellungen</a></li>
+            <li><a href="#">Benutzer abmelden</a></li>
+          </ul>
+        </li>
+      </ul>
+
     </div>
   </div>
 </nav>
-
-<!--Nur wenn der Nutzer angemeldet ist, soll er die volle Navbar sehen...-->
-<div class="collapse navbar-collapse">
-  <ul class="nav navbar-nav">
-    <li><a >Backlog</a></li>
-    <li><a href="#">Sprint Planning</a></li>
-    <li><a href="#">Scrum Board</a></li>
-    <li><a href="#">Planning Poker</a></li>
-    <li><a href="#">Burn Down</a></li>
-    <li><a href="#">Roadmap</a></li>
-  </ul>
-
-  <ul class="nav navbar-nav navbar-right">
-    <li class="dropdown"><a href="#" class="dropdown-toggle">Benutzer<span class="caret"></span> </a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Benutzereinstellungen</a></li>
-        <li><a href="#">Benutzer abmelden</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
 
 
