@@ -1,0 +1,30 @@
+<div class="container">
+
+  <legend class="page-header">Anmeldung</legend>
+  <div class="row">
+    <div class="col-xs-12">
+
+      <form (ngSubmit)="onLogIn(f)" f="ngForm">
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="email">E-Mail</label>
+            <input type="text" id="email" ngModel class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="userPassword">Passwort</label>
+            <input type="password" id="userPassword" ngModel class="form-control" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="submit">Anmelden</button>
+            <button class="btn btn-primary" type="reset">Zurücksetzen</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

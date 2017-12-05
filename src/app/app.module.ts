@@ -22,9 +22,20 @@ import { BurnDownChartItemComponent } from './burn-down/burn-down-chart-item/bur
 import { IterationItemComponent } from './burn-down/iteration-item/iteration-item.component';
 import { TimeSlotItemComponent } from './roadmap/time-slot-item/time-slot-item.component';
 import { TimeSlotListComponent } from './Roadmap/time-slot-list/time-slot-list.component';
-import { LogInComponent } from './log-in/log-in.component';
+import { LogInComponent } from './auth/log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
+import { HeaderAfterLogInComponent } from './header-after-log-in/header-after-log-in.component';
+import {RouterModule, Routes} from '@angular/router';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user/user.component';
+import { LogOutComponent } from './auth/log-out/log-out.component';
+import {AuthService} from "./auth/auth.service/auth.service";
 
+const appRoutes:Routes = [
+  {path: '', component: LogInComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'LogIn', component: LogInComponent},
+];
 
 @NgModule({
   declarations: [
@@ -49,12 +60,17 @@ import { RegisterComponent } from './register/register.component';
     TimeSlotItemComponent,
     TimeSlotListComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderAfterLogInComponent,
+    UsersComponent,
+    UserComponent,
+    LogOutComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
