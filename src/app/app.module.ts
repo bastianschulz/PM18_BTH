@@ -41,6 +41,7 @@ const appRoutes:Routes = [
   {path: 'LogIn', component: LogInComponent},
   {path: 'BackLog', component: BacklogComponent},
   {path: 'ScrumBoard', component: ScrumBoardComponent},
+  {path: 'ScrumBoard/Task', component: TaskItemComponent},
   {path: 'SprintPlanning', component: SprintComponent}
 
 ];
