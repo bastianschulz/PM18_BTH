@@ -32,12 +32,15 @@ import { LogOutComponent } from './auth/log-out/log-out.component';
 import {AuthService} from "./auth/auth.service/auth.service";
 import { BacklogComponent } from './backlog/backlog/backlog.component';
 import { HomeComponent } from './home/home.component';
+import { SprintComponent } from './sprint/sprint/sprint.component';
+import { ScrumBoardComponent } from './scrum-board/scrum-board/scrum-board.component';
 
 const appRoutes:Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'LogIn', component: LogInComponent},
-  {path: 'BackLog', component: BacklogComponent}
+  {path: 'BackLog', component: BacklogComponent},
+  {path: 'ScrumBoard', component: ScrumBoardComponent},
   {path: 'SprintPlanning', component: SprintComponent}
 
 ];
@@ -71,7 +74,9 @@ const appRoutes:Routes = [
     UserComponent,
     LogOutComponent,
     BacklogComponent,
-    HomeComponent
+    HomeComponent,
+    SprintComponent,
+    ScrumBoardComponent
   ],
   imports: [
     BrowserModule,
