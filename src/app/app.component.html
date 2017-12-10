@@ -1,14 +1,36 @@
-<app-header></app-header>
+<!--&lt;!&ndash;<router-outlet></router-outlet>&ndash;&gt;-->
+<!--<app-header></app-header>-->
+
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<ul class="nav nav-tabs">-->
+<!--<li role="presentation"-->
+<!--routerLinkActive="active"-->
+<!--[routerLinkActiveOptions]="{exact:true}"-->
+<!--&gt;<a routerLink="/LogIn">Anmeldung</a></li>-->
+<!--<li role="presentation"-->
+<!--routerLinkActive="active"-->
+<!--[routerLinkActiveOptions]="{exact:true}"-->
+<!--&gt;-->
+<!--<a routerLink="/register">-->
+<!--Registrierung</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+<!--<router-outlet></router-outlet>-->
+
+<!--</div>-->
+<!--</div>-->
 
 
-<app-log-in>
-  loading...
-</app-log-in>
+<app-header-after-log-in></app-header-after-log-in>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <router-outlet></router-outlet>
 
-<app-register>
-  loading...
-</app-register>
-
-
-
-
+  </div>
+</div>
