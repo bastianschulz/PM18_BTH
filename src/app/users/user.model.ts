@@ -8,12 +8,12 @@ export class user {
   public password: string;
   public geloescht: boolean;
 
-  public counter: number = 1;
+
 
   constructor(benutzerName: string, email: string, password: string){
     this.benutzerName = benutzerName;
     this.email = email;
     this.password = password;
-    this.counter += 1;
+
   }
 }
