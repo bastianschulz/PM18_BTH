@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
+import {FormsModule} from '@angular/forms';
+import {HttpModule, JsonpModule} from '@angular/http';
+import {DataTableModule} from 'angular2-datatable';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BacklogItemComponent } from './backlog/backlog-item/backlog-item.component';
@@ -30,16 +31,21 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { LogOutComponent } from './auth/log-out/log-out.component';
 import {AuthService} from "./auth/auth.service/auth.service";
-import { BacklogComponent } from './backlog/backlog/backlog.component';
+
 import { HomeComponent } from './home/home.component';
 import { SprintComponent } from './sprint/sprint/sprint.component';
 import { ScrumBoardComponent } from './scrum-board/scrum-board/scrum-board.component';
+import { BacklogService } from './service/backlog.service';
+import { UserService } from './service/user.service';
+import { BackLogComponent } from './back-log/back-log.component';
+import { BackLogElementComponent } from './back-log-element/back-log-element.component';
+import { BackLogCockpitComponent } from './back-log-cockpit/back-log-cockpit.component';
 
 const appRoutes:Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'LogIn', component: LogInComponent},
-  {path: 'BackLog', component: BacklogComponent},
+  {path: 'BackLog', component: BackLogComponent},
   {path: 'ScrumBoard', component: ScrumBoardComponent},
   {path: 'ScrumBoard/Task', component: TaskItemComponent},
   {path: 'SprintPlanning', component: SprintComponent}
@@ -77,13 +83,20 @@ const appRoutes:Routes = [
     BacklogComponent,
     HomeComponent,
     SprintComponent,
-    ScrumBoardComponent
+    ScrumBoardComponent,
+    BackLogComponent,
+    BackLogElementComponent,
+    BackLogCockpitComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpModule,
+    DataTableModule,
+    JsonpModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService, BacklogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

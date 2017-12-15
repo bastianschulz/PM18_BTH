@@ -1,19 +1,20 @@
 import {rolle} from "./rolle.model";
 
-export class user {
-  public ID: number;
-  public benutzerName: string;
-  public email: string;
-  public rolle: rolle;
-  public password: string;
-  public geloescht: boolean;
+export interface UserModel {
+  ID: number;
+  benutzerName: string;
+  email: string;
+  rolle: rolle;
+  password: string;
+  geloescht: boolean;
 
 
-
+/*
   constructor(benutzerName: string, email: string, password: string){
     this.benutzerName = benutzerName;
     this.email = email;
     this.password = password;
 
   }
+  */
 }
