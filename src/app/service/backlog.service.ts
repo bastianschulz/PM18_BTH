@@ -10,7 +10,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { BacklogItemModel } from '../models/backLogItem.model';
 
-
 @Injectable()
 export class BacklogService {
 

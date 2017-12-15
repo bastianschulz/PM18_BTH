@@ -9,7 +9,6 @@ import {Observable} from 'rxjs/Observable';
 
 import { UserModel } from '../models/user.model';
 
-
 @Injectable()
 export class UserService {
 
