@@ -1,14 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BacklogItemComponent } from './backlog/backlog-item/backlog-item.component';
-import { BacklogItemEditComponent } from './Backlog/backlog-item-edit/backlog-item-edit.component';
-import { BacklogItemDetailComponent } from './Backlog/backlog-item-detail/backlog-item-detail.component';
-import { BacklogItemListComponent } from './Backlog/backlog-item-list/backlog-item-list.component';
-import { BacklogItemListEditComponent } from './Backlog/backlog-item-list-edit/backlog-item-list-edit.component';
 import { SprintItemComponent } from './sprint/sprint-item/sprint-item.component';
 import { SprintItemEditComponent } from './Sprint/sprint-item-edit/sprint-item-edit.component';
 import { SprintItemDetailComponent } from './Sprint/sprint-item-detail/sprint-item-detail.component';
@@ -30,16 +25,19 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { LogOutComponent } from './auth/log-out/log-out.component';
 import {AuthService} from "./auth/auth.service/auth.service";
-import { BacklogComponent } from './backlog/backlog/backlog.component';
+
 import { HomeComponent } from './home/home.component';
 import { SprintComponent } from './sprint/sprint/sprint.component';
 import { ScrumBoardComponent } from './scrum-board/scrum-board/scrum-board.component';
+import { BackLogComponent } from './back-log/back-log.component';
+import { BackLogElementComponent } from './back-log-element/back-log-element.component';
+import { BackLogCockpitComponent } from './back-log-cockpit/back-log-cockpit.component';
 
 const appRoutes:Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'LogIn', component: LogInComponent},
-  {path: 'BackLog', component: BacklogComponent},
+  {path: 'BackLog', component: BackLogComponent},
   {path: 'ScrumBoard', component: ScrumBoardComponent},
   {path: 'ScrumBoard/Task', component: TaskItemComponent},
   {path: 'SprintPlanning', component: SprintComponent}
@@ -50,11 +48,7 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    BacklogItemComponent,
-    BacklogItemEditComponent,
-    BacklogItemDetailComponent,
-    BacklogItemListComponent,
-    BacklogItemListEditComponent,
+
     SprintItemComponent,
     SprintItemEditComponent,
     SprintItemDetailComponent,
@@ -74,10 +68,13 @@ const appRoutes:Routes = [
     UsersComponent,
     UserComponent,
     LogOutComponent,
-    BacklogComponent,
+
     HomeComponent,
     SprintComponent,
-    ScrumBoardComponent
+    ScrumBoardComponent,
+    BackLogComponent,
+    BackLogElementComponent,
+    BackLogCockpitComponent
   ],
   imports: [
     BrowserModule,
