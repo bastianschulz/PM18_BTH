@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
+import {FormsModule} from '@angular/forms';
+import {HttpModule, JsonpModule} from '@angular/http';
+import {DataTableModule} from 'angular2-datatable';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BacklogItemComponent } from './backlog/backlog-item/backlog-item.component';
@@ -34,6 +35,8 @@ import { BacklogComponent } from './backlog/backlog/backlog.component';
 import { HomeComponent } from './home/home.component';
 import { SprintComponent } from './sprint/sprint/sprint.component';
 import { ScrumBoardComponent } from './scrum-board/scrum-board/scrum-board.component';
+import { BacklogService } from './service/backlog.service';
+import { UserService } from './service/user.service';
 
 const appRoutes:Routes = [
   {path: '', component: HomeComponent},
@@ -81,9 +84,13 @@ const appRoutes:Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    HttpModule,
+    DataTableModule,
+    JsonpModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService, BacklogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

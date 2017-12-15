@@ -1,9 +1,9 @@
-import {user} from "../users/user.model";
+import {UserModel} from "./user.model";
 
 export class userStory {
   public ID: number;
   public betreff: string;
   public beschreibung: string;
-  public ersteller: user;
+  public ersteller: UserModel;
   public geloescht: boolean;
 }
