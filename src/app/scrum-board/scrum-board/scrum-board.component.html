@@ -1,6 +1,59 @@
-<p>
-  scrum-board works! hihih
-</p>
+<h1>
+  scrum-board
+</h1>
+<div class="col-lg-6 col-md-6">
+<h3>
+  Backlog zu Bearbeitung auswählen
+</h3>
+<br>
+
+<a href="http://localhost:4200/ScrumBoard/Task">Task 1</a>
+</div>
+<div class="col-lg-6 col-md-6">
+    <h3>
+        Task hinzufügen
+      </h3>
+    <form action="">
+      <div class="form-group">
+        <label for="titel">Name des Task:</label>
+        <input type="text" class="form-control" id="titel">
+      </div>
+      <div class="form-group">
+        <label for="info">Beschreibung zum Task:</label>
+        <br>
+        <textarea name="comment" class="form-control" maxlength="200"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="estHoMP">Benötigter Aufwand in Stunden:</label>
+        <input type="number" class="form-control" id="estHoMP">
+      </div>
+      <div class="form-group">
+        <label for="sprintID">Zugeteilter Sprint:</label>
+        <input type="number" class="form-control" id="sprintID">
+      </div>
+      <div class="form-group">
+        <label for="backlogID">Zugeteilter Backlog:</label>
+        <input type="number" class="form-control" id="backlogID">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Gelöscht?</label>
+      </div>
+      <label for="Status">Startus:</label>
+      <select name="Status">
+        <option value="entwurf">Entwurf</option>
+        <option value="toDo">ToDo</option>
+        <option value="inBearbeitung">In Bearbeitung</option>
+        <option value="zuKlaeren">Zu klären</option>
+        <option value="fertig">Fertig</option>
+      </select>
+      <hr>
+      <button type="submit" class="btn btn-default">Speichern</button>
+      <button type="submit" class="btn btn-default">Abbrechen</button>
+    </form>
+  </div>
+<hr>
+
 
 
 

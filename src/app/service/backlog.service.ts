@@ -42,8 +42,8 @@ export class BacklogService {
    * @returns {Observable<BacklogItemModel>} Daten vom Server
    */
   getAllBacklogItems(): Observable<Array<BacklogItemModel>> {
-   // return this.http.get(this.actionUrl + 'api/getAllBacklogitems', this.options).map((r: Response) => r.json());
-    return this.http.get('http://localhost:3000/api/getAllBacklogitems', this.options).map((r: Response) => r.json());
+    return this.http.get(this.actionUrl + 'api/getAllBacklogitems', this.options).map((r: Response) => r.json());
+   // return this.http.get('http://localhost:3000/api/getAllBacklogitems', this.options).map((r: Response) => r.json());
   }
 
 }
