@@ -5,11 +5,6 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import {DataTableModule} from 'angular2-datatable';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BacklogItemComponent } from './backlog/backlog-item/backlog-item.component';
-import { BacklogItemEditComponent } from './Backlog/backlog-item-edit/backlog-item-edit.component';
-import { BacklogItemDetailComponent } from './Backlog/backlog-item-detail/backlog-item-detail.component';
-import { BacklogItemListComponent } from './Backlog/backlog-item-list/backlog-item-list.component';
-import { BacklogItemListEditComponent } from './Backlog/backlog-item-list-edit/backlog-item-list-edit.component';
 import { SprintItemComponent } from './sprint/sprint-item/sprint-item.component';
 import { SprintItemEditComponent } from './Sprint/sprint-item-edit/sprint-item-edit.component';
 import { SprintItemDetailComponent } from './Sprint/sprint-item-detail/sprint-item-detail.component';
@@ -56,11 +51,6 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    BacklogItemComponent,
-    BacklogItemEditComponent,
-    BacklogItemDetailComponent,
-    BacklogItemListComponent,
-    BacklogItemListEditComponent,
     SprintItemComponent,
     SprintItemEditComponent,
     SprintItemDetailComponent,
@@ -80,7 +70,6 @@ const appRoutes:Routes = [
     UsersComponent,
     UserComponent,
     LogOutComponent,
-    BacklogComponent,
     HomeComponent,
     SprintComponent,
     ScrumBoardComponent,
