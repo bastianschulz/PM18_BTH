@@ -35,6 +35,7 @@ import { UserService } from './service/user.service';
 import { BackLogComponent } from './back-log/back-log.component';
 import { BackLogElementComponent } from './back-log-element/back-log-element.component';
 import { BackLogCockpitComponent } from './back-log-cockpit/back-log-cockpit.component';
+import { SprintCockpitComponent } from './sprint/sprint-cockpit/sprint-cockpit.component';
 
 const appRoutes:Routes = [
   {path: '', component: HomeComponent},
@@ -75,7 +76,8 @@ const appRoutes:Routes = [
     ScrumBoardComponent,
     BackLogComponent,
     BackLogElementComponent,
-    BackLogCockpitComponent
+    BackLogCockpitComponent,
+    SprintCockpitComponent
   ],
   imports: [
     BrowserModule,
