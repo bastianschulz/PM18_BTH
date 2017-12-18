@@ -1,38 +1,38 @@
 
 <div class="row">
-  <div class="col">
-    <h2>Backlog anlegen</h2>
+  <div class="col" >
+    <h1>Backlog Item hinzufügen</h1>
     <hr>
     <form (ngSubmit)="onAddBackLog()">
       <div id="backLog-Data">
 
         <div class="row">
-          <div class="col-sm-5 form-group">
-            <label for="name">Bezeichnung des Items</label>
+          <div class="col-sm-6 form-group">
+            <label for="name">Bezeichnung</label>
             <input
               type="text"
               id="name"
               class="form-control"
-              ngModel
-              name="backlogname"
+
             >
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-5 form-group">
-            <label for="beschreibung">Beschreibung des Items</label>
-            <input type="text"
+          <div class="col-sm-6 form-group">
+            <label for="beschreibung">Beschreibung</label>
+            <textarea type="text"
                    id="beschreibung"
                    class="form-control"
-                   ngModel
-                   name="backlogbeschreibung"
-            >
+            maxlength="600">
+            </textarea>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-success" type="submit">BackLog anlegen</button>
+
+          <div class="col-sm-6 form-group">
+            <button class="btn btn-success" routerLink="/BackLog" type="submit">BackLog Item hinzufügen</button>
             <button class="btn btn-primary" type="reset">Zurücksetzen</button>
+            <button class="btn btn-danger" routerLink="/BackLog">Abbrechen</button>
           </div>
         </div>
 

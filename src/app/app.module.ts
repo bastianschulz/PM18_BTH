@@ -42,9 +42,13 @@ const appRoutes:Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'LogIn', component: LogInComponent},
   {path: 'BackLog', component: BackLogComponent},
+  {path: 'BackLog/Add', component: BackLogCockpitComponent},
   {path: 'ScrumBoard', component: ScrumBoardComponent},
-  {path: 'ScrumBoard/Task', component: TaskItemComponent},
-  {path: 'SprintPlanning', component: SprintComponent}
+  {path: 'ScrumBoard/AddTask', component: TaskItemComponent},
+  {path: 'ScrumBoard/EditTask', component: TaskItemEditComponent},
+
+  {path: 'SprintPlanning', component: SprintComponent},
+  {path: 'SprintPlanning/Add', component: SprintCockpitComponent}
 
 ];
 

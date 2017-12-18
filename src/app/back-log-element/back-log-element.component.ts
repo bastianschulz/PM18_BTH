@@ -36,4 +36,8 @@ export class BackLogElementComponent implements OnInit {
       }
     );
   }
+
+  onAddBackLog(){
+
+  }
 }

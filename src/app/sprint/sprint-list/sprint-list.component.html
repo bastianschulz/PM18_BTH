@@ -1,3 +1,43 @@
-<p>
-  sprint-list works!
+<h1>SprintPlanning</h1>
+<p align="right"> <button class="btn btn-success" routerLink="/SprintPlanning/Add">Sprint hinzufügen</button>
 </p>
+
+<table class="table table-responsive" [mfData]="sprintItem" #mf="mfDataTable" [mfRowsOnPage]="10">
+  <thead>
+  <tr>
+    <th data-toggle="tooltip" title="Sprint Titel">
+      <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="Weitere Informationen">
+      <mfDefaultSorter by="info">Info</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="Start Datum">
+      <mfDefaultSorter by="Datum">Start Datum</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="End Datum">
+      <mfDefaultSorter by="Datum">End Datum</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="Status">
+      <mfDefaultSorter by="Status">Status</mfDefaultSorter>
+    </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let allSprintItems of mf.data">
+    <td>{{allSprintItems.titel}}</td>
+    <td>{{allSprintItems.info}}</td>
+    <td>{{allSprintItems.startDate}}</td>
+    <td>{{allSprintItems.endDate}}</td>
+    <td>{{allSprintItems.status}}</td>
+    <td>
+      <div class="btn-group-sm" role="group">
+        <button type="button" class="btn btn-warning"
+                [routerLink]="['../backlog-item-detail', allSprintItems.si_Id]">Bearbeiten
+        </button>
+      </div>
+  </tr>
+  </tbody>
+</table>
+
+
