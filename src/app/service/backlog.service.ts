@@ -48,4 +48,17 @@ export class BacklogService {
     return this.http.get(this.actionUrl+'/getAllBacklogitems', this.options).map((r: Response) => r.json());
   }
 
+  /**
+   * HOlt ein BacklogItem mit Hilfe der ID vom Server
+   *
+   * @param {number} bli_ID
+   * BacklogItem ID
+   * @returns {Observable<BacklogItemModel>}
+   * Backlog ITem vom Server
+   */
+  getBacklogItemByID(bli_ID:number): Observable<BacklogItemModel>{
+    return this.http.get(this.actionUrl+'/getBacklogItemByID',this.options).map((singleR:Response) => singleR.json());
+
+  }
+
 }
