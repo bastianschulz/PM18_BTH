@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BacklogItemModel } from '../models/backLogItem.model';
 import { BacklogService } from '../service/backlog.service';
 
+
 @Component({
   selector: 'app-back-log-element',
   templateUrl: './back-log-element.component.html',

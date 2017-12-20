@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SprintModel } from '../../models/sprint.model';
+import { SprintService } from '../../service/sprint.service';
+
 
 @Component({
   selector: 'app-sprint-list',
@@ -7,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SprintListComponent implements OnInit {
 
-  constructor() { }
+  sprintitem: SprintModel[] = [] as SprintModel[];
 
-  ngOnInit() {
+  constructor(private sprintService: SprintService) {
+    sprintService.newSprintArray$.subscribe(
+      newSprintArray => {
+        this.sprintitem = newSprintArray;
+     });
   }
 
+  ngOnInit() {
+    this.loadSprint();
+  }
+
+  loadSprint() {
+    this.sprintService.getAllSprints().subscribe(
+      data => {
+        // befüllen des Arrays
+        this.sprintitem = [] as SprintModel[];
+        data.forEach(ergebnis => {
+          this.sprintitem.push(ergebnis);
+        });
+        for (let i = 0; i < data.length; i++) {
+          this.sprintService.sprintItems.set(data[i].sprint_ID, data[i]);
+        }
+      }
+    );
+  }
+
+  onAddSprint(){
+
+  }
 }

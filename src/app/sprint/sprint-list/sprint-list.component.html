@@ -2,7 +2,7 @@
 <p align="right"> <button class="btn btn-success" routerLink="/SprintPlanning/Add">Sprint hinzufügen</button>
 </p>
 
-<table class="table table-responsive" [mfData]="sprintItem" #mf="mfDataTable" [mfRowsOnPage]="10">
+<table class="table table-responsive" [mfData]="sprintitem" #mf="mfDataTable" [mfRowsOnPage]="10">
   <thead>
   <tr>
     <th data-toggle="tooltip" title="Sprint Titel">
@@ -12,28 +12,28 @@
       <mfDefaultSorter by="info">Info</mfDefaultSorter>
     </th>
     <th data-toggle="tooltip" title="Start Datum">
-      <mfDefaultSorter by="Datum">Start Datum</mfDefaultSorter>
+      <mfDefaultSorter by="start">Start Datum</mfDefaultSorter>
     </th>
     <th data-toggle="tooltip" title="End Datum">
-      <mfDefaultSorter by="Datum">End Datum</mfDefaultSorter>
+      <mfDefaultSorter by="end">End Datum</mfDefaultSorter>
     </th>
     <th data-toggle="tooltip" title="Status">
-      <mfDefaultSorter by="Status">Status</mfDefaultSorter>
+      <mfDefaultSorter by="status">Status</mfDefaultSorter>
     </th>
 
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let allSprintItems of mf.data">
-    <td>{{allSprintItems.titel}}</td>
-    <td>{{allSprintItems.info}}</td>
-    <td>{{allSprintItems.startDate}}</td>
-    <td>{{allSprintItems.endDate}}</td>
-    <td>{{allSprintItems.status}}</td>
+  <tr *ngFor="let allSprint of mf.data">
+    <td>{{allSprint.titel}}</td>
+    <td>{{allSprint.info}}</td>
+    <td>{{allSprint.start}}</td>
+    <td>{{allSprint.end}}</td>
+    <td>{{allSprint.status}}</td>
     <td>
       <div class="btn-group-sm" role="group">
         <button type="button" class="btn btn-warning"
-                [routerLink]="['../backlog-item-detail', allSprintItems.si_Id]">Bearbeiten
+                [routerLink]="['../backlog-item-detail', allSprint.sprint_ID]">Bearbeiten
         </button>
       </div>
   </tr>

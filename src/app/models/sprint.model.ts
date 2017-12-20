@@ -4,7 +4,9 @@
 export interface SprintModel{
   sprint_ID: number;
   titel: string;
+  info: string;
   start: string;
   end: string;
   status: string;
+  project_ID: number;
 }

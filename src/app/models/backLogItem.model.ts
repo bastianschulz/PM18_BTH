@@ -5,4 +5,6 @@ export interface BacklogItemModel {
   geloescht: number;
   status: string;
   priority: string;
+  us_ID: number;
+  project_ID: number;
 }

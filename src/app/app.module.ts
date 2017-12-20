@@ -32,6 +32,7 @@ import { SprintComponent } from './sprint/sprint/sprint.component';
 import { ScrumBoardComponent } from './scrum-board/scrum-board/scrum-board.component';
 import { BacklogService } from './service/backlog.service';
 import { UserService } from './service/user.service';
+import { SprintService } from './service/sprint.service';
 import { BackLogComponent } from './back-log/back-log.component';
 import { BackLogElementComponent } from './back-log-element/back-log-element.component';
 import { BackLogCockpitComponent } from './back-log-cockpit/back-log-cockpit.component';
@@ -91,7 +92,7 @@ const appRoutes:Routes = [
     DataTableModule,
     JsonpModule
   ],
-  providers: [AuthService, UserService, BacklogService],
+  providers: [AuthService, UserService, BacklogService, SprintService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
