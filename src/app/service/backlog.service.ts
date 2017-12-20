@@ -23,7 +23,10 @@ export class BacklogService {
 
   backlogItems: Map<number, BacklogItemModel>;
 
-  private actionUrl: 'http://localhost:3000/';
+
+  /* Adresse abhängig von Umgebung wählen */
+  //private actionUrl: string = 'http://localhost:3000/api';
+  private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -42,8 +45,7 @@ export class BacklogService {
    * @returns {Observable<BacklogItemModel>} Daten vom Server
    */
   getAllBacklogItems(): Observable<Array<BacklogItemModel>> {
-    return this.http.get(this.actionUrl + 'api/getAllBacklogitems', this.options).map((r: Response) => r.json());
-   // return this.http.get('http://localhost:3000/api/getAllBacklogitems', this.options).map((r: Response) => r.json());
+    return this.http.get(this.actionUrl+'/getAllBacklogitems', this.options).map((r: Response) => r.json());
   }
 
 }
