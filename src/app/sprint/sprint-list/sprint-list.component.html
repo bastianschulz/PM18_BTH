@@ -8,9 +8,6 @@
     <th data-toggle="tooltip" title="Sprint Titel">
       <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
     </th>
-    <th data-toggle="tooltip" title="Weitere Informationen">
-      <mfDefaultSorter by="info">Info</mfDefaultSorter>
-    </th>
     <th data-toggle="tooltip" title="Start Datum">
       <mfDefaultSorter by="start">Start Datum</mfDefaultSorter>
     </th>
@@ -26,8 +23,8 @@
   <tbody>
   <tr *ngFor="let allSprint of mf.data">
     <td>{{allSprint.titel}}</td>
-    <td>{{allSprint.start}}</td>
-    <td>{{allSprint.end}}</td>
+    <td>{{allSprint.start | date:'dd.MM.yyyy'}}</td>
+    <td>{{allSprint.end | date:'dd.MM.yyyy'}}</td>
     <td>{{allSprint.status}}</td>
     <td>
       <div class="btn-group-sm" role="group">
