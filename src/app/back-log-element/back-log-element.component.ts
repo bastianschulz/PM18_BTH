@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {BacklogItemModel} from '../models/backLogItem.model';
-import {BacklogService} from '../service/backlog.service';
+import { Component, OnInit } from '@angular/core';
+import { BacklogItemModel } from '../models/backLogItem.model';
+import { BacklogService } from '../service/backlog.service';
 
 
 @Component({
@@ -35,12 +35,14 @@ export class BackLogElementComponent implements OnInit {
         // Was macht die untere Schleife???
         // set (...) wirft einen Type Error...
 
-        for (let i = 0; i < data.length; i++) {
+        /*for (let i = 0; i < data.length; i++) {
           this.backlogService.backlogItems.set(data[i].bli_ID, data[i]);
-        }
+        }*/
       }
     );
   }
 
+  onAddBackLog(){
 
+  }
 }

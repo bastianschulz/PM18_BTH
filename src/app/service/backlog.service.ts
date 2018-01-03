@@ -9,6 +9,7 @@ import {Subject} from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { BacklogItemModel } from '../models/backLogItem.model';
+import { BacklogItemTO } from '../models/backLogItem.TO';
 
 @Injectable()
 export class BacklogService {
@@ -25,9 +26,23 @@ export class BacklogService {
 
 
   /* Adresse abhängig von Umgebung wählen */
-  //private actionUrl: string = 'http://localhost:3000/api';
-  private actionUrl: string = 'http://10.60.67.166:3000/api';
+  private actionUrl: string = 'http://localhost:3000/api';
+  //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
+
+
+  private static errorHandler(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      // const err = (error as ServerResponse)._body;
+      errMsg = `${error.status}`;
+      // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    return Observable.throw(errMsg);
+  }
+
 
   constructor(private http: Http) {
     /**
@@ -45,11 +60,31 @@ export class BacklogService {
    * @returns {Observable<BacklogItemModel>} Daten vom Server
    */
   getAllBacklogItems(): Observable<Array<BacklogItemModel>> {
-    return this.http.get(this.actionUrl+'/getAllBacklogitems', this.options).map((r: Response) => r.json());
+    return this.http
+      .get(this.actionUrl+'/getAllBacklogitems', this.options)
+      .map((r: Response) => r.json());
   }
 
   /**
-   * HOlt ein BacklogItem mit Hilfe der ID vom Server
+   * BacklogItem anlegen
+   * @param titel
+   * @param info
+   * @returns {Observable<void>} ok oder != ok
+   */
+  postBacklogItem(titel: string, info: string) {
+    const backlogitemTO: BacklogItemTO = ({
+      titel: titel,
+      info: info
+    }) as BacklogItemTO;
+
+    this.http.post(this.actionUrl+'/postBacklogitem', backlogitemTO, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  /**
+   * Holt ein BacklogItem mit Hilfe der ID vom Server
    *
    * @param {number} bli_ID
    * BacklogItem ID
