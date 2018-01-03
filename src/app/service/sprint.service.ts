@@ -9,6 +9,7 @@ import {Subject} from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { SprintModel } from '../models/sprint.model';
+import { SprintTO } from '../models/sprint.TO';
 
 @Injectable()
 export class SprintService {
@@ -45,7 +46,30 @@ export class SprintService {
    * @returns {Observable<SprintModel>} Daten vom Server
    */
   getAllSprints(): Observable<Array<SprintModel>> {
-    return this.http.get(this.actionUrl+'/getAllSprints', this.options).map((r: Response) => r.json());
+    return this.http
+      .get(this.actionUrl+'/getAllSprints', this.options)
+      .map((r: Response) => r.json());
   }
 
+  /**
+   * Sprint anlegen
+   * @param titel
+   * @param start
+   * @param end
+   * @returns {Observable<void>} ok oder != ok
+   */
+  postSprint(titel: string, start: Date, end: Date) {
+    const sprintTO: SprintTO = ({
+      titel: titel,
+      start: start,
+      end: end
+    }) as SprintTO;
+
+    console.log('postsprint: ' + JSON.stringify(sprintTO));
+
+    this.http.post(this.actionUrl+'/postSprint', sprintTO, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
 }

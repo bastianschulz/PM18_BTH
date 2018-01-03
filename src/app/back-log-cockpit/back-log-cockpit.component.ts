@@ -25,7 +25,6 @@ export class BackLogCockpitComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   onSubmit() {
@@ -55,8 +54,6 @@ export class BackLogCockpitComponent implements OnInit {
       // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
-
-
     });
   }
 }

@@ -30,20 +30,6 @@ export class BacklogService {
   //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
-
-  private static errorHandler(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      // const err = (error as ServerResponse)._body;
-      errMsg = `${error.status}`;
-      // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    return Observable.throw(errMsg);
-  }
-
-
   constructor(private http: Http) {
     /**
      * Optionen für die Serveranfragen

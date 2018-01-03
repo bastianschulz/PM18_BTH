@@ -31,9 +31,9 @@ export class SprintListComponent implements OnInit {
         data.forEach(ergebnis => {
           this.sprintitem.push(ergebnis);
         });
-        for (let i = 0; i < data.length; i++) {
+        /*for (let i = 0; i < data.length; i++) {
           this.sprintService.sprintItems.set(data[i].sprint_ID, data[i]);
-        }
+        }*/
       }
     );
   }

@@ -3,44 +3,31 @@
   <div class="col">
     <h2>Sprint hinzufügen</h2>
     <hr>
-    <form (ngSubmit)="onAddSprint()">
+    <form (ngSubmit)="onSubmit()" #newsprintForm="ngForm">
       <div id="sprint-Data">
 
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="name">Name des Sprints</label>
-            <input
-              type="text"
-              id="name"
-              class="form-control"
-              ngModel
-              name="sprintname"
-            >
+            <input type="text" id="name" class="form-control"
+                   [(ngModel)]="titel" name="sprintname">
           </div>
         </div>
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="startdate">Start Datum</label>
-            <input type="date"
-                   id="startdate"
-                   class="form-control"
-                   ngModel
-                   name="start"
-            >
+            <input type="date" id="startdate" class="form-control"
+                   [(ngModel)]="start" name="start">
           </div>
           <div class="col-sm-5 form-group">
             <label for="enddate">Ende Datum</label>
-            <input type="date"
-                   id="enddate"
-                   class="form-control"
-                   ngModel
-                   name="end"
-            >
+            <input type="date" id="enddate" class="form-control"
+                   [(ngModel)]="end" name="end">
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <button class="btn btn-success" type="submit" routerLink="/SprintPlanning">Sprint anlegen</button>
+            <button class="btn btn-success" type="submit">Sprint anlegen</button>
             <button class="btn btn-primary" type="reset">Zurücksetzen</button>
             <button class="btn btn-group-vertical btn-warning" routerLink="/SprintPlanning">Abbrechen</button>
           </div>
