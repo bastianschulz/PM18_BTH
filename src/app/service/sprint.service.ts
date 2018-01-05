@@ -72,4 +72,14 @@ export class SprintService {
       .subscribe();
     return;
   }
+
+  /**
+   * Sprint per sprint_ID updaten
+   * @returns {Observable<TaskModel>} Daten vom Server
+   */
+  updSprint(sid: number, tit: string, start: string, end: string, stat: string): Observable<Response> {
+    return this.http
+      .head(this.actionUrl+'/updSprint?sid='+sid+'&tit='+tit+'&start='+start+'&end='+end+'&stat='+stat, this.options);
+  }
+
 }
