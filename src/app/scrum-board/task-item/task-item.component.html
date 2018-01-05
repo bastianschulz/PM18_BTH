@@ -2,49 +2,40 @@
   <div class="col">
     <h2>Task hinzufügen</h2>
     <hr>
-    <form (ngSubmit)="onAddTask()">
+    <form (ngSubmit)="onSubmit()" #newtaskForm="ngForm">
       <div id="task-data">
 
         <div class="row">
           <div class="col-sm-5 form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              class="form-control"
-              ngModel
-              name="taskName"
-            >
+            <label for="name">Task Name</label>
+            <input type="text" id="name" class="form-control"
+                   [(ngModel)]="titel" name="name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="info">Informationen & Details</label>
+            <input type="text" id="info" class="form-control"
+                   [(ngModel)]="info" name="info">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
+            <input type="number" min="1" max="20" id="estHoMP" class="form-control"
+                   [(ngModel)]="estHoMP" name="estHoMP">
           </div>
         </div>
           <div class="row">
             <div class="col-sm-5 form-group">
-              <label for="user">Benutzer</label>
-              <input
-                type="text"
-                id="user"
-                class="form-control"
-                ngModel
-                name="userName"
-              >
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-5 form-group">
-              <label for="sprint">Sprint</label>
-              <input
-                type="text"
-                id="sprint"
-                class="form-control"
-                ngModel
-                name="sprintName"
-              >
+              <label for="erstelldatum">Erstelldatum</label>
+              <input type="date" id="erstelldatum" class="form-control"
+                     [(ngModel)]="erstelldatum" name="erstelldatum">
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <button class="btn btn-success" type="submit" routerLink="/ScrumBoard">Task hinzufügen</button>
+              <button class="btn btn-success" type="submit">Task hinzufügen</button>
               <button class="btn btn-primary" type="reset">Zurücksetzen</button>
               <button class="btn btn-warning" type="button" routerLink="/ScrumBoard">Abbrechen</button>
             </div>

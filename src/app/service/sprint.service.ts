@@ -3,13 +3,13 @@
  */
 
 import 'rxjs/add/operator/map';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
-import { SprintModel } from '../models/sprint.model';
-import { SprintTO } from '../models/sprint.TO';
+import {SprintModel} from '../models/sprint.model';
+import {SprintTO} from '../models/sprint.TO';
 
 @Injectable()
 export class SprintService {
@@ -47,7 +47,7 @@ export class SprintService {
    */
   getAllSprints(): Observable<Array<SprintModel>> {
     return this.http
-      .get(this.actionUrl+'/getAllSprints', this.options)
+      .get(this.actionUrl + '/getAllSprints', this.options)
       .map((r: Response) => r.json());
   }
 
@@ -67,9 +67,24 @@ export class SprintService {
 
     console.log('postsprint: ' + JSON.stringify(sprintTO));
 
-    this.http.post(this.actionUrl+'/postSprint', sprintTO, this.options)
+    this.http.post(this.actionUrl + '/postSprint', sprintTO, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;
   }
+
+  // Variablen für sprint update
+
+  /**
+   * Sprint per sprint_ID updaten
+   * @returns {Observable<TaskModel>} Daten vom Server
+   */
+  updSprint(sid: number, tit: string, start: string, end: string, stat: string): Observable<void> {
+    this.http
+      .head(this.actionUrl + '/updSprint?sid=' + sid + '&tit=' + tit + '&start=' + start + '&end=' + end + '&stat=' + stat, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
 }
