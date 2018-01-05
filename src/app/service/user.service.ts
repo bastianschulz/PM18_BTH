@@ -15,6 +15,9 @@ export class UserService {
   private actionUrl: 'http://localhost:3000/api/';
   options: RequestOptions;
 
+  userLogIn: boolean = false;
+
+
   constructor(private http: Http) {
     /**
      * Optionen für die Serveranfragen
@@ -25,6 +28,7 @@ export class UserService {
       withCredentials: true
     });
   }
+/*
 
   getAllUsers(): Observable<UserModel> {
     return this.http
@@ -32,6 +36,41 @@ export class UserService {
       .map((r: Response) => r.json())
       //.catch(UserService.errorHandler);
   }
+*/
+
+
+  verifyUser(email:string,userPassword:string){
+    this.http
+      .get(this.actionUrl+'/login?uname='+ email + '&passwd=' + userPassword, this.options)
+      .map((r: Response) => r.json());
+
+    if(r === null) {
+      this.userLogIn = false;
+    }
+      else{this.userLogIn = true;}
+
+      return;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /*
   public getSingle<T>(id: number): Observable<T> {
