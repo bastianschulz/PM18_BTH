@@ -53,7 +53,8 @@ export class BackLogComponent implements OnInit {
   }
 
   updBacklogItem() {
-  //  this.sprintService.updSprint(this.sprintitem[this.editSprintID].sprint_ID, this.sprintitem[this.editSprintID].titel, this.sprintitem[this.editSprintID].start, this.sprintitem[this.editSprintID].end, this.sprintitem[this.editSprintID].status);
+    this.backlogService.updBli(this.backlogitem[this.editBliID].bli_ID, this.backlogitem[this.editBliID].titel, this.backlogitem[this.editBliID].info, this.backlogitem[this.editBliID].status, this.backlogitem[this.editBliID].priority, this.backlogitem[this.editBliID].geloescht);
+
     this.blieditor = false;
   }
 

@@ -82,4 +82,15 @@ export class BacklogService {
 
   }
 
+  /**
+   * Task per task_ID updaten
+   * @returns {Observable<TaskModel>} Daten vom Server
+   */
+  updBli(bli_ID: number, titel: string, info: string, status: string, priority: string, geloescht: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&tit=' + titel + '&inf=' + info + '&stat=' + status + '&prio=' + priority + '&ge=' + geloescht, this.options)
+  .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
 }
