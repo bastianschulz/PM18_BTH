@@ -37,6 +37,7 @@ import { BackLogComponent } from './back-log/back-log.component';
 import { BackLogElementComponent } from './back-log-element/back-log-element.component';
 import { BackLogCockpitComponent } from './back-log-cockpit/back-log-cockpit.component';
 import { SprintCockpitComponent } from './sprint/sprint-cockpit/sprint-cockpit.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes:Routes = [
   {path: '', component: HomeComponent},
@@ -49,7 +50,8 @@ const appRoutes:Routes = [
   {path: 'ScrumBoard/EditTask', component: TaskItemEditComponent},
 
   {path: 'SprintPlanning', component: SprintComponent},
-  {path: 'SprintPlanning/Add', component: SprintCockpitComponent}
+  {path: 'SprintPlanning/Add', component: SprintCockpitComponent},
+  {path: 'AfterLogin', canActivate: [AuthGuard], component:HomeComponent}
 
 ];
 
@@ -92,7 +94,7 @@ const appRoutes:Routes = [
     DataTableModule,
     JsonpModule
   ],
-  providers: [AuthService, UserService, BacklogService, SprintService],
+  providers: [AuthService, UserService, BacklogService, SprintService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

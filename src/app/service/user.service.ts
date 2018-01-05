@@ -13,9 +13,12 @@ import { UserModel } from '../models/user.model';
 export class UserService {
 
   private actionUrl: 'http://localhost:3000/api/';
+  private isUserLoggedIn;
+  private username;
   options: RequestOptions;
 
   constructor(private http: Http) {
+    this.isUserLoggedIn = false;
     /**
      * Optionen für die Serveranfragen
      * @type {RequestOptions}
@@ -33,6 +36,13 @@ export class UserService {
       //.catch(UserService.errorHandler);
   }
 
+setUserLoggedIn(){
+  this.isUserLoggedIn = true;
+}
+
+getUserLoggedIn(){
+  return this.isUserLoggedIn;
+}
   /*
   public getSingle<T>(id: number): Observable<T> {
     return this.http.get<T>(this.actionUrl + id);
