@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {SprintModel} from '../../models/sprint.model';
 import {SprintService} from '../../service/sprint.service';
 
-
 @Component({
   selector: 'app-sprint-list',
   templateUrl: './sprint-list.component.html',
@@ -41,10 +40,14 @@ export class SprintListComponent implements OnInit {
 
   clickedOnEdit(sprint_ID: number) {
     this.editSprintID = this.emptynumber;
-    this.editSprintID = sprint_ID-1;
 
-    console.log('editSprintID: sprint_ID -->>' + sprint_ID);
-    console.log('editSprintID: array-index -->>' + this.editSprintID);
+    var i: number = this.sprintitem.length - 1;
+
+    for (i; i >= 0; i--) {
+      if (this.sprintitem[i].sprint_ID === sprint_ID) {
+        this.editSprintID = i;
+      }
+    }
 
     this.sprinteditor = true;
   }

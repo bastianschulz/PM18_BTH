@@ -1,104 +1,101 @@
 <div *ngIf="taskeditor == false">
-<h1>ScrumBoard</h1>
+  <h1>ScrumBoard</h1>
 
-<p align="right">
-  <button class="btn btn-success" routerLink="/ScrumBoard/AddTask">Task erstellen</button>
-</p>
+  <p align="right">
+    <button class="btn btn-success" routerLink="/ScrumBoard/AddTask">Task erstellen</button>
+  </p>
 
-<table class="table table-responsive" [mfData]="scrumitem" #mf="mfDataTable" [mfRowsOnPage]="10">
-  <thead>
-  <tr>
-    <th data-toggle="tooltip" title="Benutzer">
-      Benutzer
-    </th>
-    <th data-toggle="tooltip" title="To Do">
-      To Do
-    </th>
-    <th data-toggle="tooltip" title="In Bearbeitung">
-      In Bearbeitung
-    </th>
-    <th data-toggle="tooltip" title="Zu Klärung">
-      Zur Klärung
-    </th>
-    <th data-toggle="tooltip" title="Fertig">
-      Fertig
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let allScrum of mf.data">
-    <td>{{allScrum.uname}}</td>
-    <td>{{allScrum.titel}}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-      <div class="btn-group-sm" role="group">
-        <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allScrum.task_ID)">Bearbeiten
-        </button>
-      </div>
-  </tr>
-  </tbody>
-  <tfoot>
-  <tr>
-    <td colspan="7">
-      <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
-    </td>
-  </tr>
-  </tfoot>
-</table>
+  <table class="table table-responsive" [mfData]="scrumitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th data-toggle="tooltip" title="Benutzer">
+        Benutzer
+      </th>
+      <th data-toggle="tooltip" title="To Do">
+        To Do
+      </th>
+      <th data-toggle="tooltip" title="In Bearbeitung">
+        In Bearbeitung
+      </th>
+      <th data-toggle="tooltip" title="Zu Klärung">
+        Zur Klärung
+      </th>
+      <th data-toggle="tooltip" title="Fertig">
+        Fertig
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allScrum of mf.data">
+      <td>{{allScrum.uname}}</td>
+      <td>{{allScrum.titel}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allScrum.task_ID)">Bearbeiten
+          </button>
+        </div>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
 </div>
 
 <div *ngIf="taskeditor == true">
-   <h1>Task bearbeiten</h1>
+  <h1>Task bearbeiten</h1>
   <hr>
-  <form (ngSubmit)="editTask()">
+  <form>
     <div>
       <div class="col-md-10 form-group">
         <label for="titel">Name</label>
-        <input type="text" id="titel" class="form-control" [(ngModel)]="titel" name="titel">
+        <input type="text" id="titel" class="form-control" [(ngModel)]="scrumitem[editTaskID].titel" name="titel">
       </div>
       <div class="col-md-10 form-group">
         <label for="info">Information</label>
-        <input type="text" id="info" class="form-control" [(ngModel)]="info" name="info">
+        <input type="text" id="info" class="form-control" [(ngModel)]="scrumitem[editTaskID].info" name="info">
       </div>
       <div class="col-md-5 form-group">
         <label for="status">Bearbeitungs Status</label>
-        <input type="text" id="status" class="form-control" [(ngModel)]="status" name="status">
-      </div>
-      <div class="col-md-5 form-group">
-        <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
-        <input type="text" id="estHoMP" class="form-control" [(ngModel)]="estHoMP" name="estHoMP">
-      </div>
-      <div class="col-md-5 form-group">
-        <label for="sprint_ID">Sprint ID</label>
-        <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="sprint_ID" name="sprint_ID">
-      </div>
-      <div class="col-md-5 form-group">
-        <label for="backlog_ID">Backlog Item ID</label>
-        <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="backlog_ID" name="backlog_ID">
-      </div>
-      <div class="col-md-5 form-group">
-        <label for="geloescht">Geloescht</label>
-        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="geloescht" name="geloescht">
+        <input type="text" id="status" class="form-control" [(ngModel)]="scrumitem[editTaskID].status" name="status">
       </div>
       <div class="col-md-5 form-group">
         <label for="erstelldatum">Erstellt am</label>
-        <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="erstelldatum" name="erstelldatum">
+        <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="scrumitem[editTaskID].erstelldatum" name="erstelldatum">
       </div>
-      <div class="col-xs-12">
-        <button class="btn btn-success" type="submit">Änderung speichern</button>
-        <button class="btn btn-group-vertical btn-warning" routerLink="/ScrumBoard">Abbrechen</button>
+      <div class="col-md-4 form-group">
+        <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
+        <input type="text" id="estHoMP" class="form-control" [(ngModel)]="scrumitem[editTaskID].estHoMP" name="estHoMP">
+      </div>
+      <div class="col-md-2 form-group">
+        <label for="sprint_ID">Sprint ID</label>
+        <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="scrumitem[editTaskID].sprint_ID" name="sprint_ID">
+      </div>
+      <div class="col-md-2 form-group">
+        <label for="backlog_ID">Backlog Item ID</label>
+        <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="scrumitem[editTaskID].backlog_ID" name="backlog_ID">
+      </div>
+      <div class="col-md-2 form-group">
+        <label for="geloescht">Geloescht</label>
+        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="scrumitem[editTaskID].geloescht" name="geloescht">
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-success" (click)="updTask()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
       </div>
     </div>
   </form>
 
 </div>
-<br>
-<hr>
-<p>
-  Unter dem Scrum Board soll eine Liste mit verfügbaren Tasks (nicht zugwiesen) erscheinen... für Später (D&D)
-</p>
+
+
 
 
 <!--<table class="table">-->

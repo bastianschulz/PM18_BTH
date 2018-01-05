@@ -13,16 +13,8 @@ import {Router} from '@angular/router';
 export class ScrumBoardComponent implements OnInit {
 
   taskeditor: boolean = false;
-
-  task_ID: number;
-  titel: string;
-  info: string;
-  estHoMP: number;
-  sprint_ID: number;
-  backlog_ID: number;
-  geloescht: boolean;
-  status: string;
-  erstelldatum: Date;
+  editTaskID: number;
+  emptynumber: number;
 
   scrumitem: ScrumModel[] = [] as ScrumModel[];
 
@@ -50,39 +42,25 @@ export class ScrumBoardComponent implements OnInit {
     );
   }
 
-  clickedOnEdit(task_ID: string) {
+  clickedOnEdit(task_ID: number) {
+    this.editTaskID = this.emptynumber;
 
+    var i: number = this.scrumitem.length - 1;
 
-    let taskitem: TaskModel[] = [] as TaskModel[];
-
-    this.taskService.getTaskByTaskID(task_ID).subscribe(
-      data => {
-        // befüllen des Arrays
-        taskitem = [] as TaskModel[];
-        data.forEach(ergebnis => {
-          taskitem.push(ergebnis);
-        });
+    for (i; i >= 0; i--) {
+      if (this.scrumitem[i].task_ID === task_ID) {
+        this.editTaskID = i;
       }
-    );
-
-    /*this.task_ID = this.taskitem[0].task_ID;
-    this.titel = this.taskitem[0].titel;
-    this.info = this.taskitem[0].info;
-    this.estHoMP = this.taskitem[0].estHoMP;
-    this.sprint_ID = this.taskitem[0].sprint_ID;
-    this.backlog_ID = this.taskitem[0].backlog_ID;
-    this.geloescht = this.taskitem[0].geloescht;
-    this.status = this.taskitem[0].status;
-    this.erstelldatum = this.taskitem[0].erstelldatum;
-
-    this.taskitem.pop();*/
-
+    }
     this.taskeditor = true;
   }
 
-  editTask() {
-    //this.taskService.updTask(this.task_ID, this.titel, this.info, this.estHoMP, this.sprint_ID, this.backlog_ID, this.geloescht, this.status, this.erstelldatum);
+  updTask() {
+    this.taskService.updTask(this.scrumitem[this.editTaskID].task_ID, this.scrumitem[this.editTaskID].titel, this.scrumitem[this.editTaskID].info, this.scrumitem[this.editTaskID].estHoMP, this.scrumitem[this.editTaskID].sprint_ID, this.scrumitem[this.editTaskID].backlog_ID, this.scrumitem[this.editTaskID].geloescht, this.scrumitem[this.editTaskID].status, this.scrumitem[this.editTaskID].erstelldatum);
+    this.taskeditor = false;
+  }
 
+  noEdit() {
     this.taskeditor = false;
   }
 

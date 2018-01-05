@@ -26,8 +26,8 @@ export class SprintService {
 
 
   /* Adresse abhängig von Umgebung wählen */
-  //private actionUrl: string = 'http://localhost:3000/api';
-  private actionUrl: string = 'http://10.60.67.166:3000/api';
+  private actionUrl: string = 'http://localhost:3000/api';
+  //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -65,15 +65,12 @@ export class SprintService {
       end: end
     }) as SprintTO;
 
-    console.log('postsprint: ' + JSON.stringify(sprintTO));
-
     this.http.post(this.actionUrl + '/postSprint', sprintTO, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;
   }
 
-  // Variablen für sprint update
 
   /**
    * Sprint per sprint_ID updaten
@@ -81,7 +78,7 @@ export class SprintService {
    */
   updSprint(sid: number, tit: string, start: string, end: string, stat: string): Observable<void> {
     this.http
-      .head(this.actionUrl + '/updSprint?sid=' + sid + '&tit=' + tit + '&start=' + start + '&end=' + end + '&stat=' + stat, this.options)
+      .post(this.actionUrl + '/updSprint?sid=' + sid + '&tit=' + tit + '&start=' + start + '&end=' + end + '&stat=' + stat, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;

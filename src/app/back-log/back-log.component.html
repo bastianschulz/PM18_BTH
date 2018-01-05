@@ -1,6 +1,82 @@
-<div class="container">
-  <div class="col">
-    <app-back-log-element></app-back-log-element>
-  </div>
+<div *ngIf="blieditor == false">
+  <h1> Backlog Items </h1>
+
+  <p align="right">
+    <button class="btn btn-success" routerLink="/BackLog/Add">Backlog Item hinzufügen</button>
+  </p>
+
+  <table class="table table-responsive" [mfData]="backlogitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th data-toggle="tooltip" title="Titel des Backlog Items">
+        <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Weitere Informationen">
+        <mfDefaultSorter by="info">Info</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Derzeitiger Status des Items">
+        <mfDefaultSorter by="status">Status</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Prioriät in der Entwicklung">
+        <mfDefaultSorter by="priority">Priorität</mfDefaultSorter>
+      </th>
+      <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allBacklogItems of mf.data">
+      <td>{{allBacklogItems.titel}}</td>
+      <td>{{allBacklogItems.info}}</td>
+      <td>{{allBacklogItems.status}}</td>
+      <td>{{allBacklogItems.priority}}</td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allBacklogItems.bli_ID)">Bearbeiten
+          </button>
+        </div>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
 </div>
 
+<div *ngIf="blieditor == true">
+
+  <h1>Backlog Item bearbeiten</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Name</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="backlogitem[editBliID].titel" name="titel">
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="info">Name</label>
+        <input type="text" id="info" class="form-control" [(ngModel)]="backlogitem[editBliID].info" name="info">
+      </div>
+      <div class="col-md-4 form-group">
+        <label for="status">Bearbeitungs Status</label>
+        <input type="text" id="status" class="form-control" [(ngModel)]="backlogitem[editBliID].status" name="status">
+      </div>
+      <div class="col-md-4 form-group">
+        <label for="priority">Bearbeitungs Priorität</label>
+        <input type="text" id="priority" class="form-control" [(ngModel)]="backlogitem[editBliID].priority" name="priority">
+      </div>
+      <div class="col-md-2 form-group">
+        <label for="geloescht">Geloescht</label>
+        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="backlogitem[editBliID].geloescht"name="geloescht">
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-success" (click)="updBacklogItem()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>
