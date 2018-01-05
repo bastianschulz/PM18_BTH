@@ -43,20 +43,14 @@ export class SprintListComponent implements OnInit {
     this.editSprintID = this.emptynumber;
     this.editSprintID = sprint_ID-1;
 
-    console.log('editSprintID: ' + this.editSprintID);
+    console.log('editSprintID: sprint_ID -->>' + sprint_ID);
+    console.log('editSprintID: array-index -->>' + this.editSprintID);
 
     this.sprinteditor = true;
   }
 
   updSprint() {
-
     this.sprintService.updSprint(this.sprintitem[this.editSprintID].sprint_ID, this.sprintitem[this.editSprintID].titel, this.sprintitem[this.editSprintID].start, this.sprintitem[this.editSprintID].end, this.sprintitem[this.editSprintID].status);
-    console.log('update editSprint_ID: ' + this.editSprintID);
-    console.log('update Sprint_ID: ' + this.sprintitem[this.editSprintID].sprint_ID);
-    console.log('update titel: ' + this.sprintitem[this.editSprintID].titel);
-    console.log('update start: ' + this.sprintitem[this.editSprintID].start);
-    console.log('update end: ' + this.sprintitem[this.editSprintID].end);
-    console.log('update status: ' + this.sprintitem[this.editSprintID].status);
     this.sprinteditor = false;
   }
 
