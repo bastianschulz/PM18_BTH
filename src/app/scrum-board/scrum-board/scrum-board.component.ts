@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ScrumModel} from '../../models/scrum.model';
 import {ScrumService} from '../../service/scrum.service';
 import {TaskModel} from '../../models/task.model';
+import {UserModel} from '../../models/user.model';
 import {TaskService} from '../../service/task.service';
 import {Router} from '@angular/router';
 
@@ -16,27 +16,41 @@ export class ScrumBoardComponent implements OnInit {
   editTaskID: number;
   emptynumber: number;
 
-  scrumitem: ScrumModel[] = [] as ScrumModel[];
+  taskitem: TaskModel[] = [] as TaskModel[];
+  users: UserModel[] = [] as UserModel[];
 
   constructor(private scrumService: ScrumService, private taskService: TaskService, private router: Router) {
     scrumService.newScrumArray$.subscribe(
       newScrumArray => {
-        this.scrumitem = newScrumArray;
+        this.taskitem = newScrumArray;
       });
   }
 
   ngOnInit() {
-    this.loadScrumboard();
+    this.loadScrumboardUsers();
+    this.loadScrumboardTasks();
     this.taskeditor = false;
   }
 
-  loadScrumboard() {
+  loadScrumboardUsers() {
+    this.scrumService.getAllUsersForSB().subscribe(
+      data => {
+        // befüllen des Arrays
+        this.users = [] as UserModel[];
+        data.forEach(ergebnis => {
+          this.users.push(ergebnis);
+        });
+      }
+    );
+  }
+
+  loadScrumboardTasks() {
     this.scrumService.getAllTasksForSB().subscribe(
       data => {
         // befüllen des Arrays
-        this.scrumitem = [] as ScrumModel[];
+        this.taskitem = [] as TaskModel[];
         data.forEach(ergebnis => {
-          this.scrumitem.push(ergebnis);
+          this.taskitem.push(ergebnis);
         });
       }
     );
@@ -45,10 +59,10 @@ export class ScrumBoardComponent implements OnInit {
   clickedOnEdit(task_ID: number) {
     this.editTaskID = this.emptynumber;
 
-    var i: number = this.scrumitem.length - 1;
+    var i: number = this.taskitem.length - 1;
 
     for (i; i >= 0; i--) {
-      if (this.scrumitem[i].task_ID === task_ID) {
+      if (this.taskitem[i].task_ID === task_ID) {
         this.editTaskID = i;
       }
     }
@@ -56,7 +70,7 @@ export class ScrumBoardComponent implements OnInit {
   }
 
   updTask() {
-    this.taskService.updTask(this.scrumitem[this.editTaskID].task_ID, this.scrumitem[this.editTaskID].titel, this.scrumitem[this.editTaskID].info, this.scrumitem[this.editTaskID].estHoMP, this.scrumitem[this.editTaskID].sprint_ID, this.scrumitem[this.editTaskID].backlog_ID, this.scrumitem[this.editTaskID].geloescht, this.scrumitem[this.editTaskID].status, this.scrumitem[this.editTaskID].erstelldatum);
+    this.taskService.updTask(this.taskitem[this.editTaskID].task_ID, this.taskitem[this.editTaskID].titel, this.taskitem[this.editTaskID].info, this.taskitem[this.editTaskID].user_ID, this.taskitem[this.editTaskID].estHoMP, this.taskitem[this.editTaskID].sprint_ID, this.taskitem[this.editTaskID].backlog_ID, this.taskitem[this.editTaskID].geloescht, this.taskitem[this.editTaskID].status, this.taskitem[this.editTaskID].erstelldatum);
     this.taskeditor = false;
   }
 

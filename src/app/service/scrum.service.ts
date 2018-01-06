@@ -8,22 +8,22 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-import { ScrumModel } from '../models/Scrum.model';
+import { TaskModel } from '../models/Task.model';
 import { TaskTO } from '../models/task.TO';
 
 @Injectable()
 export class ScrumService {
 
   // Observable sources
-  private newScrumArraySource = new Subject<ScrumModel[]>();
-  private newScrumSource = new Subject<ScrumModel>();
+  private newScrumArraySource = new Subject<TaskModel[]>();
+  private newScrumSource = new Subject<TaskModel>();
 
 
   // Observable streams
   newScrumArray$ = this.newScrumArraySource.asObservable();
   newScrum$ = this.newScrumSource.asObservable();
 
-  scrumItems: Map<number, ScrumModel>;
+  scrumItems: Map<number, TaskModel>;
 
 
   /* Adresse abhängig von Umgebung wählen */
@@ -44,11 +44,21 @@ export class ScrumService {
 
   /**
    * alle Tasks vom Server laden
-   * @returns {Observable<ScrumModel>} Daten vom Server
+   * @returns {Observable<TaskModel>} Daten vom Server
    */
-  getAllTasksForSB(): Observable<Array<ScrumModel>> {
+  getAllTasksForSB(): Observable<Array<TaskModel>> {
     return this.http
-      .get(this.actionUrl+'/getAllTasksForSB', this.options)
+      .get(this.actionUrl+'/getAllTasksForSBbyPid?pid=1', this.options)
+      .map((r: Response) => r.json());
+  }
+
+  /**
+   * alle Tasks vom Server laden
+   * @returns {Observable<TaskModel>} Daten vom Server
+   */
+  getAllUsersForSB(): Observable<Array<TaskModel>> {
+    return this.http
+      .get(this.actionUrl+'/getAllUsersForSBbyPid?pid=1', this.options)
       .map((r: Response) => r.json());
   }
 }

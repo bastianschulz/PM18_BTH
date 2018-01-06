@@ -88,9 +88,9 @@ export class TaskService {
    * Task per task_ID updaten
    * @returns {Observable<TaskModel>} Daten vom Server
    */
-  updTask(tid: number, tit: string, inf: string, est: number, sid: number, bliid: number, ge: boolean, stat: string, ed: Date): Observable<void> {
+  updTask(tid: number, tit: string, inf: string, uid: number, est: number, sid: number, bliid: number, ge: boolean, stat: string, ed: Date): Observable<void> {
     this.http
-      .post(this.actionUrl + '/updTask?tid=' + tid + '&tit=' + tit + '&in=' + inf + '&est=' + est + '&sid=' + sid + '&bliid=' + bliid + '&ge=' + ge + '&stat=' + stat + '&ed=' + ed, this.options)
+      .post(this.actionUrl + '/updTask?tid=' + tid + '&tit=' + tit + '&in=' + inf + '&uid=' + uid + '&est=' + est + '&sid=' + sid + '&bliid=' + bliid + '&ge=' + ge + '&stat=' + stat + '&ed=' + ed, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;
