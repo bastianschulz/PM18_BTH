@@ -27,7 +27,9 @@
 <!--</div>-->
 
 
-<app-header-after-log-in></app-header-after-log-in>
+
+<app-header *ngIf="!authenticated()"></app-header>
+<app-header-after-log-in *ngIf="authenticated()"></app-header-after-log-in>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <router-outlet></router-outlet>

@@ -27,12 +27,12 @@ export class ScrumBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-   // this.loadScrumboardUsers();
+    this.loadScrumboardUsers();
     this.loadScrumboardTasks();
     this.taskeditor = false;
   }
 
- /* loadScrumboardUsers() {
+  loadScrumboardUsers() {
     this.scrumService.getAllUsersForSB().subscribe(
       data => {
         // befüllen des Arrays
@@ -42,7 +42,7 @@ export class ScrumBoardComponent implements OnInit {
         });
       }
     );
-  }*/
+  }
 
   loadScrumboardTasks() {
     this.scrumService.getAllTasksForSB().subscribe(

@@ -1,0 +1,62 @@
+<div *ngIf="projecteditor == false">
+  <h1>Project Administration</h1>
+
+  <p align="right">
+    <button class="btn btn-success">Projekt hinzufügen</button>
+  </p>
+
+  <table class="table table-responsive" [mfData]="projectitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th title="Projekt Titel">
+        <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+      </th>
+      <th title="info">
+        <mfDefaultSorter by="info">Info</mfDefaultSorter>
+      </th>
+      <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allProject of mf.data">
+      <td>{{allProject.titel}}</td>
+      <td>{{allProject.info}}</td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allProject.project_ID)">Bearbeiten
+          </button>
+        </div>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div *ngIf="projecteditor == true">
+
+  <h1>Project bearbeiten</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Name</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="projectitem[editProjectID].titel" name="titel">
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="info">info</label>
+        <input type="text" id="info" class="form-control" [(ngModel)]="projectitem[editProjectID].info" name="start">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-success" (click)="updProject()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>

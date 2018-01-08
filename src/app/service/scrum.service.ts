@@ -8,7 +8,8 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-import { TaskModel } from '../models/Task.model';
+import { TaskModel } from '../models/task.model';
+import { UserModel } from '../models/user.model';
 import { TaskTO } from '../models/task.TO';
 
 @Injectable()
@@ -56,7 +57,7 @@ export class ScrumService {
    * alle Tasks vom Server laden
    * @returns {Observable<TaskModel>} Daten vom Server
    */
-  getAllUsersForSB(): Observable<Array<TaskModel>> {
+  getAllUsersForSB(): Observable<Array<UserModel>> {
     return this.http
       .get(this.actionUrl+'/getAllUsersForSBbyPid?pid=1', this.options)
       .map((r: Response) => r.json());

@@ -1,33 +1,55 @@
 <div *ngIf="taskeditor == false">
   <h1>ScrumBoard</h1>
 
+  <select>
+    <option class="btn btn-outline-primary" *ngFor="let allUser of users" value={{allUser.user_id}}>
+      {{allUser.uname}}
+    </option>
+  </select>
+
   <p align="right">
     <button class="btn btn-success" routerLink="/ScrumBoard/AddTask">Task erstellen</button>
   </p>
 
   <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="10">
     <thead>
-    <tr align="center">
-      <th data-toggle="tooltip" title="To Do">
+    <tr>
+      <th title="To Do">
         To Do
       </th>
-      <th data-toggle="tooltip" title="In Bearbeitung">
+      <th title="In Bearbeitung">
         In Bearbeitung
       </th>
-      <th data-toggle="tooltip" title="Zu Klärung">
+      <th title="Zu Klärung">
         Zur Klärung
       </th>
-      <th data-toggle="tooltip" title="Fertig">
+      <th title="Fertig">
         Fertig
       </th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let allTasks of mf.data; let i = index" align="center">
-      <td><button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ToDo'" (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}</button></td>
-      <td><button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'InBearbeitung'" (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}</button></td>
-      <td><button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ZuKlaeren'" (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}</button></td>
-      <td><button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'Fertig'" (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}</button></td>
+    <tr *ngFor="let allTasks of mf.data; let i = index">
+      <td>
+        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ToDo'"
+                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'InBearbeitung'"
+                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ZuKlaeren'"
+                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'Fertig'"
+                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+        </button>
+      </td>
     </tr>
     </tbody>
     <tfoot>
@@ -59,7 +81,8 @@
       </div>
       <div class="col-md-5 form-group">
         <label for="erstelldatum">Erstellt am</label>
-        <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="taskitem[editTaskID].erstelldatum" name="erstelldatum">
+        <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="taskitem[editTaskID].erstelldatum"
+               name="erstelldatum">
       </div>
       <div class="col-md-4 form-group">
         <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
@@ -67,15 +90,18 @@
       </div>
       <div class="col-md-2 form-group">
         <label for="sprint_ID">Sprint ID</label>
-        <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].sprint_ID" name="sprint_ID">
+        <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].sprint_ID"
+               name="sprint_ID">
       </div>
       <div class="col-md-2 form-group">
         <label for="backlog_ID">Backlog Item ID</label>
-        <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].backlog_ID" name="backlog_ID">
+        <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].backlog_ID"
+               name="backlog_ID">
       </div>
       <div class="col-md-2 form-group">
         <label for="geloescht">Geloescht</label>
-        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="taskitem[editTaskID].geloescht" name="geloescht">
+        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="taskitem[editTaskID].geloescht"
+               name="geloescht">
       </div>
       <div class="col-md-10">
         <button class="btn btn-success" (click)="updTask()">Änderung speichern</button>
@@ -85,8 +111,6 @@
   </form>
 
 </div>
-
-
 
 
 <!--<table class="table">-->

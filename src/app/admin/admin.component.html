@@ -1,0 +1,9 @@
+
+<h1>Administration des WeScrum</h1>
+
+<button type="button" class="btn btn-warning" (click)="project()">Projekt Administration</button>
+<button type="button" class="btn btn-warning" (click)="user()">User Administration</button>
+<button type="button" class="btn btn-warning" (click)="redo()">Wiederherstellung "gelöschter" Elemente</button>
+<app-adminpro *ngIf="projectF"></app-adminpro>
+<app-adminuser *ngIf="userF"></app-adminuser>
+<app-adminredo *ngIf="redoF"></app-adminredo>
