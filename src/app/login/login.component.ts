@@ -57,37 +57,26 @@ export class LoginComponent implements OnInit {
 
 // TODO löschen!!!!!!!!!!!!!!!!
   loginbasti() {
-    this.wrongLogin = false;
-    var i: number = this.useritem.length - 1;
-    for (i; i >= 0; i--) {
-      if (this.useritem[i].uname === "Bastian") {
-        if (this.useritem[i].passwd === "Bastian") {
-          this.mainService.UserID = this.useritem[i].user_ID;
-          this.mainService.Username = this.useritem[i].uname;
-          this.mainService.authenticated = true;
-          this.mainService.loadPRL();
-          this.router.navigateByUrl('/');
-        }
-      }
-      this.wrongLogin = true;
-    }
+    this.uname = "Bastian";
+    this.passwd = "Bastian";
+    this.login();
   }
 
-  // TODO löschen!!!!!!!!!!!!!!!!
   loginadmin() {
-    this.wrongLogin = false;
-    var i: number = this.useritem.length - 1;
-    for (i; i >= 0; i--) {
-      if (this.useritem[i].uname === "Admin") {
-        if (this.useritem[i].passwd === "Admin") {
-          this.mainService.UserID = this.useritem[i].user_ID;
-          this.mainService.Username = this.useritem[i].uname;
-          this.mainService.authenticated = true;
-          this.mainService.loadPRL();
-          this.router.navigateByUrl('/');
-        }
-      }
-      this.wrongLogin = true;
-    }
+    this.uname = "Admin";
+    this.passwd = "Admin";
+    this.login();
+  }
+
+  logintorben() {
+    this.uname = "Torben";
+    this.passwd = "Torben";
+    this.login();
+  }
+
+  loginharald() {
+    this.uname = "Harald";
+    this.passwd = "Harald";
+    this.login();
   }
 }
