@@ -1,39 +1,78 @@
-<h1>SprintPlanning</h1>
-<p align="right"> <button class="btn btn-success" routerLink="/SprintPlanning/Add">Sprint hinzufügen</button>
-</p>
+<div *ngIf="sprinteditor == false">
+  <h1>SprintPlanning</h1>
 
-<table class="table table-responsive" [mfData]="sprintitem" #mf="mfDataTable" [mfRowsOnPage]="10">
-  <thead>
-  <tr>
-    <th data-toggle="tooltip" title="Sprint Titel">
-      <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="Start Datum">
-      <mfDefaultSorter by="start">Start Datum</mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="End Datum">
-      <mfDefaultSorter by="end">End Datum</mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="Status">
-      <mfDefaultSorter by="status">Status</mfDefaultSorter>
-    </th>
+  <p align="right">
+    <button class="btn btn-success" routerLink="/SprintPlanning/Add">Sprint hinzufügen</button>
+  </p>
 
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let allSprint of mf.data">
-    <td>{{allSprint.titel}}</td>
-    <td>{{allSprint.start | date:'dd.MM.yyyy'}}</td>
-    <td>{{allSprint.end | date:'dd.MM.yyyy'}}</td>
-    <td>{{allSprint.status}}</td>
-    <td>
-      <div class="btn-group-sm" role="group">
-        <button type="button" class="btn btn-warning"
-                [routerLink]="['../backlog-item-detail', allSprint.sprint_ID]">Bearbeiten
-        </button>
+  <table class="table table-responsive" [mfData]="sprintitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th data-toggle="tooltip" title="Sprint Titel">
+        <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Start Datum">
+        <mfDefaultSorter by="start">Start Datum</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="End Datum">
+        <mfDefaultSorter by="end">End Datum</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Status">
+        <mfDefaultSorter by="status">Status</mfDefaultSorter>
+      </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allSprint of mf.data">
+      <td>{{allSprint.titel}}</td>
+      <td>{{allSprint.start | date:'dd.MM.yyyy'}}</td>
+      <td>{{allSprint.end | date:'dd.MM.yyyy'}}</td>
+      <td>{{allSprint.status}}</td>
+      <td>
+        <div class="btn-group-sm" role="group">
+            <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allSprint.sprint_ID)">Bearbeiten
+            </button>
+        </div>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+
+</div>
+<div *ngIf="sprinteditor == true">
+
+  <h1>Sprint bearbeiten</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Name</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="sprintitem[editSprintID].titel" name="titel">
       </div>
-  </tr>
-  </tbody>
-</table>
+      <div class="col-md-5 form-group">
+        <label for="start">Sprint startet am</label>
+        <input type="text" id="start" class="form-control" [(ngModel)]="sprintitem[editSprintID].start" name="start">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="end">Sprint endet am</label>
+        <input type="text" id="end" class="form-control" [(ngModel)]="sprintitem[editSprintID].end" name="end">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="status">Bearbeitungs Status</label>
+        <input type="text" id="status" class="form-control" [(ngModel)]="sprintitem[editSprintID].status" name="status">
+      </div>
+      <div class="col-xs-12">
+        <button class="btn btn-success" (click)="updSprint()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
 
-
+</div>

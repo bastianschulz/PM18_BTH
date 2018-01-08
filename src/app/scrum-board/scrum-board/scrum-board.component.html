@@ -1,22 +1,15 @@
-<h1>
-  ScrumBoard
-</h1>
+<div *ngIf="taskeditor == false">
+<h1>ScrumBoard</h1>
 
 <p align="right">
   <button class="btn btn-success" routerLink="/ScrumBoard/AddTask">Task erstellen</button>
-
 </p>
 
-<table class="table table-responsive" [mfData]="taskItem" #mf="mfDataTable" [mfRowsOnPage]="10">
+<table class="table table-responsive" [mfData]="scrumitem" #mf="mfDataTable" [mfRowsOnPage]="10">
   <thead>
   <tr>
     <th data-toggle="tooltip" title="Benutzer">
-      <mfDefaultSorter by="Benutzer">
-        Benutzer
-      </mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="Backlog Item">
-      Story
+      Benutzer
     </th>
     <th data-toggle="tooltip" title="To Do">
       To Do
@@ -24,168 +17,205 @@
     <th data-toggle="tooltip" title="In Bearbeitung">
       In Bearbeitung
     </th>
-    <th data-toggle="tooltip" title="Zur Klärung">
-    Zur Klärung
-  </th>
+    <th data-toggle="tooltip" title="Zu Klärung">
+      Zur Klärung
+    </th>
     <th data-toggle="tooltip" title="Fertig">
       Fertig
     </th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let allTaskItems of mf.data">
-    <td>{{allTaskItems.benutzer}}</td>
-    <td>{{allTaskItems.backlogname}}</td>
-    <td>{{allTaskItems.status}}</td>
+  <tr *ngFor="let allScrum of mf.data">
+    <td>{{allScrum.uname}}</td>
+    <td>{{allScrum.titel}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>
       <div class="btn-group-sm" role="group">
-        <button type="button" class="btn btn-warning"
-                [routerLink]="['../task-item-detail', alltaskItems.ti_Id]">Bearbeiten
+        <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allScrum.task_ID)">Bearbeiten
         </button>
       </div>
   </tr>
   </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="7">
+      <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
 </table>
+</div>
 
+<div *ngIf="taskeditor == true">
+   <h1>Task bearbeiten</h1>
+  <hr>
+  <form (ngSubmit)="editTask()">
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Name</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="titel" name="titel">
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="info">Information</label>
+        <input type="text" id="info" class="form-control" [(ngModel)]="info" name="info">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="status">Bearbeitungs Status</label>
+        <input type="text" id="status" class="form-control" [(ngModel)]="status" name="status">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
+        <input type="text" id="estHoMP" class="form-control" [(ngModel)]="estHoMP" name="estHoMP">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="sprint_ID">Sprint ID</label>
+        <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="sprint_ID" name="sprint_ID">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="backlog_ID">Backlog Item ID</label>
+        <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="backlog_ID" name="backlog_ID">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="geloescht">Geloescht</label>
+        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="geloescht" name="geloescht">
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="erstelldatum">Erstellt am</label>
+        <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="erstelldatum" name="erstelldatum">
+      </div>
+      <div class="col-xs-12">
+        <button class="btn btn-success" type="submit">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" routerLink="/ScrumBoard">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+<br>
 <hr>
-<p align="right">
-<button class="btn btn-danger" routerLink="/ScrumBoard/EditTask">Tasks bearbeiten</button>
-</p>
 <p>
   Unter dem Scrum Board soll eine Liste mit verfügbaren Tasks (nicht zugwiesen) erscheinen... für Später (D&D)
 </p>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--<table class="table">-->
 <!--<thead>-->
 <!--<tr>-->
 <!--<th style='min-width: 100px'>Mitglieder</th>-->
-  <!--<th style='min-width: 100px'>Story</th>-->
-  <!--<th style='min-width: 150px'>To Do</th>-->
-  <!--<th style='min-width: 150px'>In Bearbeitung</th>-->
-  <!--<th style='min-width: 150px'>Zur Klärung</th>-->
+<!--<th style='min-width: 100px'>Story</th>-->
+<!--<th style='min-width: 150px'>To Do</th>-->
+<!--<th style='min-width: 150px'>In Bearbeitung</th>-->
+<!--<th style='min-width: 150px'>Zur Klärung</th>-->
 
-  <!--<th style='min-width: 150px'>Fertig</th>-->
-  <!--</tr>-->
-  <!--</thead>-->
-  <!--<tbody>-->
-  <!--<tr>-->
-    <!--<td>Felix</td>-->
-    <!--<td>Backlog 1</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 1</a></td>-->
-    <!--<td>&#45;&#45;</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 2</a></td>-->
-    <!--<td>&#45;&#45;</td>-->
-  <!--</tr>-->
+<!--<th style='min-width: 150px'>Fertig</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr>-->
+<!--<td>Felix</td>-->
+<!--<td>Backlog 1</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 1</a></td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 2</a></td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--</tr>-->
 
-  <!--<tr>-->
-    <!--<td>Michi</td>-->
-    <!--<td>Backlog 2</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 6</a></td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 5</a></td>-->
-    <!--<td>&#45;&#45;</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 3</a></td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<td>Horst</td>-->
-    <!--<td>Backlog 3</td>-->
-    <!--<td>&#45;&#45;</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 9</a></td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 4</a></td>-->
-    <!--<td>&#45;&#45;</td>-->
+<!--<tr>-->
+<!--<td>Michi</td>-->
+<!--<td>Backlog 2</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 6</a></td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 5</a></td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 3</a></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>Horst</td>-->
+<!--<td>Backlog 3</td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 9</a></td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 4</a></td>-->
+<!--<td>&#45;&#45;</td>-->
 
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<td>Johanna</td>-->
-    <!--<td>Backlog 4</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 10</a></td>-->
-    <!--<td>&#45;&#45;</td>-->
-    <!--<td>&#45;&#45;</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 7</a></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>Johanna</td>-->
+<!--<td>Backlog 4</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 10</a></td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 7</a></td>-->
 
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<td>Mr X</td>-->
-    <!--<td>Backlog 5</td>-->
-    <!--<td>&#45;&#45;</td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 8</a></td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 11</a></td>-->
-    <!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 12</a></td>-->
-  <!--</tr>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>Mr X</td>-->
+<!--<td>Backlog 5</td>-->
+<!--<td>&#45;&#45;</td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 8</a></td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 11</a></td>-->
+<!--<td><a href="http://localhost:4200/ScrumBoard/Task">Task 12</a></td>-->
+<!--</tr>-->
 
-  <!--</tbody>-->
+<!--</tbody>-->
 <!--</table>-->
 <!--<hr>-->
 
 
-
 <!--<div class="col-lg-6 col-md-6 table-bordered">-->
 
-  <!--<div class="col">Hier stehen alle Backlog ITems</div>-->
+<!--<div class="col">Hier stehen alle Backlog ITems</div>-->
 <!--</div>-->
 
 
-
-
 <!--<div class="col-lg-6 col-md-6 table-bordered">-->
-  <!--<h3>-->
-    <!--Task hinzufügen-->
-  <!--</h3>-->
-  <!--<div class="col-lg-10">-->
-    <!--<form action="">-->
-      <!--<div class="form-group">-->
-        <!--<label for="titel">Name des Task:</label>-->
-        <!--<input type="text" class="form-control" id="titel">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="info">Beschreibung zum Task:</label>-->
-        <!--<br>-->
-        <!--<textarea name="comment" class="form-control" maxlength="200"></textarea>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="estHoMP">Benötigter Aufwand in Stunden:</label>-->
-        <!--<input type="number" class="form-control" id="estHoMP">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="sprintID">Zugeteilter Sprint:</label>-->
-        <!--<input type="number" class="form-control" id="sprintID">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="backlogID">Zugeteilter Backlog:</label>-->
-        <!--<input type="number" class="form-control" id="backlogID">-->
-      <!--</div>-->
-      <!--<div class="checkbox">-->
-        <!--<label>-->
-          <!--<input type="checkbox"> Gelöscht?</label>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="Status">Status</label>-->
-        <!--<select name="Status">-->
-          <!--<option value="entwurf">Entwurf</option>-->
-          <!--<option value="toDo">ToDo</option>-->
-          <!--<option value="inBearbeitung">In Bearbeitung</option>-->
-          <!--<option value="zuKlaeren">Zu klären</option>-->
-          <!--<option value="fertig">Fertig</option>-->
-        <!--</select>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<button type="submit" class="btn btn-success">Speichern</button>-->
-        <!--<button type="reset" class="btn btn-primary">Abbrechen</button>-->
-      <!--</div>-->
-    <!--</form>-->
-  <!--</div>-->
+<!--<h3>-->
+<!--Task hinzufügen-->
+<!--</h3>-->
+<!--<div class="col-lg-10">-->
+<!--<form action="">-->
+<!--<div class="form-group">-->
+<!--<label for="titel">Name des Task:</label>-->
+<!--<input type="text" class="form-control" id="titel">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="info">Beschreibung zum Task:</label>-->
+<!--<br>-->
+<!--<textarea name="comment" class="form-control" maxlength="200"></textarea>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="estHoMP">Benötigter Aufwand in Stunden:</label>-->
+<!--<input type="number" class="form-control" id="estHoMP">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="sprintID">Zugeteilter Sprint:</label>-->
+<!--<input type="number" class="form-control" id="sprintID">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="backlogID">Zugeteilter Backlog:</label>-->
+<!--<input type="number" class="form-control" id="backlogID">-->
+<!--</div>-->
+<!--<div class="checkbox">-->
+<!--<label>-->
+<!--<input type="checkbox"> Gelöscht?</label>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="Status">Status</label>-->
+<!--<select name="Status">-->
+<!--<option value="entwurf">Entwurf</option>-->
+<!--<option value="toDo">ToDo</option>-->
+<!--<option value="inBearbeitung">In Bearbeitung</option>-->
+<!--<option value="zuKlaeren">Zu klären</option>-->
+<!--<option value="fertig">Fertig</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<button type="submit" class="btn btn-success">Speichern</button>-->
+<!--<button type="reset" class="btn btn-primary">Abbrechen</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
 <!--</div>-->
 
 
