@@ -3,13 +3,13 @@
  */
 
 import 'rxjs/add/operator/map';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
-import { TaskModel } from '../models/task.model';
-import { TaskTO } from '../models/task.TO';
+import {TaskModel} from '../models/task.model';
+import {TaskTO} from '../models/task.TO';
 
 @Injectable()
 export class TaskService {
@@ -26,8 +26,8 @@ export class TaskService {
 
 
   /* Adresse abhängig von Umgebung wählen */
-  private actionUrl: string = 'http://localhost:3000/api';
-  //private actionUrl: string = 'http://10.60.67.166:3000/api';
+ // private actionUrl: string = 'http://localhost:3000/api';
+  private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -47,7 +47,7 @@ export class TaskService {
    */
   getAllTasks(): Observable<Array<TaskModel>> {
     return this.http
-      .get(this.actionUrl+'/getAllTasks', this.options)
+      .get(this.actionUrl + '/getAllTasks', this.options)
       .map((r: Response) => r.json());
   }
 
@@ -57,17 +57,7 @@ export class TaskService {
    */
   getTaskByTaskID(task_ID: string): Observable<Array<TaskModel>> {
     return this.http
-      .get(this.actionUrl+'/getTaskByTaskID?tid='+task_ID, this.options)
-      .map((r: Response) => r.json());
-  }
-
-  /**
-   * Task per task_ID updaten
-   * @returns {Observable<TaskModel>} Daten vom Server
-   */
-  updTask(tid: number, tit: string, inf: string, est: number, sid: number, bliid: number, ge: boolean, stat: string, ed: Date): Observable<Array<TaskModel>> {
-    return this.http
-      .get(this.actionUrl+'/updTask?tid='+tid+'&tit='+tit+'&in='+inf+'&est='+est+'&sid='+sid+'&bliid='+bliid+'&ge='+ge+'&stat='+stat+'&ed='+ed, this.options)
+      .get(this.actionUrl + '/getTaskByTaskID?tid=' + task_ID, this.options)
       .map((r: Response) => r.json());
   }
 
@@ -88,7 +78,19 @@ export class TaskService {
     }) as TaskTO;
 
 
-    this.http.post(this.actionUrl+'/postTask', taskTO, this.options)
+    this.http.post(this.actionUrl + '/postTask', taskTO, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  /**
+   * Task per task_ID updaten
+   * @returns {Observable<TaskModel>} Daten vom Server
+   */
+  updTask(tid: number, tit: string, inf: string, uid: number, est: number, sid: number, bliid: number, ge: boolean, stat: string, ed: Date): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updTask?tid=' + tid + '&tit=' + tit + '&in=' + inf + '&uid=' + uid + '&est=' + est + '&sid=' + sid + '&bliid=' + bliid + '&ge=' + ge + '&stat=' + stat + '&ed=' + ed, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;

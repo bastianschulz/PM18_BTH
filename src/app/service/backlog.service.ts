@@ -27,7 +27,7 @@ export class BacklogService {
 
   /* Adresse abhängig von Umgebung wählen */
  // private actionUrl: string = 'http://localhost:3000/api';
-  private actionUrl: string = 'http://10.60.67.166:3000/api';
+   private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -80,6 +80,23 @@ export class BacklogService {
   getBacklogItemByID(bli_ID:number): Observable<BacklogItemModel>{
     return this.http.get(this.actionUrl+'/getBacklogItemByID',this.options).map((singleR:Response) => singleR.json());
 
+  }
+
+  /**
+   * Task per task_ID updaten
+   * @returns {Observable<TaskModel>} Daten vom Server
+   */
+  updBli(bli_ID: number, titel: string, info: string, status: string, priority: string, geloescht: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&tit=' + titel + '&inf=' + info + '&stat=' + status + '&prio=' + priority + '&ge=' + geloescht, this.options)
+  .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  delBli(bli_ID:number){
+    this.http.post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&ge=' + 1,this.options).map((r:Response) => r.json()).subscribe();
+    return;
   }
 
 }

@@ -1,0 +1,32 @@
+<div class="container">
+  <legend class="page-header">Login</legend>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="name">Benutzername</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="uname" name="name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" class="form-control" [(ngModel)]="passwd" name="pass">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" (click)="login()">Login</button>
+            <label *ngIf="wrongLogin">Login nicht erfolgreich</label>
+          </div>
+        </div>
+        <button class="btn btn-success" (click)="loginadmin()">Login als Admin</button>
+        <button class="btn btn-success" (click)="loginbasti()">Login als Bastian</button>
+        <button class="btn btn-success" (click)="logintorben()">Login als Torben</button>
+        <button class="btn btn-success" (click)="loginharald()">Login als Harald</button>
+      </form>
+    </div>
+  </div>
+</div>

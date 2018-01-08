@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ScrumModel} from '../../models/scrum.model';
 import {ScrumService} from '../../service/scrum.service';
 import {TaskModel} from '../../models/task.model';
+import {UserModel} from '../../models/user.model';
 import {TaskService} from '../../service/task.service';
 import {Router} from '@angular/router';
 
@@ -13,76 +13,68 @@ import {Router} from '@angular/router';
 export class ScrumBoardComponent implements OnInit {
 
   taskeditor: boolean = false;
+  editTaskID: number;
+  emptynumber: number;
 
-  task_ID: number;
-  titel: string;
-  info: string;
-  estHoMP: number;
-  sprint_ID: number;
-  backlog_ID: number;
-  geloescht: boolean;
-  status: string;
-  erstelldatum: Date;
-
-  scrumitem: ScrumModel[] = [] as ScrumModel[];
+  taskitem: TaskModel[] = [] as TaskModel[];
+  users: UserModel[] = [] as UserModel[];
 
   constructor(private scrumService: ScrumService, private taskService: TaskService, private router: Router) {
     scrumService.newScrumArray$.subscribe(
       newScrumArray => {
-        this.scrumitem = newScrumArray;
+        this.taskitem = newScrumArray;
       });
   }
 
   ngOnInit() {
-    this.loadScrumboard();
+    this.loadScrumboardUsers();
+    this.loadScrumboardTasks();
     this.taskeditor = false;
   }
 
-  loadScrumboard() {
+  loadScrumboardUsers() {
+    this.scrumService.getAllUsersForSB().subscribe(
+      data => {
+        // befüllen des Arrays
+        this.users = [] as UserModel[];
+        data.forEach(ergebnis => {
+          this.users.push(ergebnis);
+        });
+      }
+    );
+  }
+
+  loadScrumboardTasks() {
     this.scrumService.getAllTasksForSB().subscribe(
       data => {
         // befüllen des Arrays
-        this.scrumitem = [] as ScrumModel[];
+        this.taskitem = [] as TaskModel[];
         data.forEach(ergebnis => {
-          this.scrumitem.push(ergebnis);
+          this.taskitem.push(ergebnis);
         });
       }
     );
   }
 
-  clickedOnEdit(task_ID: string) {
+  clickedOnEdit(task_ID: number) {
+    this.editTaskID = this.emptynumber;
 
+    var i: number = this.taskitem.length - 1;
 
-    let taskitem: TaskModel[] = [] as TaskModel[];
-
-    this.taskService.getTaskByTaskID(task_ID).subscribe(
-      data => {
-        // befüllen des Arrays
-        taskitem = [] as TaskModel[];
-        data.forEach(ergebnis => {
-          taskitem.push(ergebnis);
-        });
+    for (i; i >= 0; i--) {
+      if (this.taskitem[i].task_ID === task_ID) {
+        this.editTaskID = i;
       }
-    );
-
-    /*this.task_ID = this.taskitem[0].task_ID;
-    this.titel = this.taskitem[0].titel;
-    this.info = this.taskitem[0].info;
-    this.estHoMP = this.taskitem[0].estHoMP;
-    this.sprint_ID = this.taskitem[0].sprint_ID;
-    this.backlog_ID = this.taskitem[0].backlog_ID;
-    this.geloescht = this.taskitem[0].geloescht;
-    this.status = this.taskitem[0].status;
-    this.erstelldatum = this.taskitem[0].erstelldatum;
-
-    this.taskitem.pop();*/
-
+    }
     this.taskeditor = true;
   }
 
-  editTask() {
-    //this.taskService.updTask(this.task_ID, this.titel, this.info, this.estHoMP, this.sprint_ID, this.backlog_ID, this.geloescht, this.status, this.erstelldatum);
+  updTask() {
+    this.taskService.updTask(this.taskitem[this.editTaskID].task_ID, this.taskitem[this.editTaskID].titel, this.taskitem[this.editTaskID].info, this.taskitem[this.editTaskID].user, this.taskitem[this.editTaskID].estHoMP, this.taskitem[this.editTaskID].sprint_ID, this.taskitem[this.editTaskID].backlog_ID, this.taskitem[this.editTaskID].geloescht, this.taskitem[this.editTaskID].status, this.taskitem[this.editTaskID].erstelldatum);
+    this.taskeditor = false;
+  }
 
+  noEdit() {
     this.taskeditor = false;
   }
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {AuthService} from "../auth.service/auth.service";
+//import {AuthService} from "../auth.service/auth.service";
 import { Router } from '@angular/router';
 import { UserService } from '/Users/torben/WebstormProjects/PM18_BTH/src/app/service/user.service';
 
@@ -8,7 +8,7 @@ import { UserService } from '/Users/torben/WebstormProjects/PM18_BTH/src/app/ser
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css'],
-  providers: [AuthService]
+ // providers: [AuthService]
 })
 export class LogInComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class LogInComponent implements OnInit {
 
   ngOnInit() {
   }
-  loginUser(e){
+ /*  loginUser(e){
     e.preventDefault();
     var username = e.target.elements[0].value;
     var password = e.target.elements[1].value;
@@ -36,5 +36,5 @@ export class LogInComponent implements OnInit {
     this.router.navigate(['AfterLogin']);
     this.user.setUserLoggedIn;
  
- }
+ } */
 }

@@ -11,6 +11,6 @@ export interface ScrumModel {
   sprint_ID: number;
   backlog_ID: number;
   geloescht: boolean;
-  status: [string];
+  status: string;
   erstelldatum: Date;
 }

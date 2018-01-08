@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '/Users/torben/WebstormProjects/PM18_BTH/src/app/service/user.service';
 
-@Injectable()
+/* @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private user: UserService) {}
   canActivate(
@@ -12,3 +12,4 @@ export class AuthGuard implements CanActivate {
     return this.user.getUserLoggedIn();
   }
 }
+ */

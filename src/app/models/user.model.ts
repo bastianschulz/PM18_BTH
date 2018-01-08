@@ -1,10 +1,9 @@
-import {rolle} from "./rolle.model";
+
 
 export interface UserModel {
-  ID: number;
-  benutzerName: string;
+  user_ID: number;
+  uname: string;
   email: string;
-  rolle: rolle;
-  password: string;
+  passwd: string;
   geloescht: boolean;
 }

@@ -8,22 +8,27 @@
 
         <div class="row">
           <div class="col-sm-6 form-group">
-            <label for="titel">Bezeichnung</label>
+            <label for="titel">Titel</label>
             <input type="text" id="titel" class="form-control"
-                   maxlength="32" [(ngModel)]="titel" name="titel">
+                   maxlength="60" [(ngModel)]="titel" name="titel">
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
             <label for="info">Beschreibung</label>
-            <textarea id="info" class="form-control"
-                      maxlength="128" [(ngModel)]="info" name="info"></textarea>
+            <textarea
+              rows="10"
+              cols="100"
+              id="info"
+              class="form form-control"
+              maxlength="600"
+              [(ngModel)]="info" name="info"></textarea>
           </div>
         </div>
         <div class="row">
 
           <div class="col-sm-6 form-group">
-            <button class="btn btn-success" type="submit">BackLog Item hinzufügen</button>
+            <button class="btn btn-success" type="submit">Backlog Item hinzufügen</button>
             <button class="btn btn-primary" type="reset">Zurücksetzen</button>
             <button class="btn btn-danger" routerLink="/BackLog">Abbrechen</button>
           </div>

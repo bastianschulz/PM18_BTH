@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { MainService } from '../service/main.service';
 
 
 @Component({
@@ -8,22 +9,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-
-
-
-
-
-
-
-
-
-  constructor() {
-
-
+  constructor(private mainService: MainService) {
   }
-
 
   ngOnInit() {
   }
-
 }
