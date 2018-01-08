@@ -26,8 +26,8 @@ export class BacklogService {
 
 
   /* Adresse abhängig von Umgebung wählen */
-  private actionUrl: string = 'http://localhost:3000/api';
-  // private actionUrl: string = 'http://10.60.67.166:3000/api';
+ // private actionUrl: string = 'http://localhost:3000/api';
+   private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -93,4 +93,10 @@ export class BacklogService {
       .subscribe();
     return;
   }
+
+  delBli(bli_ID:number){
+    this.http.post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&ge=' + 1,this.options).map((r:Response) => r.json()).subscribe();
+    return;
+  }
+
 }

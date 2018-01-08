@@ -27,12 +27,12 @@ export class ScrumBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadScrumboardUsers();
+   // this.loadScrumboardUsers();
     this.loadScrumboardTasks();
     this.taskeditor = false;
   }
 
-  loadScrumboardUsers() {
+ /* loadScrumboardUsers() {
     this.scrumService.getAllUsersForSB().subscribe(
       data => {
         // befüllen des Arrays
@@ -42,7 +42,7 @@ export class ScrumBoardComponent implements OnInit {
         });
       }
     );
-  }
+  }*/
 
   loadScrumboardTasks() {
     this.scrumService.getAllTasksForSB().subscribe(
@@ -70,7 +70,7 @@ export class ScrumBoardComponent implements OnInit {
   }
 
   updTask() {
-    this.taskService.updTask(this.taskitem[this.editTaskID].task_ID, this.taskitem[this.editTaskID].titel, this.taskitem[this.editTaskID].info, this.taskitem[this.editTaskID].user_ID, this.taskitem[this.editTaskID].estHoMP, this.taskitem[this.editTaskID].sprint_ID, this.taskitem[this.editTaskID].backlog_ID, this.taskitem[this.editTaskID].geloescht, this.taskitem[this.editTaskID].status, this.taskitem[this.editTaskID].erstelldatum);
+    this.taskService.updTask(this.taskitem[this.editTaskID].task_ID, this.taskitem[this.editTaskID].titel, this.taskitem[this.editTaskID].info, this.taskitem[this.editTaskID].user, this.taskitem[this.editTaskID].estHoMP, this.taskitem[this.editTaskID].sprint_ID, this.taskitem[this.editTaskID].backlog_ID, this.taskitem[this.editTaskID].geloescht, this.taskitem[this.editTaskID].status, this.taskitem[this.editTaskID].erstelldatum);
     this.taskeditor = false;
   }
 

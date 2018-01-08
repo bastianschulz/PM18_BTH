@@ -53,28 +53,44 @@
   <form>
     <div>
       <div class="col-md-10 form-group">
-        <label for="titel">Name</label>
+        <label for="titel">Titel</label>
         <input type="text" id="titel" class="form-control" [(ngModel)]="backlogitem[editBliID].titel" name="titel">
       </div>
       <div class="col-md-10 form-group">
-        <label for="info">Name</label>
-        <input type="text" id="info" class="form-control" [(ngModel)]="backlogitem[editBliID].info" name="info">
+        <label for="info">Beschreibung</label>
+        <textarea
+          rows="10"
+          cols="100"
+          id="info"
+          class="form form-control"
+          maxlength="600"
+          [(ngModel)]="backlogitem[editBliID].info" name="info"></textarea>
+
       </div>
       <div class="col-md-4 form-group">
-        <label for="status">Bearbeitungs Status</label>
-        <input type="text" id="status" class="form-control" [(ngModel)]="backlogitem[editBliID].status" name="status">
+        <label for="status">Status</label>
+        <select type="text" id="status" class="form-control" [(ngModel)]="backlogitem[editBliID].status" name="status">
+            <option value="aktiv">Aktiv</option>
+            <option value="inaktiv">Inaktiv</option>
+            <option value="fertig">Fertig</option>
+          </select>
+
+
+
       </div>
       <div class="col-md-4 form-group">
-        <label for="priority">Bearbeitungs Priorität</label>
-        <input type="text" id="priority" class="form-control" [(ngModel)]="backlogitem[editBliID].priority" name="priority">
+        <label for="priority">Priorität</label>
+        <select type="text" id="priority" class="form-control" [(ngModel)]="backlogitem[editBliID].priority" name="priority">
+          <option value="hoch">Hoch</option>
+          <option value="mittel">Mittel</option>
+          <option value="niedrig">Niedrig</option>
+        </select>
       </div>
-      <div class="col-md-2 form-group">
-        <label for="geloescht">Geloescht</label>
-        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="backlogitem[editBliID].geloescht"name="geloescht">
-      </div>
+
       <div class="col-md-10">
         <button class="btn btn-success" (click)="updBacklogItem()">Änderung speichern</button>
         <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+        <button class="btn btn-group-vertical btn-danger" (click)="deleteItem()">Backlog Item Löschen</button>
       </div>
     </div>
   </form>

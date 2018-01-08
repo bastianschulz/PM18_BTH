@@ -61,4 +61,14 @@ export class BackLogComponent implements OnInit {
   noEdit() {
     this.blieditor = false;
   }
+
+
+  deleteItem(){
+    this.backlogService.delBli(this.backlogitem[this.editBliID].bli_ID);
+
+    this.blieditor = false;
+  }
+
+
+
 }
