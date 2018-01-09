@@ -14,10 +14,13 @@ import {Router} from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
 
-  addeditor: boolean = false;
+  rolleditor: boolean = false;
 
   asuseritem: AsUserModel[] = [] as AsUserModel[];
   urlitem: URLModel[] = [] as URLModel[];
+
+  editUriID: number;
+  emptynumber: number;
 
   constructor(private projectService: ProjectService, private userService: UserService, private router: Router, private mainService: MainService) {
 
@@ -58,11 +61,36 @@ export class ProjectComponent implements OnInit {
     );
   }
 
-  updURI(uri_ID: number) {
-
-
-    this.router.navigateByUrl('/Projekt/Conf');
+  rechte(uri_ID: number) {
+    this.editUriID = this.emptynumber;
+    var i: number = this.asuseritem.length - 1;
+    for (i; i >= 0; i--) {
+      if (this.asuseritem[i].uri_ID === uri_ID) {
+        this.editUriID = i;
+      }
+    }
+    this.rolleditor = true;
   }
 
+  updURI() {
+    var sm=0;
+    var us=0;
+    var sh=0;
 
+    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
+    if (this.asuseritem[this.editUriID].user===true){us=1}
+    if (this.asuseritem[this.editUriID].stake===true){sh=1}
+
+    this.makeupdURI(sm, us, sh);
+  }
+
+  makeupdURI(sm: number, us: number, sh: number){
+    this.projectService.updURI(this.asuseritem[this.editUriID].uri_ID, sm, us, sh);
+    this.rolleditor = false;
+    this.router.navigateByUrl('/Admin');
+  }
+
+  noEdit() {
+    this.rolleditor = false;
+  }
 }

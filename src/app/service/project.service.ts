@@ -95,9 +95,9 @@ export class ProjectService {
     return;
   }
 
-  updURL(pid: number, tit: string, info: string): Observable<void> {
+  updURI(urid: number, sm: number, us: number, sh: number): Observable<void> {
     this.http
-      .post(this.actionUrl + '/updProject?pid=' + pid + '&tit=' + tit + '&info=' + info, this.options)
+      .post(this.actionUrl + '/updURI?urid=' + urid + '&sm=' + sm + '&us=' + us + '&sh=' + sh, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;

@@ -14,7 +14,8 @@
       <th title="info">
         <mfDefaultSorter by="info">Info</mfDefaultSorter>
       </th>
-      <th>Aktion</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -22,14 +23,14 @@
       <td>{{allProject.titel}}</td>
       <td>{{allProject.info}}</td>
       <td>
-        <div class="btn-group-sm" role="group">
-          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allProject.project_ID)">
-            Bearbeiten
-          </button>
-          <button type="button" class="btn btn-warning" (click)="userRollConf(allProject.project_ID)">
-            User-Rollen Verwaltung
-          </button>
-        </div>
+        <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allProject.project_ID)">
+          Bearbeiten
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" (click)="userRollConf(allProject.project_ID)">
+          User-Rollen Verwaltung
+        </button>
       </td>
     </tr>
     </tbody>
