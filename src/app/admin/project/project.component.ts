@@ -80,6 +80,20 @@ export class ProjectComponent implements OnInit {
     if (this.asuseritem[this.editUriID].scrum===true){sm=1}
     if (this.asuseritem[this.editUriID].user===true){us=1}
     if (this.asuseritem[this.editUriID].stake===true){sh=1}
+    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
+    if (this.asuseritem[this.editUriID].user===true){us=1}
+    if (this.asuseritem[this.editUriID].stake===true){sh=1}
+    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
+    if (this.asuseritem[this.editUriID].user===true){us=1}
+    if (this.asuseritem[this.editUriID].stake===true){sh=1}
+    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
+    if (this.asuseritem[this.editUriID].user===true){us=1}
+    if (this.asuseritem[this.editUriID].stake===true){sh=1}
+    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
+    if (this.asuseritem[this.editUriID].user===true){us=1}
+    if (this.asuseritem[this.editUriID].stake===true){sh=1}
+    
+    this.rolleditor = false;
 
     this.makeupdURI(sm, us, sh);
   }
