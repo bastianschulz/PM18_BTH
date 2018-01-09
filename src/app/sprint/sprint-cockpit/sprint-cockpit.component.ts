@@ -2,6 +2,7 @@ import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {SprintService} from '../../service/sprint.service';
 import {Router} from '@angular/router';
+import {MainService} from '../../service/main.service';
 
 @Component({
   selector: 'app-sprint-cockpit',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 export class SprintCockpitComponent implements OnInit {
 
   newsprintForm: NgForm;
-  @ViewChild('newsprintForm') currentForm: NgForm;
+  @ViewChild('newuserForm') currentForm: NgForm;
 
   formErrors = {
     'titel': '',
@@ -23,10 +24,11 @@ export class SprintCockpitComponent implements OnInit {
   start: Date;
   end: Date;
 
-  constructor(private sprintService: SprintService, private router: Router) {
+  constructor(private sprintService: SprintService, private router: Router, private mainService: MainService) {
   }
 
   ngOnInit() {
+    this.mainService.authCheck();
   }
 
   onSubmit() {

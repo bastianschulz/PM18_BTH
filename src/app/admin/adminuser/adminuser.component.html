@@ -1,3 +1,67 @@
-<p>
-  adminuser works!
-</p>
+<div *ngIf="usereditor == false">
+  <h1>User Administration</h1>
+
+  <p align="right">
+    <button class="btn btn-success" routerLink="/User/Add">User hinzufügen</button>
+  </p>
+
+  <table class="table table-responsive" [mfData]="useritem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th title="User Name">
+        <mfDefaultSorter by="uname">User Name</mfDefaultSorter>
+      </th>
+   <!--   <th title="eMail">
+        <mfDefaultSorter by="email">eMail</mfDefaultSorter>
+      </th>-->
+      <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allUser of mf.data">
+      <td>{{allUser.uname}}</td>
+      <!--<td>{{allUser.email}}</td>-->
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allUser.user_ID)">Bearbeiten
+          </button>
+        </div>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div *ngIf="usereditor == true">
+
+  <h1>User bearbeiten</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-5 form-group">
+        <label for="uname">Name</label>
+        <input type="text" id="uname" class="form-control" [(ngModel)]="useritem[editUserID].uname" name="uname">
+      </div>
+      <!--<div class="col-md-5 form-group">
+        <label for="email">E-Mail</label>
+        <input type="text" id="email" class="form-control" [(ngModel)]="useritem[editUserID].email" name="email">
+      </div>-->
+      <div class="col-md-2 form-group">
+        <label for="geloescht">Geloescht</label>
+        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="useritem[editUserID].geloescht"
+               name="geloescht">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-success" (click)="updUser()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col">
+    <h2>Projekt hinzufügen</h2>
+    <hr>
+    <form (ngSubmit)="onSubmit()" #newsprintForm="ngForm">
+      <div id="projekt-Data">
+
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="titel">Projekt Titel</label>
+            <input type="text" id="titel" class="form-control"
+                   [(ngModel)]="titel" name="projekttitel">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="info">Informationen</label>
+            <input type="text" id="info" class="form-control"
+                   [(ngModel)]="info" name="info">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="submit">Projekt anlegen</button>
+            <button class="btn btn-primary" type="reset">Zurücksetzen</button>
+            <button class="btn btn-group-vertical btn-warning" routerLink="/Admin">Abbrechen</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+

@@ -1,0 +1,77 @@
+<div *ngIf="!rolleditor">
+  <h1>User Rollen Steuerung</h1>
+  <div *ngIf="!rolleditor">
+     <p align="right">
+      <button class="btn btn-success" routerLink="/Projekt/AddUser">User hinzufügen</button>
+    </p><div>
+      <table class="table table-responsive" [mfData]="asuseritem" #mf="mfDataTable" [mfRowsOnPage]="10">
+        <thead>
+        <tr>
+          <th title="User Name">
+            <mfDefaultSorter by="uname">User Name</mfDefaultSorter>
+          </th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let allUser of mf.data">
+          <td>{{allUser.uname}}</td>
+          <td><label *ngIf="allUser.scrum===1">Scrum Master</label></td>
+          <td><label *ngIf="allUser.user===1">User</label></td>
+          <td><label *ngIf="allUser.stake===1">StakeHolder</label></td>
+          <td>
+              <button type="button" class="btn btn-warning" (click)="rechte(allUser.uri_ID)">
+                Berechtigungen</button>
+          </td>
+          <td>
+              <button type="button" class="btn btn-warning" (click)="deleteuserfromProject(allUser.uri_ID)">
+                User vom Projekt entfernen</button>
+
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="7">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <p align="left">
+    <button class="btn btn-success" routerLink="/Admin">zurück</button>
+  </p>
+</div>
+
+<div *ngIf="rolleditor">
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="uname">Name</label>
+        <input type="text" id="uname" class="form-control" [(ngModel)]="asuseritem[editUriID].uname" name="titel">
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="scrum">Scrum Master</label>
+        <input type="checkbox" id="scrum" class="form-control" [(ngModel)]="asuseritem[editUriID].scrum" name="scrum">
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="user">User</label>
+        <input type="checkbox" id="user" class="form-control" [(ngModel)]="asuseritem[editUriID].user" name="user">
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="stake">StakeHolder</label>
+        <input type="checkbox" id="stake" class="form-control" [(ngModel)]="asuseritem[editUriID].stake" name="stake">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-success" (click)="updURI()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+</div>
