@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MainService} from '../../service/main.service';
 
 @Component({
   selector: 'app-sprint',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SprintComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   ngOnInit() {
+    this.mainService.authCheck();
   }
 
 }

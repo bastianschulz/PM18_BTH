@@ -1,0 +1,40 @@
+<div>
+  <h1>User dem Projekt zuordnen</h1>
+  <div>
+    <h3>Verfügbare User</h3>
+    <table class="table table-responsive" [mfData]="unasuseritem" #mf="mfDataTable" [mfRowsOnPage]="10">
+      <thead>
+      <tr>
+        <th title="User Name">
+          <mfDefaultSorter by="uname">User Name</mfDefaultSorter>
+        </th>
+        <th></th>
+        <th>Rechte</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let allUser of mf.data">
+        <td>{{allUser.uname}}</td>
+        <td>
+          <div class="btn-group-sm" role="group">
+            <button type="button" class="btn btn-warning" (click)="userToProject(allUser.user_ID)">
+              User dem Projekt zuordnen
+            </button>
+          </div>
+        </td>
+        <td>rechte</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="7">
+          <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p align="left">
+  <button class="btn btn-success" routerLink="/Projekt/Conf">zurück</button>
+</p>
+</div>

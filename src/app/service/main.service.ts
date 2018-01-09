@@ -43,6 +43,12 @@ export class MainService {
     });
   }
 
+  authCheck(){
+    if (this.authenticated==false){
+      this.router.navigateByUrl('/');
+    }
+  }
+
   logout(){
     this.UserID = null;
     this.Username = null;

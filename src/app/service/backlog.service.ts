@@ -14,20 +14,9 @@ import { BacklogItemTO } from '../models/backLogItem.TO';
 @Injectable()
 export class BacklogService {
 
-  // Observable sources
-  private newBacklogItemArraySource = new Subject<BacklogItemModel[]>();
-  private newBacklogItemSource = new Subject<BacklogItemModel>();
-
-  // Observable streams
-  newBacklogItemArray$ = this.newBacklogItemArraySource.asObservable();
-  newBacklogItem$ = this.newBacklogItemSource.asObservable();
-
-  backlogItems: Map<number, BacklogItemModel>;
-
-
   /* Adresse abhängig von Umgebung wählen */
- // private actionUrl: string = 'http://localhost:3000/api';
-   private actionUrl: string = 'http://10.60.67.166:3000/api';
+ private actionUrl: string = 'http://localhost:3000/api';
+  // private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {

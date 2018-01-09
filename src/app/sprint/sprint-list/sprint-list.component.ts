@@ -16,10 +16,6 @@ export class SprintListComponent implements OnInit {
   sprintitem: SprintModel[] = [] as SprintModel[];
 
   constructor(private sprintService: SprintService) {
-    sprintService.newSprintArray$.subscribe(
-      newSprintArray => {
-        this.sprintitem = newSprintArray;
-      });
   }
 
   ngOnInit() {

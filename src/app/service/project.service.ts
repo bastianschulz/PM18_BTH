@@ -5,30 +5,23 @@
 import 'rxjs/add/operator/map';
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 
 import {PRLModel} from '../models/prl.model';
 import {ProjectModel} from '../models/projekt.model';
+import {URLModel} from '../models/url.model';
 import {ProjectTO} from '../models/projekt.TO';
+import {URLTO} from '../models/url.TO';
 
 @Injectable()
 export class ProjectService {
-
-  // Observable sources
-  private newProjectArraySource = new Subject<ProjectModel[]>();
-  private newProjectSource = new Subject<ProjectModel>();
-
-  // Observable streams
-  newProjectArray$ = this.newProjectArraySource.asObservable();
-  newProject$ = this.newProjectSource.asObservable();
-
-  projectitems: Map<number, ProjectModel>;
 
   /* Adresse abhängig von Umgebung wählen */
   private actionUrl: string = 'http://localhost:3000/api';
   //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
+
+  selctedProjectID: number;
 
 
   constructor(private http: Http) {
@@ -74,4 +67,39 @@ export class ProjectService {
     return;
   }
 
+  getURLByPid(pID: number): Observable<Array<URLModel>> {
+    return this.http
+      .get(this.actionUrl+'/getURLByPid?pid='+pID, this.options)
+      .map((r: Response) => r.json());
+  }
+
+  postURL(user_ID:number, project_ID:number) {
+    const urlTO: URLTO = ({
+      user_ID: user_ID,
+      project_ID: project_ID,
+      scrum: 0,
+      user: 0,
+      stake: 0
+    }) as URLTO;
+
+    this.http.post(this.actionUrl + '/postURL', urlTO, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  delURI(uri_ID:number) {
+    this.http.post(this.actionUrl + '/delURI?urid='+uri_ID, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  updURL(pid: number, tit: string, info: string): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updProject?pid=' + pid + '&tit=' + tit + '&info=' + info, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
 }

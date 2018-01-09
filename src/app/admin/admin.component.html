@@ -1,9 +1,9 @@
-
-<h1>Administration des WeScrum</h1>
-
-<button type="button" class="btn btn-warning" (click)="project()">Projekt Administration</button>
-<button type="button" class="btn btn-warning" (click)="user()">User Administration</button>
-<button type="button" class="btn btn-warning" (click)="redo()">Wiederherstellung "gelöschter" Elemente</button>
+<button type="button" class="btn btn-warning" *ngIf="!projectF" (click)="project()">Projekt Administration</button>
+<button type="button" class="btn btn-warning" *ngIf="projectF" (click)="project()"><h3>Projekt Administration</h3></button>
+<button type="button" class="btn btn-warning" *ngIf="!userF" (click)="user()">User Administration</button>
+<button type="button" class="btn btn-warning" *ngIf="userF" (click)="user()"><h3>User Administration</h3></button>
+<button type="button" class="btn btn-warning" *ngIf="!redoF" (click)="redo()">Wiederherstellung "gelöschter" Elemente</button>
+<button type="button" class="btn btn-warning" *ngIf="redoF" (click)="redo()"><h3>Wiederherstellung "gelöschter" Elemente</h3></button>
 <app-adminpro *ngIf="projectF"></app-adminpro>
 <app-adminuser *ngIf="userF"></app-adminuser>
 <app-adminredo *ngIf="redoF"></app-adminredo>

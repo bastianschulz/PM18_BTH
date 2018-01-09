@@ -31,6 +31,10 @@ import {BackLogComponent} from './back-log/back-log.component';
 import {BackLogElementComponent} from './back-log-element/back-log-element.component';
 import {BackLogCockpitComponent} from './back-log-cockpit/back-log-cockpit.component';
 import {SprintCockpitComponent} from './sprint/sprint-cockpit/sprint-cockpit.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminproComponent } from './admin/adminpro/adminpro.component';
+import { AdminuserComponent } from './admin/adminuser/adminuser.component';
+import { AdminredoComponent } from './admin/adminredo/adminredo.component';
 
 import {AuthService} from "./service/auth.service";
 import {BacklogService} from './service/backlog.service';
@@ -40,10 +44,10 @@ import {MainService} from './service/main.service';
 import {ScrumService} from './service/scrum.service';
 import {TaskService} from './service/task.service';
 import {ProjectService} from './service/project.service';
-import { AdminComponent } from './admin/admin.component';
-import { AdminproComponent } from './admin/adminpro/adminpro.component';
-import { AdminuserComponent } from './admin/adminuser/adminuser.component';
-import { AdminredoComponent } from './admin/adminredo/adminredo.component';
+import { AdminusernewComponent } from './admin/adminuser/adminusernew/adminusernew.component';
+import { AdminpronewComponent } from './admin/adminpro/adminpronew/adminpronew.component';
+import { ProjectComponent } from './admin/project/project.component';
+import { AdduserComponent } from './admin/project/adduser/adduser.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -56,7 +60,11 @@ const appRoutes: Routes = [
   {path: 'ScrumBoard/EditTask', component: TaskItemEditComponent},
   {path: 'SprintPlanning', component: SprintComponent},
   {path: 'SprintPlanning/Add', component: SprintCockpitComponent},
-  {path: 'Admin', component: AdminComponent}
+  {path: 'Admin', component: AdminComponent},
+  {path: 'Projekt/Add', component: AdminpronewComponent},
+  {path: 'Projekt/Conf', component: ProjectComponent},
+  {path: 'User/Add', component: AdminusernewComponent},
+  {path: 'Projekt/AddUser', component: AdduserComponent}
 
 ];
 
@@ -91,7 +99,11 @@ const appRoutes: Routes = [
     AdminComponent,
     AdminproComponent,
     AdminuserComponent,
-    AdminredoComponent
+    AdminredoComponent,
+    AdminusernewComponent,
+    AdminpronewComponent,
+    ProjectComponent,
+    AdduserComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +113,7 @@ const appRoutes: Routes = [
     DataTableModule,
     JsonpModule
   ],
-  providers: [AuthService, UserService, BacklogService, SprintService, TaskService, ScrumService, MainService, ProjectService],
+  providers: [AuthService, ProjectService, BacklogService, SprintService, TaskService, ScrumService, MainService, ProjectService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

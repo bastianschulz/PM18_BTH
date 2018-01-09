@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {TaskService} from '../../service/task.service';
+import {MainService} from '../../service/main.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -25,9 +26,10 @@ export class TaskItemComponent implements OnInit {
   estHoMP: number;
   erstelldatum: Date;
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private router: Router, private mainService: MainService) { }
 
   ngOnInit() {
+    this.mainService.authCheck();
   }
 
   onSubmit() {

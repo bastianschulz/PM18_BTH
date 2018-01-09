@@ -14,20 +14,9 @@ import {TaskTO} from '../models/task.TO';
 @Injectable()
 export class TaskService {
 
-  // Observable sources
-  private newTaskArraySource = new Subject<TaskModel[]>();
-  private newTaskSource = new Subject<TaskModel>();
-
-  // Observable streams
-  newTaskArray$ = this.newTaskArraySource.asObservable();
-  newTask$ = this.newTaskSource.asObservable();
-
-  taskItems: Map<number, TaskModel>;
-
-
   /* Adresse abhängig von Umgebung wählen */
- // private actionUrl: string = 'http://localhost:3000/api';
-  private actionUrl: string = 'http://10.60.67.166:3000/api';
+  private actionUrl: string = 'http://localhost:3000/api';
+  // private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -88,7 +77,7 @@ export class TaskService {
    * Task per task_ID updaten
    * @returns {Observable<TaskModel>} Daten vom Server
    */
-  updTask(tid: number, tit: string, inf: string, uid: number, est: number, sid: number, bliid: number, ge: boolean, stat: string, ed: Date): Observable<void> {
+  updTask(tid: number, tit: string, inf: string, uid: number, est: number, sid: number, bliid: number, ge: number, stat: string, ed: Date): Observable<void> {
     this.http
       .post(this.actionUrl + '/updTask?tid=' + tid + '&tit=' + tit + '&in=' + inf + '&uid=' + uid + '&est=' + est + '&sid=' + sid + '&bliid=' + bliid + '&ge=' + ge + '&stat=' + stat + '&ed=' + ed, this.options)
       .map((r: Response) => r.json())

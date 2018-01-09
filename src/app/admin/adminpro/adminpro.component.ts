@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../../service/project.service';
-import { ProjectModel } from '../../models/projekt.model';
+import {Component, OnInit} from '@angular/core';
+import {ProjectService} from '../../service/project.service';
+import {ProjectModel} from '../../models/projekt.model';
+import {MainService} from '../../service/main.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-adminpro',
@@ -15,14 +17,12 @@ export class AdminproComponent implements OnInit {
 
   projectitem: ProjectModel[] = [] as ProjectModel[];
 
-  constructor(private projectService: ProjectService) {
-    projectService.newProjectArray$.subscribe(
-      newProjectArray => {
-        this.projectitem = newProjectArray;
-      });
+  constructor(private projectService: ProjectService, private router: Router, private mainService: MainService) {
+
   }
 
   ngOnInit() {
+    this.mainService.authCheck();
     this.loadProject();
   }
 
@@ -40,16 +40,24 @@ export class AdminproComponent implements OnInit {
 
   clickedOnEdit(project_ID: number) {
     this.editProjectID = this.emptynumber;
-
     var i: number = this.projectitem.length - 1;
-
     for (i; i >= 0; i--) {
       if (this.projectitem[i].project_ID === project_ID) {
         this.editProjectID = i;
       }
     }
-
     this.projecteditor = true;
+  }
+
+  userRollConf(project_ID: number) {
+    this.projectService.selctedProjectID = this.emptynumber;
+    var i: number = this.projectitem.length - 1;
+    for (i; i >= 0; i--) {
+      if (this.projectitem[i].project_ID === project_ID) {
+        this.projectService.selctedProjectID = project_ID;
+      }
+    }
+    this.router.navigateByUrl('/Projekt/Conf');
   }
 
   updProject() {

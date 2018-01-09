@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {BacklogService} from '../service/backlog.service';
+import {MainService} from '../service/main.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -21,10 +22,11 @@ export class BackLogCockpitComponent implements OnInit {
   titel: string;
   info: string;
 
-  constructor(private backlogService: BacklogService, private router: Router) {
+  constructor(private backlogService: BacklogService, private router: Router, private mainService: MainService) {
   }
 
   ngOnInit() {
+    this.mainService.authCheck();
   }
 
   onSubmit() {
