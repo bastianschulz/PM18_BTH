@@ -14,7 +14,9 @@ import {Router} from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
 
+  main: boolean = true;
   rolleditor: boolean = false;
+  setroll: boolean = false;
 
   asuseritem: AsUserModel[] = [] as AsUserModel[];
   urlitem: URLModel[] = [] as URLModel[];
@@ -22,12 +24,22 @@ export class ProjectComponent implements OnInit {
   editUriID: number;
   emptynumber: number;
 
+  sm=0;
+  us=0;
+  sh=0;
+
   constructor(private projectService: ProjectService, private userService: UserService, private router: Router, private mainService: MainService) {
 
   }
 
+  //TODO. fehlerhafte logik setzt die flags bei der rechte vergabe manchmal falsch
+
   ngOnInit() {
     this.mainService.authCheck();
+    this.refresh();
+  }
+
+  refresh(){
     this.loadAsUsers(this.projectService.selctedProjectID);
     this.loadURI(this.projectService.selctedProjectID);
   }
@@ -45,7 +57,7 @@ export class ProjectComponent implements OnInit {
   }
 
   deleteuserfromProject(uri_ID: number) {
-    this.projectService.delURI(uri_ID)
+    this.projectService.delURI(uri_ID);
     this.router.navigateByUrl('/Admin');
   }
 
@@ -69,42 +81,36 @@ export class ProjectComponent implements OnInit {
         this.editUriID = i;
       }
     }
+    this.main = false;
     this.rolleditor = true;
   }
 
   updURI() {
-    var sm=0;
-    var us=0;
-    var sh=0;
-
-    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
-    if (this.asuseritem[this.editUriID].user===true){us=1}
-    if (this.asuseritem[this.editUriID].stake===true){sh=1}
-    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
-    if (this.asuseritem[this.editUriID].user===true){us=1}
-    if (this.asuseritem[this.editUriID].stake===true){sh=1}
-    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
-    if (this.asuseritem[this.editUriID].user===true){us=1}
-    if (this.asuseritem[this.editUriID].stake===true){sh=1}
-    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
-    if (this.asuseritem[this.editUriID].user===true){us=1}
-    if (this.asuseritem[this.editUriID].stake===true){sh=1}
-    if (this.asuseritem[this.editUriID].scrum===true){sm=1}
-    if (this.asuseritem[this.editUriID].user===true){us=1}
-    if (this.asuseritem[this.editUriID].stake===true){sh=1}
-    
     this.rolleditor = false;
+    this.setroll = true;
+    if (this.asuseritem[this.editUriID].scrum===true){this.sm=1}
+    if (this.asuseritem[this.editUriID].user===true){this.us=1}
+    if (this.asuseritem[this.editUriID].stake===true){this.sh=1}
+  }
 
-    this.makeupdURI(sm, us, sh);
+  rollSet(){
+    this.makeupdURI(this.sm, this.us, this.sh);
+
+    this.setroll = false;
   }
 
   makeupdURI(sm: number, us: number, sh: number){
     this.projectService.updURI(this.asuseritem[this.editUriID].uri_ID, sm, us, sh);
     this.rolleditor = false;
-    this.router.navigateByUrl('/Admin');
+    this.setroll = false;
+    this.main = true;
+    this.refresh();
+    this.router.navigateByUrl('/Projekt/Conf');
   }
 
   noEdit() {
     this.rolleditor = false;
+    this.setroll = false;
+    this.main = true;
   }
 }

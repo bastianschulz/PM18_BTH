@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col">
+    <h1>User Story hinzufügen</h1>
+    <hr>
+    <form (ngSubmit)="onSubmit()" #newbliForm="ngForm">
+      <div id="userStory-Data">
+
+        <div class="row">
+          <div class="col-md-10 form-group">
+            <label for="titel">Titel</label>
+            <input type="text" id="titel" class="form-control"
+                   maxlength="60" [(ngModel)]="titel" name="titel">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 form-group">
+            <label for="story">Story</label>
+            <textarea
+              rows="10"
+              cols="100"
+              id="story"
+              class="form form-control"
+              maxlength="1600"
+              [(ngModel)]="story" name="story"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label for="stakeholder">Stakeholder</label>
+            <input type="stakeholder" id="stakeholder" class="form-control"
+                   maxlength="60" [(ngModel)]="stakeholder" name="stakeholder">
+          </div>
+
+          <div class="col-md-4 form-group">
+            <label for="epic">Normal / EPIC</label>
+            <select type="text" id="epic" class="form-control" [(ngModel)]="epic" name="epic">
+              <option value="0">Normal</option>
+              <option value="1">EPIC</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <button class="btn btn-success" type="submit">User Story hinzufügen</button>
+            <button class="btn btn-primary" type="reset">Zurücksetzen</button>
+            <button class="btn btn-danger" routerLink="/UserStory">Abbrechen</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>

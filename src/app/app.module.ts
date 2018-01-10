@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import {DataTableModule} from 'angular2-datatable';
-import { ChartsModule } from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
@@ -32,12 +32,17 @@ import {BackLogComponent} from './back-log/back-log.component';
 import {BackLogElementComponent} from './back-log-element/back-log-element.component';
 import {BackLogCockpitComponent} from './back-log-cockpit/back-log-cockpit.component';
 import {SprintCockpitComponent} from './sprint/sprint-cockpit/sprint-cockpit.component';
-import { AdminComponent } from './admin/admin.component';
-import { AdminproComponent } from './admin/adminpro/adminpro.component';
-import { AdminuserComponent } from './admin/adminuser/adminuser.component';
-import { AdminredoComponent } from './admin/adminredo/adminredo.component';
+import {AdminComponent} from './admin/admin.component';
+import {AdminproComponent} from './admin/adminpro/adminpro.component';
+import {AdminuserComponent} from './admin/adminuser/adminuser.component';
+import {AdminredoComponent} from './admin/adminredo/adminredo.component';
+import {AdminusernewComponent} from './admin/adminuser/adminusernew/adminusernew.component';
+import {AdminpronewComponent} from './admin/adminpro/adminpronew/adminpronew.component';
+import {ProjectComponent} from './admin/project/project.component';
+import {AdduserComponent} from './admin/project/adduser/adduser.component';
+import {UserstoryComponent} from './userstory/userstory.component';
+import {PlaningpokerComponent} from './planingpoker/planingpoker.component';
 
-import {AuthService} from "./service/auth.service";
 import {BacklogService} from './service/backlog.service';
 import {UserService} from './service/user.service';
 import {SprintService} from './service/sprint.service';
@@ -45,11 +50,11 @@ import {MainService} from './service/main.service';
 import {ScrumService} from './service/scrum.service';
 import {TaskService} from './service/task.service';
 import {ProjectService} from './service/project.service';
-import { AdminusernewComponent } from './admin/adminuser/adminusernew/adminusernew.component';
-import { AdminpronewComponent } from './admin/adminpro/adminpronew/adminpronew.component';
-import { ProjectComponent } from './admin/project/project.component';
-import { AdduserComponent } from './admin/project/adduser/adduser.component';
 import {BurndownService} from "./service/burndown.service";
+import {PlanpoService} from './service/planpo.service';
+import {UserstoryService} from "./service/userstory.service";
+import {AdduserstoryComponent} from './userstory/adduserstory/adduserstory.component';
+import {StorybacklogComponent} from './userstory/storybacklog/storybacklog.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -68,7 +73,10 @@ const appRoutes: Routes = [
   {path: 'User/Add', component: AdminusernewComponent},
   {path: 'Projekt/AddUser', component: AdduserComponent},
   {path: 'BurnDown', component: BurnDownChartItemComponent},
-
+  {path: 'UserStory', component: UserstoryComponent},
+  {path: 'UserStory/Add', component: AdduserstoryComponent},
+  {path: 'PlanningPoker', component: PlaningpokerComponent},
+  {path: 'StoryBacklog', component: StorybacklogComponent},
 
 ];
 
@@ -107,7 +115,11 @@ const appRoutes: Routes = [
     AdminusernewComponent,
     AdminpronewComponent,
     ProjectComponent,
-    AdduserComponent
+    AdduserComponent,
+    UserstoryComponent,
+    PlaningpokerComponent,
+    AdduserstoryComponent,
+    StorybacklogComponent
   ],
   imports: [
     BrowserModule,
@@ -117,10 +129,9 @@ const appRoutes: Routes = [
     DataTableModule,
     JsonpModule,
     ChartsModule
-
-
   ],
-  providers: [BurndownService,AuthService, ProjectService, BacklogService, SprintService, TaskService, ScrumService, MainService, ProjectService, UserService],
+  providers: [BurndownService, ProjectService, BacklogService, SprintService, TaskService,
+    ScrumService, MainService, ProjectService, UserService, PlanpoService, UserstoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

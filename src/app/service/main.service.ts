@@ -18,8 +18,8 @@ import {Router} from '@angular/router';
 export class MainService {
 
   /* Adresse abhängig von Umgebung wählen */
-  //public actionUrl: string = 'http://localhost:3000/api';
-  private actionUrl: string = 'http://10.60.67.166:3000/api';
+  public actionUrl: string = 'http://localhost:3000/api';
+  //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   authenticated = false;
@@ -28,11 +28,12 @@ export class MainService {
   Username: string;
   PRL: PRLModel[] = [] as PRLModel[];
 
-
+  //TODO wiederherstellen
   /*
   scrum = false; muss wieder hergestellt werden....????
    */
-  scrum = true;
+  selectedProject: number;
+  scrum = false;
   user = false;
   stake = false;
 

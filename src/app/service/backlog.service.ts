@@ -15,8 +15,8 @@ import { BacklogItemTO } from '../models/backLogItem.TO';
 export class BacklogService {
 
   /* Adresse abhängig von Umgebung wählen */
- //private actionUrl: string = 'http://localhost:3000/api';
-   private actionUrl: string = 'http://10.60.67.166:3000/api';
+  public actionUrl: string = 'http://localhost:3000/api';
+  //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   constructor(private http: Http) {
@@ -40,6 +40,12 @@ export class BacklogService {
       .map((r: Response) => r.json());
   }
 
+  getAllBacklogItemsByUsid(usid: number): Observable<Array<BacklogItemModel>> {
+    return this.http
+      .get(this.actionUrl+'/getAllBacklogitemsByUsid?usid='+usid, this.options)
+      .map((r: Response) => r.json());
+  }
+
   /**
    * BacklogItem anlegen
    * @param titel
@@ -59,32 +65,22 @@ export class BacklogService {
   }
 
   /**
-   * Holt ein BacklogItem mit Hilfe der ID vom Server
-   *
-   * @param {number} bli_ID
-   * BacklogItem ID
-   * @returns {Observable<BacklogItemModel>}
-   * Backlog ITem vom Server
-   */
-  getBacklogItemByID(bli_ID:number): Observable<BacklogItemModel>{
-    return this.http.get(this.actionUrl+'/getBacklogItemByID',this.options).map((singleR:Response) => singleR.json());
-
-  }
-
-  /**
    * Task per task_ID updaten
    * @returns {Observable<TaskModel>} Daten vom Server
    */
   updBli(bli_ID: number, titel: string, info: string, status: string, priority: string, geloescht: number): Observable<void> {
     this.http
-      .post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&tit=' + titel + '&inf=' + info + '&stat=' + status + '&prio=' + priority + '&ge=' + geloescht, this.options)
+      .post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&tit=' + titel + '&inf=' + info + '&stat=' + status + '&prio=' + priority + '&gel=' + geloescht, this.options)
   .map((r: Response) => r.json())
       .subscribe();
     return;
   }
 
-  delBli(bli_ID:number){
-    this.http.post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&ge=' + 0,this.options).map((r:Response) => r.json()).subscribe();
+  delBli(bli_ID: number, titel: string, info: string, status: string, priority: string, geloescht: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&tit=' + titel + '&inf=' + info + '&stat=' + status + '&prio=' + priority + '&gel=1' , this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
     return;
   }
 

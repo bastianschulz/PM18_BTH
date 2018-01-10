@@ -59,7 +59,7 @@ export class BurnDownChartItemComponent implements OnInit {
   /**
    * Beispieldaten aus der HP
    *
-   * ZU ENTFERNEN!!!
+   * TODO ZU ENTFERNEN!!!
    *
    *
    * @type {{data: number[]; label: string}[]}
