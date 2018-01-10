@@ -10,6 +10,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {TaskModel} from "../models/task.model";
+import {MainService} from "./main.service";
 
 @Injectable()
 export class BurndownService {
@@ -23,7 +24,7 @@ export class BurndownService {
   private pid: number;
 
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private mainService: MainService) {
     /**
      * Optionen für die Serveranfragen
      * @type {RequestOptions}
@@ -37,6 +38,7 @@ export class BurndownService {
      */
 
 
+    //this.mainService.selectedProject
 
   }
 

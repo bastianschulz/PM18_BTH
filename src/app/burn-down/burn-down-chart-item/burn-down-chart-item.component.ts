@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BurndownService} from "../../service/burndown.service";
 import { ChartsModule } from 'ng2-charts';
+import {MainService} from "../../service/main.service";
 
 @Component({
   selector: 'app-burn-down-chart-item',
@@ -9,7 +10,7 @@ import { ChartsModule } from 'ng2-charts';
 })
 export class BurnDownChartItemComponent implements OnInit {
 
-  constructor(private burndownservice: BurndownService) {
+  constructor(private burndownservice: BurndownService, private mainService: MainService) {
 
     this.loadEstHoMP();
     this.loadTimeEntries();
@@ -21,6 +22,8 @@ export class BurnDownChartItemComponent implements OnInit {
 
 
   ngOnInit() {
+    this.mainService.authCheck();
+
   }
 
   /**
@@ -38,6 +41,9 @@ export class BurnDownChartItemComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   */
   loadTimeEntries() {
     this.burndownservice.getTimeEntries().subscribe(
       data => {
