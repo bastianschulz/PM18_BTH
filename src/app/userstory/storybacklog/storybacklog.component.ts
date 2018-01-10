@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { BacklogItemModel } from '../models/backLogItem.model';
-import { BacklogService } from '../service/backlog.service';
-import {MainService} from '../service/main.service';
+import {Component, OnInit} from '@angular/core';
+import {BacklogItemModel} from '../../models/backLogItem.model';
+import {BacklogService} from '../../service/backlog.service';
+import {UserstoryService} from '../../service/userstory.service';
+import {MainService} from '../../service/main.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-back-log',
-  templateUrl: './back-log.component.html',
-  styleUrls: ['./back-log.component.css']
+  selector: 'app-storybacklog',
+  templateUrl: './storybacklog.component.html',
+  styleUrls: ['./storybacklog.component.css']
 })
-export class BackLogComponent implements OnInit {
+export class StorybacklogComponent implements OnInit {
 
   blieditor: boolean = false;
   editBliID: number;
@@ -20,7 +21,7 @@ export class BackLogComponent implements OnInit {
 
   backlogitem: BacklogItemModel[] = [] as BacklogItemModel[];
 
-  constructor(private backlogService: BacklogService, private router: Router, private mainService: MainService) {
+  constructor(private backlogService: BacklogService, private router: Router, private mainService: MainService, private userstoryService:UserstoryService) {
   }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class BackLogComponent implements OnInit {
   }
 
   loadBacklogItems() {
-    this.backlogService.getAllBacklogItems().subscribe(
+    this.backlogService.getAllBacklogItemsByUsid(this.userstoryService.selectedUserStoID).subscribe(
       data => {
         // befüllen des Arrays
         this.backlogitem = [] as BacklogItemModel[];
@@ -55,7 +56,7 @@ export class BackLogComponent implements OnInit {
   }
 
   updBacklogItem() {
-    this.backlogService.updBli(this.backlogitem[this.editBliID].bli_ID, this.backlogitem[this.editBliID].titel, this.backlogitem[this.editBliID].info, this.backlogitem[this.editBliID].status, this.backlogitem[this.editBliID].priority, this.backlogitem[this.editBliID].geloescht);
+    //this.backlogService.updBli(this.backlogitem[this.editBliID].bli_ID, this.backlogitem[this.editBliID].titel, this.backlogitem[this.editBliID].info, this.backlogitem[this.editBliID].status, this.backlogitem[this.editBliID].priority, this.backlogitem[this.editBliID].geloescht);
 
     this.blieditor = false;
   }
@@ -65,7 +66,7 @@ export class BackLogComponent implements OnInit {
   }
 
   reqDel(){
-    this.deletereq = true;
+    //this.deletereq = true;
   }
 
   deleteItem(){
@@ -75,7 +76,4 @@ export class BackLogComponent implements OnInit {
     this.blieditor = false;
     this.router.navigateByUrl('/BackLog');
   }
-
-
-
 }

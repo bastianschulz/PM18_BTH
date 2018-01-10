@@ -1,4 +1,4 @@
-<div *ngIf="!rolleditor">
+<div *ngIf="main">
   <h1>User Rollen Steuerung</h1>
   <div *ngIf="!rolleditor">
      <p align="right">
@@ -73,5 +73,13 @@
         <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
       </div>
     </div>
+  </form>
+</div>
+
+<div *ngIf="setroll">
+  <form>
+      <div class="col-md-12">
+        <button class="btn btn-success" (click)="rollSet()">Berechtigungen geändert</button>
+      </div>
   </form>
 </div>

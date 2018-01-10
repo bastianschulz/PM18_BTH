@@ -1,0 +1,88 @@
+<div *ngIf="useditor == false">
+  <h1> User Stories </h1>
+
+  <p align="right">
+    <button class="btn btn-success" routerLink="/UserStory/Add">Userstory hinzufügen</button>
+  </p>
+
+  <table class="table table-responsive" [mfData]="storyitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th data-toggle="tooltip" title="Titel">
+        <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Stakeholder">
+        <mfDefaultSorter by="stakeholder">Stakeholder</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Epic">
+        <mfDefaultSorter by="epic">Epic (große Userstory)</mfDefaultSorter>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allStoryItems of mf.data">
+      <td>{{allStoryItems.titel}}</td>
+      <td>{{allStoryItems.stakeholder}}</td>
+      <td><label *ngIf="allStoryItems.epic===1">EPIC</label></td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allStoryItems.us_ID)">Bearbeiten
+          </button>
+        </div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" (click)="addstorybacklog(allStoryItems.us_ID)">User Story - Backlog Item Verwaltung
+        </button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div *ngIf="useditor == true">
+  <h1>User Story bearbeiten</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Titel</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="storyitem[editUserStoID].titel" name="titel">
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="story">Story</label>
+        <textarea
+          rows="10"
+          cols="100"
+          id="story"
+          class="form form-control"
+          maxlength="600"
+          [(ngModel)]="storyitem[editUserStoID].story" name="story"></textarea>
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="stakeholder">Stakeholder</label>
+        <input type="text" id="stakeholder" class="form-control" [(ngModel)]="storyitem[editUserStoID].stakeholder" name="stakeholder">
+      </div>
+      <div class="col-md-4 form-group">
+        <label for="epic">Normal / EPIC</label>
+        <select type="text" id="epic" class="form-control" [(ngModel)]="storyitem[editUserStoID].epic" name="epic">
+          <option value="0">Normal</option>
+          <option value="1">EPIC</option>
+        </select>
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-success" (click)="updUserStory()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>

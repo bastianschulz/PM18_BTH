@@ -15,9 +15,9 @@ export class HeaderAfterLogInComponent implements OnInit {
   PRL: PRLModel[] = [] as PRLModel[];
   selectP: number;
 
-  //scrum = false;
-  //user = false;
-  //stake = false;
+  scrum = false;
+  user = false;
+  stake = false;
 
   constructor(private projectS:ProjectService, private mainService: MainService) {
 
@@ -48,10 +48,11 @@ export class HeaderAfterLogInComponent implements OnInit {
     var i: number = this.PRL.length - 1;
     for (i; i >= 0; i--) {
       if (this.PRL[i].project_ID === proid) {
-        //this.scrum = this.PRL[i].scrum;
-        //this.user = this.PRL[i].user;
-        //this.stake = this.PRL[i].stake;
+        this.scrum = this.PRL[i].scrum;
+        this.user = this.PRL[i].user;
+        this.stake = this.PRL[i].stake;
 
+        this.mainService.selectedProject = this.selectP;
         this.mainService.scrum = this.PRL[i].scrum;
         this.mainService.user = this.PRL[i].user;
         this.mainService.stake = this.PRL[i].stake;

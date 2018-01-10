@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class BackLogCockpitComponent implements OnInit {
 
   newbliForm: NgForm;
-  @ViewChild('newbliForm') currentForm: NgForm;
+  @ViewChild('newusForm') currentForm: NgForm;
 
   formErrors = {
     'titel': '',

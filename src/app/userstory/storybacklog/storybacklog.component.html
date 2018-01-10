@@ -1,0 +1,44 @@
+<div>
+<h1> Backlog Items </h1>
+
+<p align="right">
+  <button class="btn btn-success" routerLink="/BackLog/Add">Backlog Item hinzufügen</button>
+</p>
+
+<table class="table table-responsive" [mfData]="backlogitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+  <thead>
+  <tr>
+    <th data-toggle="tooltip" title="Titel des Backlog Items">
+      <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="Weitere Informationen">
+      <mfDefaultSorter by="info">Info</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="Derzeitiger Status des Items">
+      <mfDefaultSorter by="status">Status</mfDefaultSorter>
+    </th>
+    <th data-toggle="tooltip" title="Prioriät in der Entwicklung">
+      <mfDefaultSorter by="priority">Priorität</mfDefaultSorter>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let allBacklogItems of mf.data">
+    <td>{{allBacklogItems.titel}}</td>
+    <td>{{allBacklogItems.info}}</td>
+    <td>{{allBacklogItems.status}}</td>
+    <td>{{allBacklogItems.priority}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="7">
+      <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+<p align="left">
+  <button class="btn btn-success" routerLink="/UserStory">zurück</button>
+</p>
+</div>
