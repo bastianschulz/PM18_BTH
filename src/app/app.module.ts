@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import {DataTableModule} from 'angular2-datatable';
+import { ChartsModule } from 'ng2-charts';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
@@ -48,6 +49,7 @@ import { AdminusernewComponent } from './admin/adminuser/adminusernew/adminusern
 import { AdminpronewComponent } from './admin/adminpro/adminpronew/adminpronew.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { AdduserComponent } from './admin/project/adduser/adduser.component';
+import {BurndownService} from "./service/burndown.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -64,7 +66,9 @@ const appRoutes: Routes = [
   {path: 'Projekt/Add', component: AdminpronewComponent},
   {path: 'Projekt/Conf', component: ProjectComponent},
   {path: 'User/Add', component: AdminusernewComponent},
-  {path: 'Projekt/AddUser', component: AdduserComponent}
+  {path: 'Projekt/AddUser', component: AdduserComponent},
+  {path: 'BurnDown', component: BurnDownChartItemComponent},
+
 
 ];
 
@@ -111,9 +115,12 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     DataTableModule,
-    JsonpModule
+    JsonpModule,
+    ChartsModule
+
+
   ],
-  providers: [AuthService, ProjectService, BacklogService, SprintService, TaskService, ScrumService, MainService, ProjectService, UserService],
+  providers: [BurndownService,AuthService, ProjectService, BacklogService, SprintService, TaskService, ScrumService, MainService, ProjectService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

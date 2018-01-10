@@ -28,7 +28,11 @@ export class MainService {
   Username: string;
   PRL: PRLModel[] = [] as PRLModel[];
 
-  scrum = false;
+
+  /*
+  scrum = false; muss wieder hergestellt werden....????
+   */
+  scrum = true;
   user = false;
   stake = false;
 

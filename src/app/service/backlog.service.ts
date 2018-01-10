@@ -84,7 +84,7 @@ export class BacklogService {
   }
 
   delBli(bli_ID:number){
-    this.http.post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&ge=' + 1,this.options).map((r:Response) => r.json()).subscribe();
+    this.http.post(this.actionUrl + '/updBacklogitem?bliid=' + bli_ID + '&ge=' + 0,this.options).map((r:Response) => r.json()).subscribe();
     return;
   }
 
