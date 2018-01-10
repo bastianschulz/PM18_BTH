@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {BurndownService} from "../../service/burndown.service";
-import { ChartsModule } from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts';
 import {MainService} from "../../service/main.service";
+import {estHoMP} from "../../models/estHoMP.model";
+import {BurnDownModel} from "../../models/burnDown.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-burn-down-chart-item',
@@ -10,19 +13,19 @@ import {MainService} from "../../service/main.service";
 })
 export class BurnDownChartItemComponent implements OnInit {
 
-  constructor(private burndownservice: BurndownService, private mainService: MainService) {
 
-    this.loadEstHoMP();
-    this.loadTimeEntries();
+  groundLine: estHoMP[] = [] as estHoMP[];
+  timeEntries: BurnDownModel[] = [] as BurnDownModel[];
+
+  constructor(private burndownservice: BurndownService, private mainService: MainService, private router:Router) {
 
   }
-
-  public groundLine: Array<any> = [];
-  public timeEntries: Array<any> = [];
 
 
   ngOnInit() {
     this.mainService.authCheck();
+    this.loadEstHoMP();
+    //this.loadTimeEntries();
 
   }
 
@@ -30,15 +33,20 @@ export class BurnDownChartItemComponent implements OnInit {
    * Array für den Chart füllen
    */
   loadEstHoMP() {
+
     this.burndownservice.getEstHoMpbyPid().subscribe(
       data => {
         // befüllen des Arrays
-        this.groundLine = [];
+        this.groundLine = [] as estHoMP[];
         data.forEach(ergebnis => {
           this.groundLine.push(ergebnis);
+
+          this.fillLineChartDataGroundLine();
+
         });
       }
     );
+
   }
 
   /**
@@ -56,6 +64,7 @@ export class BurnDownChartItemComponent implements OnInit {
     );
   }
 
+
   /**
    * Beispieldaten aus der HP
    *
@@ -66,12 +75,40 @@ export class BurnDownChartItemComponent implements OnInit {
    */
 
   lineChartData: Array<any> = [
-    {data: [100,90,80,70,60,50,40,30,20,10,0], label: 'Ideal-Linie'},
-    {data: [100,95,75,70,63,49,32,31,25,15,0], label: 'IST-Linie'},
+    {data: [], label: 'Ideal-Linie'},
+    //{data: [100, 95, 75, 70, 63, 49, 32, 31, 25, 15, 0, 15, 0], label: 'IST-Linie'},
 
   ];
 
-  lineChartLabels: Array<any> = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Montag'];
+  fillLineChartDataGroundLine() {
+
+    var base: number = this.groundLine[0].estHoMP;
+    var x: Date = (this.groundLine[0].start);
+    var y: Date = this.groundLine[0].end;
+
+    var days: number = (this.dateDiff(y, x)) * (-1);
+    var step: number = base / (days);
+
+    var groundLineArray = [];
+
+    for (let i = 0; i <= (days); i++) {
+      var ttt: number = (base - (i * step));
+      this.lineChartData[0].data.push(ttt);
+    }
+
+    this.lineChartData[0].data = groundLineArray;
+  }
+
+  dateDiff(date1, date2) {
+    var dt1 = new Date(date1);
+    var dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
+  }
+
+
+
+
+  lineChartLabels: Array<any> = ['0','1','2','3','4','1','2','3','4','1','2','3','4','1'];
 
   lineChartOptions: any = {
     responsive: true
