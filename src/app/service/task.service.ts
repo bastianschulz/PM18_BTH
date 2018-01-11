@@ -15,9 +15,11 @@ import {TaskTO} from '../models/task.TO';
 export class TaskService {
 
   /* Adresse abhängig von Umgebung wählen */
-  //public actionUrl: string = 'http://localhost:3000/api';
-  private actionUrl: string = 'http://10.60.67.166:3000/api';
+  public actionUrl: string = 'http://localhost:3000/api';
+  //private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
+
+  selectedBli: number;
 
   constructor(private http: Http) {
     /**
@@ -50,6 +52,12 @@ export class TaskService {
       .map((r: Response) => r.json());
   }
 
+  getTasksBliP(bliid: number): Observable<Array<TaskModel>> {
+    return this.http
+      .get(this.actionUrl + '/getAllTasksByBli?bliid=' + bliid, this.options)
+      .map((r: Response) => r.json());
+  }
+
   /**
    * Task anlegen
    * @param titel
@@ -58,11 +66,12 @@ export class TaskService {
    * @param erstelldatum
    * @returns {Observable<void>} ok oder != ok
    */
-  postTask(titel: string, info: string, estHoMP: number, erstelldatum: Date) {
+  postTask(titel: string, info: string, estHoMP: number, backlog_ID: number, erstelldatum: Date) {
     const taskTO: TaskTO = ({
       titel: titel,
       info: info,
       estHoMP: (estHoMP as any),
+      backlog_ID: backlog_ID,
       erstelldatum: erstelldatum
     }) as TaskTO;
 

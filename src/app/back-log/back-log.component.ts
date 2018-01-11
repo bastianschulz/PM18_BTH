@@ -3,6 +3,7 @@ import { BacklogItemModel } from '../models/backLogItem.model';
 import { BacklogService } from '../service/backlog.service';
 import {MainService} from '../service/main.service';
 import {Router} from '@angular/router';
+import {TaskService} from "../service/task.service";
 
 @Component({
   selector: 'app-back-log',
@@ -20,7 +21,7 @@ export class BackLogComponent implements OnInit {
 
   backlogitem: BacklogItemModel[] = [] as BacklogItemModel[];
 
-  constructor(private backlogService: BacklogService, private router: Router, private mainService: MainService) {
+  constructor(private taskService: TaskService, private backlogService: BacklogService, private router: Router, private mainService: MainService) {
   }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class BackLogComponent implements OnInit {
   }
 
   loadBacklogItems() {
-    this.backlogService.getAllBacklogItems().subscribe(
+    this.backlogService.getAllBacklogItemsByPid(this.mainService.selectedProject).subscribe(
       data => {
         // befüllen des Arrays
         this.backlogitem = [] as BacklogItemModel[];
@@ -76,6 +77,19 @@ export class BackLogComponent implements OnInit {
     this.router.navigateByUrl('/BackLog');
   }
 
+  addBacklogTask(bli_ID: number) {
+    this.editBliID = this.emptynumber;
+
+    var i: number = this.backlogitem.length - 1;
+
+    for (i; i >= 0; i--) {
+      if (this.backlogitem[i].us_ID === bli_ID) {
+        this.editBliID = bli_ID;
+      }
+    }
+    this.taskService.selectedBli=bli_ID;
+    this.router.navigateByUrl('/BacklogTask');
+  }
 
 
 }

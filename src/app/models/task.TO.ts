@@ -5,5 +5,6 @@ export interface TaskTO{
   titel: string;
   info: string;
   estHoMP: number;
+  backlog_ID: number;
   erstelldatum: Date;
 }

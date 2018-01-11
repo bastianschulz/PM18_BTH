@@ -1,20 +1,19 @@
-
 <div class="row">
-  <div class="col" >
+  <div class="col">
     <h1>Backlog Item hinzufügen</h1>
     <hr>
     <form (ngSubmit)="onSubmit()" #newbliForm="ngForm">
       <div id="backLog-Data">
 
         <div class="row">
-          <div class="col-sm-6 form-group">
+          <div class="col-md-8 form-group">
             <label for="titel">Titel</label>
             <input type="text" id="titel" class="form-control"
                    maxlength="60" [(ngModel)]="titel" name="titel">
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6 form-group">
+          <div class="col-md-8 form-group">
             <label for="info">Beschreibung</label>
             <textarea
               rows="10"
@@ -25,12 +24,33 @@
               [(ngModel)]="info" name="info"></textarea>
           </div>
         </div>
-        <div class="row">
 
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <label for="status">Status</label>
+            <select type="text" id="status" class="form-control" [(ngModel)]="status"
+                    name="status">
+              <option value="aktiv">Aktiv</option>
+              <option value="inaktiv">Inaktiv</option>
+              <option value="fertig">Fertig</option>
+            </select>
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="priority">Priorität</label>
+            <select type="text" id="priority" class="form-control" [(ngModel)]="priority"
+                    name="priority">
+              <option value="hoch">Hoch</option>
+              <option value="mittel">Mittel</option>
+              <option value="niedrig">Niedrig</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-sm-6 form-group">
             <button class="btn btn-success" type="submit">Backlog Item hinzufügen</button>
             <button class="btn btn-primary" type="reset">Zurücksetzen</button>
-            <button class="btn btn-danger" routerLink="/BackLog">Abbrechen</button>
+            <button class="btn btn-danger" routerLink="/StoryBacklog">Abbrechen</button>
           </div>
         </div>
 

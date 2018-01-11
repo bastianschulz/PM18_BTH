@@ -24,7 +24,7 @@ export class TaskItemComponent implements OnInit {
   titel: string;
   info: string;
   estHoMP: number;
-  erstelldatum: Date;
+  erstelldatum: Date = new Date();
 
   constructor(private taskService: TaskService, private router: Router, private mainService: MainService) { }
 
@@ -34,8 +34,8 @@ export class TaskItemComponent implements OnInit {
 
   onSubmit() {
     this.formChanged();
-    this.taskService.postTask(this.titel, this.info, this.estHoMP, this.erstelldatum);
-    this.router.navigateByUrl('/ScrumBoard');
+    this.taskService.postTask(this.titel, this.info, this.estHoMP, this.taskService.selectedBli, this.erstelldatum);
+    this.router.navigateByUrl('/BacklogTask');
   }
 
   formChanged() {

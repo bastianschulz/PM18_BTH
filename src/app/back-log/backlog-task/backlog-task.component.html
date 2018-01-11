@@ -1,25 +1,37 @@
 <div *ngIf="taskeditor == false">
-  <h1>ScrumBoard</h1>
+  <h1>Task Verwaltung</h1>
+
+  <p align="right">
+    <button class="btn btn-success" routerLink="/ScrumBoard/AddTask">Task erstellen</button>
+  </p>
 
   <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="10">
     <thead>
     <tr>
-      <th title="To Do">
+      <th>
+        Entwurf
+      </th>
+      <th>
         To Do
       </th>
-      <th title="In Bearbeitung">
+      <th>
         In Bearbeitung
       </th>
-      <th title="Zu Klärung">
+      <th>
         Zur Klärung
       </th>
-      <th title="Fertig">
+      <th>
         Fertig
       </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let allTasks of mf.data; let i = index">
+      <td>
+        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'Entwurf'"
+                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+        </button>
+      </td>
       <td>
         <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ToDo'"
                 (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
@@ -50,6 +62,9 @@
     </tr>
     </tfoot>
   </table>
+  <p align="left">
+    <button class="btn btn-success" routerLink="/BackLog">zurück</button>
+  </p>
 </div>
 
 <div *ngIf="taskeditor == true">

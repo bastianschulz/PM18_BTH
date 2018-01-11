@@ -18,9 +18,9 @@
     <div class="navbar-default">
       <ul class="nav navbar-nav" *ngIf="selectP">
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.stake">
-          <a routerLink="/UserStory">UserStory</a></li>
+          <a routerLink="/UserStory">UserStories</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-          <a routerLink="/BackLog">Backlog</a></li>
+          <a routerLink="/BackLog">Project-Backlog</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.user">
           <a routerLink="/SprintPlanning">SprintPlanning</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">

@@ -55,6 +55,7 @@ import {PlanpoService} from './service/planpo.service';
 import {UserstoryService} from "./service/userstory.service";
 import {AdduserstoryComponent} from './userstory/adduserstory/adduserstory.component';
 import {StorybacklogComponent} from './userstory/storybacklog/storybacklog.component';
+import { BacklogTaskComponent } from './back-log/backlog-task/backlog-task.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
   {path: 'UserStory/Add', component: AdduserstoryComponent},
   {path: 'PlanningPoker', component: PlaningpokerComponent},
   {path: 'StoryBacklog', component: StorybacklogComponent},
+  {path: 'BacklogTask', component: BacklogTaskComponent},
 
 ];
 
@@ -119,7 +121,8 @@ const appRoutes: Routes = [
     UserstoryComponent,
     PlaningpokerComponent,
     AdduserstoryComponent,
-    StorybacklogComponent
+    StorybacklogComponent,
+    BacklogTaskComponent
   ],
   imports: [
     BrowserModule,

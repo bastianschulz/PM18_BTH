@@ -3,6 +3,7 @@ import {PRLModel} from '../models/prl.model';
 
 import {ProjectService} from '../service/project.service';
 import {MainService} from "../service/main.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header-after-log-in',
@@ -19,7 +20,7 @@ export class HeaderAfterLogInComponent implements OnInit {
   user = false;
   stake = false;
 
-  constructor(private projectS:ProjectService, private mainService: MainService) {
+  constructor(private projectS:ProjectService, private mainService: MainService, private router:Router) {
 
   }
 
@@ -56,6 +57,7 @@ export class HeaderAfterLogInComponent implements OnInit {
         this.mainService.scrum = this.PRL[i].scrum;
         this.mainService.user = this.PRL[i].user;
         this.mainService.stake = this.PRL[i].stake;
+        this.router.navigateByUrl('/');
       }
     }
   }

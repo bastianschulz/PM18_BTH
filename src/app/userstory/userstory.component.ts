@@ -58,7 +58,7 @@ export class UserstoryComponent implements OnInit {
 
     for (i; i >= 0; i--) {
       if (this.storyitem[i].us_ID === us_ID) {
-        this.editUserStoID = i;
+        this.editUserStoID = us_ID;
       }
     }
     this.userstoryService.selectedUserStoID=this.editUserStoID;

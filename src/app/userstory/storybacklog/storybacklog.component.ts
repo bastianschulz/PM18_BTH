@@ -56,7 +56,7 @@ export class StorybacklogComponent implements OnInit {
   }
 
   updBacklogItem() {
-    //this.backlogService.updBli(this.backlogitem[this.editBliID].bli_ID, this.backlogitem[this.editBliID].titel, this.backlogitem[this.editBliID].info, this.backlogitem[this.editBliID].status, this.backlogitem[this.editBliID].priority, this.backlogitem[this.editBliID].geloescht);
+    this.backlogService.updBli(this.backlogitem[this.editBliID].bli_ID, this.backlogitem[this.editBliID].titel, this.backlogitem[this.editBliID].info, this.backlogitem[this.editBliID].status, this.backlogitem[this.editBliID].priority, this.backlogitem[this.editBliID].geloescht);
 
     this.blieditor = false;
   }
@@ -66,7 +66,7 @@ export class StorybacklogComponent implements OnInit {
   }
 
   reqDel(){
-    //this.deletereq = true;
+    this.deletereq = true;
   }
 
   deleteItem(){
@@ -74,6 +74,6 @@ export class StorybacklogComponent implements OnInit {
 
     this.deletereq = false;
     this.blieditor = false;
-    this.router.navigateByUrl('/BackLog');
+    this.router.navigateByUrl('/UserStory');
   }
 }

@@ -1,44 +1,101 @@
-<div>
-<h1> Backlog Items </h1>
+<div *ngIf="blieditor == false">
+  <h1> Backlog Items </h1>
 
-<p align="right">
-  <button class="btn btn-success" routerLink="/BackLog/Add">Backlog Item hinzufügen</button>
-</p>
+  <p align="right">
+    <button class="btn btn-success" routerLink="/BackLog/Add">Backlog Item hinzufügen</button>
+  </p>
 
-<table class="table table-responsive" [mfData]="backlogitem" #mf="mfDataTable" [mfRowsOnPage]="10">
-  <thead>
-  <tr>
-    <th data-toggle="tooltip" title="Titel des Backlog Items">
-      <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="Weitere Informationen">
-      <mfDefaultSorter by="info">Info</mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="Derzeitiger Status des Items">
-      <mfDefaultSorter by="status">Status</mfDefaultSorter>
-    </th>
-    <th data-toggle="tooltip" title="Prioriät in der Entwicklung">
-      <mfDefaultSorter by="priority">Priorität</mfDefaultSorter>
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let allBacklogItems of mf.data">
-    <td>{{allBacklogItems.titel}}</td>
-    <td>{{allBacklogItems.info}}</td>
-    <td>{{allBacklogItems.status}}</td>
-    <td>{{allBacklogItems.priority}}</td>
-  </tr>
-  </tbody>
-  <tfoot>
-  <tr>
-    <td colspan="7">
-      <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
-    </td>
-  </tr>
-  </tfoot>
-</table>
-<p align="left">
-  <button class="btn btn-success" routerLink="/UserStory">zurück</button>
-</p>
+  <table class="table table-responsive" [mfData]="backlogitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th data-toggle="tooltip" title="Titel des Backlog Items">
+        <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Weitere Informationen">
+        <mfDefaultSorter by="info">Info</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Derzeitiger Status des Items">
+        <mfDefaultSorter by="status">Status</mfDefaultSorter>
+      </th>
+      <th data-toggle="tooltip" title="Prioriät in der Entwicklung">
+        <mfDefaultSorter by="priority">Priorität</mfDefaultSorter>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allBacklogItems of mf.data">
+      <td>{{allBacklogItems.titel}}</td>
+      <td>{{allBacklogItems.info}}</td>
+      <td>{{allBacklogItems.status}}</td>
+      <td>{{allBacklogItems.priority}}</td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allBacklogItems.bli_ID)">Bearbeiten
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+  <p align="left">
+    <button class="btn btn-success" routerLink="/UserStory">zurück</button>
+  </p>
+</div>
+
+
+<div *ngIf="blieditor == true">
+
+  <h1>Backlog Item bearbeiten</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Titel</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="backlogitem[editBliID].titel" name="titel">
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="info">Beschreibung</label>
+        <textarea
+          rows="10"
+          cols="100"
+          id="info"
+          class="form form-control"
+          maxlength="600"
+          [(ngModel)]="backlogitem[editBliID].info" name="info"></textarea>
+      </div>
+      <div class="col-md-4 form-group">
+        <label for="status">Status</label>
+        <select type="text" id="status" class="form-control" [(ngModel)]="backlogitem[editBliID].status" name="status">
+          <option value="aktiv">Aktiv</option>
+          <option value="inaktiv">Inaktiv</option>
+          <option value="fertig">Fertig</option>
+        </select>
+      </div>
+      <div class="col-md-4 form-group">
+        <label for="priority">Priorität</label>
+        <select type="text" id="priority" class="form-control" [(ngModel)]="backlogitem[editBliID].priority"
+                name="priority">
+          <option value="hoch">Hoch</option>
+          <option value="mittel">Mittel</option>
+          <option value="niedrig">Niedrig</option>
+        </select>
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-success" (click)="updBacklogItem()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+        <button class="btn btn-group-vertical btn-danger" (click)="reqDel()">Backlog Item Löschen</button>
+        <button *ngIf="deletereq" class="btn btn-group-vertical btn-danger" (click)="deleteItem()">Löschen Bestätigen
+        </button>
+      </div>
+    </div>
+  </form>
+
 </div>
