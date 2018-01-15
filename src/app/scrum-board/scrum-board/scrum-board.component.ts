@@ -5,11 +5,16 @@ import {UserModel} from '../../models/user.model';
 import {TaskService} from '../../service/task.service';
 import {Router} from '@angular/router';
 import {MainService} from '../../service/main.service';
+import {DragulaService} from "ng2-dragula";
+
 
 @Component({
   selector: 'app-scrum-board',
   templateUrl: './scrum-board.component.html',
   styleUrls: ['./scrum-board.component.css']
+
+
+
 })
 export class ScrumBoardComponent implements OnInit {
 
@@ -20,15 +25,44 @@ export class ScrumBoardComponent implements OnInit {
   taskitem: TaskModel[] = [] as TaskModel[];
   users: UserModel[] = [] as UserModel[];
 
-  constructor(private scrumService: ScrumService, private taskService: TaskService, private router: Router, private mainService: MainService) {
+  msg = '';
+
+  constructor(private dragula: DragulaService, private scrumService: ScrumService, private taskService: TaskService, private router: Router, private mainService: MainService) {
+
+
   }
+
 
   ngOnInit() {
     this.mainService.authCheck();
     this.loadScrumboardUsers();
     this.loadScrumboardTasks();
     this.taskeditor = false;
+
+    this.dragula
+      .drag
+      .subscribe(value => {
+        this.msg = `Dragging the ${ value[1].innerText }!`;
+      });
+
+    this.dragula
+      .drop
+      .subscribe(value => {
+        this.msg = `Dropped the ${ value[1].innerText }!`;
+
+        // Erneuern des Status des Tasks!!!
+
+        setTimeout(() => {
+          this.msg = '';
+        }, 1000);
+      });
+
+
   }
+
+
+
+
 
   loadScrumboardUsers() {
     this.scrumService.getAllUsersForSB().subscribe(
@@ -69,8 +103,8 @@ export class ScrumBoardComponent implements OnInit {
 
   updTask() {
     var gelflag = 0;
-    if (this.taskitem[this.editTaskID].geloescht==true){
-      gelflag=1
+    if (this.taskitem[this.editTaskID].geloescht == true) {
+      gelflag = 1
     }
 
     this.taskService.updTask(this.taskitem[this.editTaskID].task_ID, this.taskitem[this.editTaskID].titel, this.taskitem[this.editTaskID].info, this.taskitem[this.editTaskID].user, this.taskitem[this.editTaskID].estHoMP, this.taskitem[this.editTaskID].sprint_ID, this.taskitem[this.editTaskID].backlog_ID, gelflag, this.taskitem[this.editTaskID].status, this.taskitem[this.editTaskID].erstelldatum);
@@ -80,5 +114,10 @@ export class ScrumBoardComponent implements OnInit {
   noEdit() {
     this.taskeditor = false;
   }
+
+
+
+
+
 
 }

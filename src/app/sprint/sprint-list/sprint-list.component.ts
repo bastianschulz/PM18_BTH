@@ -18,6 +18,14 @@ export class SprintListComponent implements OnInit {
   constructor(private sprintService: SprintService) {
   }
 
+
+  /*
+  * getAllTasksByTaskStatus(){
+  * Status muss immer Entwurf sein.
+  *
+  *
+  * */
+
   ngOnInit() {
     this.loadSprint();
   }

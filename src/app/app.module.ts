@@ -56,6 +56,8 @@ import {UserstoryService} from "./service/userstory.service";
 import {AdduserstoryComponent} from './userstory/adduserstory/adduserstory.component';
 import {StorybacklogComponent} from './userstory/storybacklog/storybacklog.component';
 import { BacklogTaskComponent } from './back-log/backlog-task/backlog-task.component';
+import {DragulaModule} from 'ng2-dragula';
+
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -131,7 +133,8 @@ const appRoutes: Routes = [
     HttpModule,
     DataTableModule,
     JsonpModule,
-    ChartsModule
+    ChartsModule,
+    DragulaModule
   ],
   providers: [BurndownService, ProjectService, BacklogService, SprintService, TaskService,
     ScrumService, MainService, ProjectService, UserService, PlanpoService, UserstoryService],
