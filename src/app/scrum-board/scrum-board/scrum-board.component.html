@@ -8,7 +8,7 @@
   <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="50">
     <thead>
     <tr>
-      <th title="To Do">
+      <th title="Entwurf">
         Entwurf
       </th>
       <th title="To Do">
@@ -26,15 +26,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let allTasks of mf.data; let i = index" >
-      <td [dragula]="todo">
     <tr *ngFor="let allTasks of mf.data; let i = index">
       <td [dragula]="entwurf">
         <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'Entwurf'"
                 (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
         </button>
       </td>
-      <td [dragula]="todo">>
+      <td [dragula]="todo">
         <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ToDo'"
                 (click)="clickedOnEdit(allTasks.task_ID)" >{{allTasks.titel}}
         </button>
