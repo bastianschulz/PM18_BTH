@@ -23,12 +23,6 @@ export class AdduserComponent implements OnInit {
     this.loadUnAsUsers(this.projectService.selctedProjectID);
   }
 
-
-
-  deleteuserfromProject(user_ID: number){
-
-  }
-
   loadUnAsUsers(project_ID: number) {
     this.userService.getAllUnasUsers(project_ID).subscribe(
       data => {

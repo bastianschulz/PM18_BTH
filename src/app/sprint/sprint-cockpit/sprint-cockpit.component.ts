@@ -33,7 +33,7 @@ export class SprintCockpitComponent implements OnInit {
 
   onSubmit() {
     this.formChanged();
-    this.sprintService.postSprint(this.titel, this.start, this.end);
+    this.sprintService.postSprint(this.titel, this.start, this.end, this.mainService.selectedProject);
     this.router.navigateByUrl('/SprintPlanning');
   }
 

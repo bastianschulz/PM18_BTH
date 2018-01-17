@@ -58,6 +58,11 @@ import {StorybacklogComponent} from './userstory/storybacklog/storybacklog.compo
 import { BacklogTaskComponent } from './back-log/backlog-task/backlog-task.component';
 import {DragulaModule} from 'ng2-dragula';
 
+import {BacklogTaskComponent} from './back-log/backlog-task/backlog-task.component';
+import {TasksprintComponent} from './sprint/sprint-list-edit/tasksprint/tasksprint.component';
+import { SeltaskComponent } from './sprint/sprint-list-edit/tasksprint/seltask/seltask.component';
+import { SeluserComponent } from './sprint/sprint-list-edit/tasksprint/seluser/seluser.component';
+import { SetTusComponent } from './sprint/sprint-list-edit/tasksprint/set-tus/set-tus.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -124,7 +129,11 @@ const appRoutes: Routes = [
     PlaningpokerComponent,
     AdduserstoryComponent,
     StorybacklogComponent,
-    BacklogTaskComponent
+    BacklogTaskComponent,
+    TasksprintComponent,
+    SeltaskComponent,
+    SeluserComponent,
+    SetTusComponent
   ],
   imports: [
     BrowserModule,

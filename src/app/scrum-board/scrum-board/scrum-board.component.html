@@ -9,6 +9,9 @@
     <thead>
     <tr>
       <th title="To Do">
+        Entwurf
+      </th>
+      <th title="To Do">
         To Do
       </th>
       <th title="In Bearbeitung">
@@ -25,6 +28,13 @@
     <tbody>
     <tr *ngFor="let allTasks of mf.data; let i = index" >
       <td [dragula]="todo">
+    <tr *ngFor="let allTasks of mf.data; let i = index">
+      <td [dragula]="entwurf">
+        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'Entwurf'"
+                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+        </button>
+      </td>
+      <td [dragula]="todo">>
         <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ToDo'"
                 (click)="clickedOnEdit(allTasks.task_ID)" >{{allTasks.titel}}
         </button>
@@ -63,11 +73,11 @@
     <div>
       <div class="col-md-10 form-group">
         <label for="titel">Name</label>
-        <input type="text" id="titel" class="form-control" [(ngModel)]="taskitem[editTaskID].titel" name="titel">
+        <input type="text" id="titel" class="form-control" [(ngModel)]="taskitem[editTaskID].titel" name="titel" readonly>
       </div>
       <div class="col-md-10 form-group">
         <label for="info">Information</label>
-        <input type="text" id="info" class="form-control" [(ngModel)]="taskitem[editTaskID].info" name="info">
+        <input type="text" id="info" class="form-control" [(ngModel)]="taskitem[editTaskID].info" name="info" readonly>
       </div>
       <div class="col-md-5 form-group">
         <label for="status">Bearbeitungs Status</label>
@@ -76,7 +86,7 @@
       <div class="col-md-5 form-group">
         <label for="erstelldatum">Erstellt am</label>
         <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="taskitem[editTaskID].erstelldatum"
-               name="erstelldatum">
+               name="erstelldatum" readonly>
       </div>
       <div class="col-md-4 form-group">
         <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
@@ -85,17 +95,12 @@
       <div class="col-md-2 form-group">
         <label for="sprint_ID">Sprint ID</label>
         <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].sprint_ID"
-               name="sprint_ID">
+               name="sprint_ID" readonly>
       </div>
       <div class="col-md-2 form-group">
         <label for="backlog_ID">Backlog Item ID</label>
         <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].backlog_ID"
-               name="backlog_ID">
-      </div>
-      <div class="col-md-2 form-group">
-        <label for="geloescht">Geloescht</label>
-        <input type="checkbox" id="geloescht" class="form-control" [(ngModel)]="taskitem[editTaskID].geloescht"
-               name="geloescht">
+               name="backlog_ID" readonly>
       </div>
       <div class="col-md-10">
         <button class="btn btn-success" (click)="updTask()">Änderung speichern</button>

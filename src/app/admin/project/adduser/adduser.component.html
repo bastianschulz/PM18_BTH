@@ -1,5 +1,6 @@
 <div>
   <h1>User dem Projekt zuordnen</h1>
+  <p>Die Berechtigungen der User lassen sich im Projekt bearbeiten.</p>
   <div>
     <h3>Verfügbare User</h3>
     <table class="table table-responsive" [mfData]="unasuseritem" #mf="mfDataTable" [mfRowsOnPage]="10">
@@ -9,7 +10,6 @@
           <mfDefaultSorter by="uname">User Name</mfDefaultSorter>
         </th>
         <th></th>
-        <th>Rechte</th>
       </tr>
       </thead>
       <tbody>
@@ -18,11 +18,10 @@
         <td>
           <div class="btn-group-sm" role="group">
             <button type="button" class="btn btn-warning" (click)="userToProject(allUser.user_ID)">
-              User dem Projekt zuordnen
+              User  als "Observing Stakeholde" dem Projekt zuordnen
             </button>
           </div>
         </td>
-        <td>rechte</td>
       </tr>
       </tbody>
       <tfoot>

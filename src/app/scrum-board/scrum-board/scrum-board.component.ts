@@ -65,7 +65,7 @@ export class ScrumBoardComponent implements OnInit {
 
 
   loadScrumboardUsers() {
-    this.scrumService.getAllUsersForSB().subscribe(
+    this.scrumService.getAllUsersForSB(this.mainService.selectedProject).subscribe(
       data => {
         // befüllen des Arrays
         this.users = [] as UserModel[];
@@ -77,7 +77,7 @@ export class ScrumBoardComponent implements OnInit {
   }
 
   loadScrumboardTasks() {
-    this.scrumService.getAllTasksForSB().subscribe(
+    this.scrumService.getAllTasksForSB(this.mainService.selectedProject).subscribe(
       data => {
         // befüllen des Arrays
         this.taskitem = [] as TaskModel[];

@@ -1,18 +1,17 @@
 <div *ngIf="main">
   <h1>User Rollen Steuerung</h1>
   <div *ngIf="!rolleditor">
-     <p align="right">
+    <p align="right">
       <button class="btn btn-success" routerLink="/Projekt/AddUser">User hinzufügen</button>
-    </p><div>
+    </p>
+    <div>
       <table class="table table-responsive" [mfData]="asuseritem" #mf="mfDataTable" [mfRowsOnPage]="10">
         <thead>
         <tr>
           <th title="User Name">
             <mfDefaultSorter by="uname">User Name</mfDefaultSorter>
           </th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th colspan="3"></th>
           <th></th>
           <th></th>
         </tr>
@@ -22,15 +21,16 @@
           <td>{{allUser.uname}}</td>
           <td><label *ngIf="allUser.scrum===1">Scrum Master</label></td>
           <td><label *ngIf="allUser.user===1">User</label></td>
-          <td><label *ngIf="allUser.stake===1">StakeHolder</label></td>
+          <td><label *ngIf="allUser.stake===1">Observing StakeHolder</label></td>
           <td>
-              <button type="button" class="btn btn-warning" (click)="rechte(allUser.uri_ID)">
-                Berechtigungen</button>
+            <button type="button" class="btn btn-warning" (click)="rechte(allUser.uri_ID)">
+              Berechtigungen
+            </button>
           </td>
           <td>
-              <button type="button" class="btn btn-warning" (click)="deleteuserfromProject(allUser.uri_ID)">
-                User vom Projekt entfernen</button>
-
+            <button type="button" class="btn btn-warning" (click)="deleteuserfromProject(allUser.uri_ID)">
+              User vom Projekt entfernen
+            </button>
           </td>
         </tr>
         </tbody>
@@ -54,22 +54,26 @@
     <div>
       <div class="col-md-10 form-group">
         <label for="uname">Name</label>
-        <input type="text" id="uname" class="form-control" [(ngModel)]="asuseritem[editUriID].uname" name="titel">
+        <input type="text" id="uname" class="form-control" [(ngModel)]="asuseritem[editUriID].uname" name="titel"
+               readonly>
       </div>
-      <div class="col-md-3 form-group">
-        <label for="scrum">Scrum Master</label>
-        <input type="checkbox" id="scrum" class="form-control" [(ngModel)]="asuseritem[editUriID].scrum" name="scrum">
+      <div class="col-md-5 form-group">
+        <label *ngIf="asuseritem[editUriID].scrum===1">Scrum Master</label>
+        <label *ngIf="asuseritem[editUriID].user===1">User</label>
+        <label *ngIf="asuseritem[editUriID].stake===1">Observing StakeHolder</label>
       </div>
-      <div class="col-md-3 form-group">
-        <label for="user">User</label>
-        <input type="checkbox" id="user" class="form-control" [(ngModel)]="asuseritem[editUriID].user" name="user">
-      </div>
-      <div class="col-md-3 form-group">
-        <label for="stake">StakeHolder</label>
-        <input type="checkbox" id="stake" class="form-control" [(ngModel)]="asuseritem[editUriID].stake" name="stake">
+      <div class="col-md-4 form-group">
+        <label for="sel">Neue rolle im Projekt:</label>
+        <select id="sel" [(ngModel)]="selRoll" class="form-control" (click)="selectRoll()" name="sel">
+          <option value=0></option>
+          <option value=1>Scrum Master</option>
+          <option value=2>Scrum Master & User</option>
+          <option value=3>User</option>
+          <option value=4>Observing Stakeholder</option>
+        </select>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-success" (click)="updURI()">Änderung speichern</button>
+        <button class="btn btn-success" *ngIf="selRollset==true" (click)="updURI()">Änderung speichern</button>
         <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
       </div>
     </div>
@@ -78,8 +82,8 @@
 
 <div *ngIf="setroll">
   <form>
-      <div class="col-md-12">
-        <button class="btn btn-success" (click)="rollSet()">Berechtigungen geändert</button>
-      </div>
+    <div class="col-md-12">
+      <button class="btn btn-success" (click)="rollSet()">Berechtigungen geändert</button>
+    </div>
   </form>
 </div>

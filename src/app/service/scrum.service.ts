@@ -35,9 +35,9 @@ export class ScrumService {
    * alle Tasks vom Server laden
    * @returns {Observable<TaskModel>} Daten vom Server
    */
-  getAllTasksForSB(): Observable<Array<TaskModel>> {
+  getAllTasksForSB(pid: number): Observable<Array<TaskModel>> {
     return this.http
-      .get(this.actionUrl+'/getAllTasksForSBbyPid?pid=1', this.options)
+      .get(this.actionUrl+'/getAllTasksForSBbyPid?pid='+pid, this.options)
       .map((r: Response) => r.json());
   }
 
@@ -45,9 +45,9 @@ export class ScrumService {
    * alle Tasks vom Server laden
    * @returns {Observable<TaskModel>} Daten vom Server
    */
-  getAllUsersForSB(): Observable<Array<UserModel>> {
+  getAllUsersForSB(pid: number): Observable<Array<UserModel>> {
     return this.http
-      .get(this.actionUrl+'/getAllUsersForSBbyPid?pid=1', this.options)
+      .get(this.actionUrl+'/getAllUsersForSBbyPid?pid='+pid, this.options)
       .map((r: Response) => r.json());
   }
 }

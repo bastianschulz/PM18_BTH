@@ -5,4 +5,5 @@ export interface SprintTO{
   titel: string;
   start: Date;
   end: Date;
+  project_ID: number;
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SprintModel} from '../../models/sprint.model';
 import {SprintService} from '../../service/sprint.service';
+import {MainService} from "../../service/main.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sprint-list',
@@ -15,7 +17,7 @@ export class SprintListComponent implements OnInit {
 
   sprintitem: SprintModel[] = [] as SprintModel[];
 
-  constructor(private sprintService: SprintService) {
+  constructor(private sprintService: SprintService, private mainService: MainService, private router: Router) {
   }
 
 
@@ -31,7 +33,7 @@ export class SprintListComponent implements OnInit {
   }
 
   loadSprint() {
-    this.sprintService.getAllSprints().subscribe(
+    this.sprintService.getAllSprintsByPid(this.mainService.selectedProject).subscribe(
       data => {
         // befüllen des Arrays
         this.sprintitem = [] as SprintModel[];
@@ -63,5 +65,10 @@ export class SprintListComponent implements OnInit {
 
   noEdit() {
     this.sprinteditor = false;
+  }
+
+  sprintTask(sprint_ID: number) {
+    this.sprintService.selectedSprint = sprint_ID;
+    this.router.navigateByUrl('/Sprint/Task');
   }
 }

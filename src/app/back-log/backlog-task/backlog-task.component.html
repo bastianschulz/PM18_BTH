@@ -87,7 +87,7 @@
       <div class="col-md-5 form-group">
         <label for="erstelldatum">Erstellt am</label>
         <input type="text" id="erstelldatum" class="form-control" [(ngModel)]="taskitem[editTaskID].erstelldatum"
-               name="erstelldatum">
+               name="erstelldatum" readonly>
       </div>
       <div class="col-md-4 form-group">
         <label for="estHoMP">Geschätzter Zeitaufwand (1 bis 20)</label>
@@ -96,12 +96,12 @@
       <div class="col-md-2 form-group">
         <label for="sprint_ID">Sprint ID</label>
         <input type="text" id="sprint_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].sprint_ID"
-               name="sprint_ID">
+               name="sprint_ID" readonly>
       </div>
       <div class="col-md-2 form-group">
         <label for="backlog_ID">Backlog Item ID</label>
         <input type="text" id="backlog_ID" class="form-control" [(ngModel)]="taskitem[editTaskID].backlog_ID"
-               name="backlog_ID">
+               name="backlog_ID" readonly>
       </div>
       <div class="col-md-2 form-group">
         <label for="geloescht">Geloescht</label>

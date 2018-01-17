@@ -5,7 +5,6 @@
 import 'rxjs/add/operator/map';
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 
 import {BacklogItemModel} from '../models/backLogItem.model';

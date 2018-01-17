@@ -1,0 +1,30 @@
+<div>
+  <h1>Zuordnung Bestätigen</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Titel</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="unastask[seltask].titel" name="titel" readonly>
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="info">Beschreibung</label>
+        <textarea
+          rows="10"
+          cols="100"
+          id="info"
+          class="form form-control"
+          maxlength="600"
+          [(ngModel)]="unastask[seltask].info" name="info" readonly></textarea>
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="uname">User</label>
+        <input type="text" id="uname" class="form-control" [(ngModel)]="users[seluser].uname" name="uname" readonly>
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-success" (click)="taskToSprint()">Änderung speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+</div>

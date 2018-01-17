@@ -1,0 +1,32 @@
+<div>
+  <h3>User</h3>
+  <table class="table col-md-5" [mfData]="users" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th>
+        <mfDefaultSorter by="uname">User Name</mfDefaultSorter>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allUsers of mf.data">
+      <td>{{allUsers.uname}}</td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="selectUser(allUsers.user_ID)">
+            User auswählen
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

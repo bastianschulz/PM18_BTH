@@ -65,6 +65,12 @@ export class UserService {
       .map((r: Response) => r.json());
   }
 
+  getProjectUsers(pid: number): Observable<Array<UserModel>> {
+    return this.http
+      .get(this.actionUrl + '/getProjectUsers?pid='+pid, this.options)
+      .map((r: Response) => r.json());
+  }
+
   getAllAsUsers(pid: number): Observable<Array<AsUserModel>> {
     return this.http
       .get(this.actionUrl + '/getAsUsersByPid?pid='+pid, this.options)

@@ -24,9 +24,11 @@ export class ProjectComponent implements OnInit {
   editUriID: number;
   emptynumber: number;
 
-  sm=0;
-  us=0;
-  sh=0;
+  selRoll: number = 0;
+  selRollset: boolean =false;
+  sm: number = 0;
+  us: number = 0;
+  sh: number = 0;
 
   constructor(private projectService: ProjectService, private userService: UserService, private router: Router, private mainService: MainService) {
 
@@ -88,23 +90,50 @@ export class ProjectComponent implements OnInit {
   updURI() {
     this.rolleditor = false;
     this.setroll = true;
-    if (this.asuseritem[this.editUriID].scrum===true){this.sm=1}
-    if (this.asuseritem[this.editUriID].user===true){this.us=1}
-    if (this.asuseritem[this.editUriID].stake===true){this.sh=1}
+  }
+
+  selectRoll(){
+    if (this.selRoll==0){
+    } else {
+      this.flippnumbers();
+    }
+  }
+
+  flippnumbers(){
+    if (this.selRoll==1){
+      this.sm = 1;
+      this.us = 0;
+      this.sh = 0;
+      this.selRollset = true;
+      return;
+    }
+    if (this.selRoll==2){
+      this.sm = 1;
+      this.us = 1;
+      this.sh = 0;
+      this.selRollset = true;
+      return;
+    }
+    if (this.selRoll==3){
+      this.sm = 0;
+      this.us = 1;
+      this.sh = 0;
+      this.selRollset = true;
+      return;
+    }
+    if (this.selRoll==4){
+      this.sm = 0;
+      this.us = 0;
+      this.sh = 1;
+      this.selRollset = true;
+      return;
+    }
   }
 
   rollSet(){
-    this.makeupdURI(this.sm, this.us, this.sh);
-
-    this.setroll = false;
-  }
-
-  makeupdURI(sm: number, us: number, sh: number){
-    this.projectService.updURI(this.asuseritem[this.editUriID].uri_ID, sm, us, sh);
-    this.rolleditor = false;
-    this.setroll = false;
-    this.main = true;
+    this.projectService.updURI(this.asuseritem[this.editUriID].uri_ID, this.sm, this.us, this.sh);
     this.refresh();
+    this.noEdit();
     this.router.navigateByUrl('/Projekt/Conf');
   }
 
@@ -112,5 +141,10 @@ export class ProjectComponent implements OnInit {
     this.rolleditor = false;
     this.setroll = false;
     this.main = true;
+    this.selRoll = 0;
+    this.selRollset = false;
+    this.sm = 0;
+    this.us = 0;
+    this.sh = 0;
   }
 }

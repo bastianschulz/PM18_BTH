@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminredoComponent implements OnInit {
 
+  //TODO: fehlt noch komplett
+
   constructor() { }
 
   ngOnInit() {

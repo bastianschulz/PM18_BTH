@@ -79,7 +79,7 @@ export class ProjectService {
       project_ID: project_ID,
       scrum: 0,
       user: 0,
-      stake: 0
+      stake: 1
     }) as URLTO;
 
     this.http.post(this.actionUrl + '/postURL', urlTO, this.options)

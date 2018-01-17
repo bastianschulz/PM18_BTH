@@ -58,6 +58,33 @@ export class TaskService {
       .map((r: Response) => r.json());
   }
 
+  getAllTasksBySid(sprint_ID: number): Observable<Array<TaskModel>> {
+    return this.http
+      .get(this.actionUrl + '/getAllTasksBySid?sid=' + sprint_ID, this.options)
+      .map((r: Response) => r.json());
+  }
+
+  getProjektTasks(pid: number): Observable<Array<TaskModel>> {
+    return this.http
+      .get(this.actionUrl + '/getProjektTasks?pid=' + pid, this.options)
+      .map((r: Response) => r.json());
+  }
+
+  freeTask(tid: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/freeTask?tid=' + tid, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  asTask(tid: number, sid: number, uid: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/asTask?tid=' + tid + '&sid=' + sid + '&uid=' + uid, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
   /**
    * Task anlegen
    * @param titel

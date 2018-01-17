@@ -9,7 +9,7 @@
     <div class="navbar-default" *ngIf="this.mainService.UserID == 0">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/Admin">
-          <u>Projekt & User Administration</u></a></li>
+          <u><b>Projekt & User Administration</b></u></a></li>
       </ul>
     </div>
 
@@ -17,19 +17,19 @@
     <!--Nur wenn der Nutzer angemeldet ist, soll er die volle Navbar sehen...-->
     <div class="navbar-default">
       <ul class="nav navbar-nav" *ngIf="selectP">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.stake">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum">
           <a routerLink="/UserStory">UserStories</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum">
           <a routerLink="/BackLog">Project-Backlog</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.user">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum">
           <a routerLink="/SprintPlanning">SprintPlanning</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
           <a routerLink="/ScrumBoard">ScrumBoard</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.user">
           <a routerLink="/PlanningPoker">PlanningPoker</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.user">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
           <a routerLink="/BurnDown">BurnDown</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.user">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
           <a routerLink="/Roadmap">Roadmap</a></li>
       </ul>
 

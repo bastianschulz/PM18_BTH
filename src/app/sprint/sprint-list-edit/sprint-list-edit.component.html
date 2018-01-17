@@ -1,3 +1,49 @@
-<p>
-  sprint-list-edit works!
-</p>
+<div>
+  <h1>Sprint/Task Verwaltung</h1>
+  <div>
+    <p align="right">
+      <button class="btn btn-success" routerLink="/Sprint/TaskSprint">Task hinzufügen</button>
+    </p><div>
+    <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+      <thead>
+      <tr>
+        <th>Task Titel</th>
+        <th>Info </th>
+        <th>User</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let allTasks of mf.data; let i = index">
+        <td>{{allTasks.titel}}</td>
+        <td>{{allTasks.info}}</td>
+        <td>{{allTasks.user_ID}}</td>
+        <td>{{allTasks.status}}</td>
+        <td>
+          <button type="button" class="btn btn-warning"
+                  (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-warning" (click)="deleteTaskfromSprint(allTasks.task_ID)">
+            Task aus Sprint entfernen</button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="7">
+          <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  </div>
+  <p align="left">
+    <button class="btn btn-success" type="button" routerLink="/SprintPlanning">Zurück</button>
+  </p>
+</div>
+

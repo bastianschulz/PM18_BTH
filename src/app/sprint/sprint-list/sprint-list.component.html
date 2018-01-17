@@ -20,7 +20,8 @@
       <th data-toggle="tooltip" title="Status">
         <mfDefaultSorter by="status">Status</mfDefaultSorter>
       </th>
-      <th>Aktion</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -34,6 +35,13 @@
           <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allSprint.sprint_ID)">Bearbeiten
           </button>
         </div>
+      </td>
+      <td>
+        <div class="btn-group-sm" role="group">
+          <button type="button" class="btn btn-warning" (click)="sprintTask(allSprint.sprint_ID)">Tasks verwalten
+          </button>
+        </div>
+      </td>
     </tr>
     </tbody>
     <tfoot>
