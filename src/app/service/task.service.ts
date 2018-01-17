@@ -121,7 +121,7 @@ export class TaskService {
     return;
   }
 
-  updTaskStatus(tid: number, stat: string): Observable<void> {
+  updTaskStatus(tid: number, stat: number): Observable<void> {
     this.http
       .post(this.actionUrl + '/updTaskStatus?tid=' + tid + '&stat=' + stat, this.options)
       .map((r: Response) => r.json())
