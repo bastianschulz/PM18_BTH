@@ -55,7 +55,6 @@ import {PlanpoService} from './service/planpo.service';
 import {UserstoryService} from "./service/userstory.service";
 import {AdduserstoryComponent} from './userstory/adduserstory/adduserstory.component';
 import {StorybacklogComponent} from './userstory/storybacklog/storybacklog.component';
-import { BacklogTaskComponent } from './back-log/backlog-task/backlog-task.component';
 import {DragulaModule} from 'ng2-dragula';
 
 import {BacklogTaskComponent} from './back-log/backlog-task/backlog-task.component';
