@@ -1,0 +1,40 @@
+<div>
+  <h1>Planning Poker einrichten</h1>
+  <div *ngIf="!pptask">
+    <h3>Task wählen</h3>
+    <div>
+      <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+        <thead>
+        <tr>
+          <th>Task Titel</th>
+          <th>Info </th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let allTasks of mf.data; let i = index">
+          <td>{{allTasks.titel}}</td>
+          <td>{{allTasks.info}}</td>
+          <td>
+            <button type="button" class="btn btn-warning"
+                    (click)="clickedTask(allTasks.task_ID)">auswählen
+            </button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="7">
+            <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <app-seluserpp  *ngIf="pptask"></app-seluserpp>
+
+  <p align="left">
+    <button class="btn btn-success" type="button" (click)="exitPP()">Zurück</button>
+  </p>
+</div>

@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ProjectService} from '../../../service/project.service';
 import {Router} from '@angular/router';

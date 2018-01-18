@@ -1,5 +1,3 @@
-
-
 export interface UserModel {
   user_ID: number;
   uname: string;

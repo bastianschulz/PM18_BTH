@@ -1,0 +1,51 @@
+<div>
+  <h1> Planning Poker </h1>
+
+  <p align="right">
+    <button class="btn btn-success" routerLink="/PlanningPoker/Add">Poker Runde hinzufügen</button>
+  </p>
+
+  <table class="table table-responsive" [mfData]="planpoitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th title="pp_ID">
+        <mfDefaultSorter by="pp_ID">Poker Runde Nr.</mfDefaultSorter>
+      </th>
+      <th title="task_ID">
+        <mfDefaultSorter by="task_ID">Task ID</mfDefaultSorter>
+      </th>
+      <th title="titel">
+        <mfDefaultSorter by="titel">Task Titel</mfDefaultSorter>
+      </th>
+      <th><a>Beteiligung</a>
+      </th>
+      <th title="start">
+        <mfDefaultSorter by="start">Runde eingeführt am</mfDefaultSorter>
+      </th>
+      <th title="beendet">
+        <mfDefaultSorter by="beendet">Offen/Beendet</mfDefaultSorter>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allPlanPoItems of mf.data">
+      <td>{{allPlanPoItems.pp_ID}}</td>
+      <td>{{allPlanPoItems.task_ID}}</td>
+      <td>{{allPlanPoItems.titel}}</td>
+      <td>{{allPlanPoItems.teiln}}/{{allPlanPoItems.summe}}</td>
+      <td>{{allPlanPoItems.start | date:'dd.MM.yyyy'}}</td>
+      <td>
+        <label *ngIf="allPlanPoItems.beendet===0">Offen</label>
+        <label *ngIf="allPlanPoItems.beendet===1">Beendet</label>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
