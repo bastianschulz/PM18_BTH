@@ -38,8 +38,10 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a>User: {{this.Username}}</a></li>
           <li><a>Projekte:
-            <select [(ngModel)]="selectP">
-              <option *ngFor="let allProject of PRL" [ngValue]="allProject.project_ID" (click)="selectProject(allProject.project_ID)">
+            <select (change)="selectProject($event.target.value)" [(ngModel)]="selectP">
+              <option *ngFor="let allProject of PRL" [ngValue]="allProject.project_ID">
+                      <!--(click)="selectProject(allProject.project_ID)"-->
+
                 {{allProject.titel}}
               </option>
             </select>

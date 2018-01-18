@@ -45,7 +45,11 @@ export class HeaderAfterLogInComponent implements OnInit {
     this.mainService.logout();
   }
 
-  selectProject(proid:number){
+  selectProject(pro_id:string){
+
+    console.log('--1-->>'+pro_id.slice(3));
+    var proid = Number(pro_id.slice(3));
+    this.mainService.selectedProject = this.selectP = proid;
     var i: number = this.PRL.length - 1;
     for (i; i >= 0; i--) {
       if (this.PRL[i].project_ID === proid) {
@@ -53,7 +57,7 @@ export class HeaderAfterLogInComponent implements OnInit {
         this.user = this.PRL[i].user;
         this.stake = this.PRL[i].stake;
 
-        this.mainService.selectedProject = this.selectP;
+        this.mainService.selectedProject = this.selectP = proid;
         this.mainService.scrum = this.PRL[i].scrum;
         this.mainService.user = this.PRL[i].user;
         this.mainService.stake = this.PRL[i].stake;
