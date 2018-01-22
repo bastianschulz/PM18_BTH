@@ -46,8 +46,6 @@ export class HeaderAfterLogInComponent implements OnInit {
   }
 
   selectProject(pro_id:string){
-
-    console.log('--1-->>'+pro_id.slice(3));
     var proid = Number(pro_id.slice(3));
     this.mainService.selectedProject = this.selectP = proid;
     var i: number = this.PRL.length - 1;

@@ -1,0 +1,94 @@
+<div class="container" *ngIf="timeentry==false">
+
+  <h1>TaskBoard</h1>
+
+  <hr>
+  <h3>Ihnen zugeordnete Tasks in allen aktiven Sprints des Projekts</h3>
+
+  <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="50">
+    <thead>
+    <tr>
+      <th title="titel">
+        Task Titel
+      </th>
+      <th title="info">
+        Info
+      </th>
+      <th title="sprint_ID">
+        Sprint ID
+      </th>
+      <th title="estHoMP">
+        Geschätzter Aufwand
+      </th>
+      <th title="status">
+        Status
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allTasks of mf.data; let i = index">
+      <td>{{allTasks.titel}}</td>
+      <td>{{allTasks.info}}</td>
+      <td>{{allTasks.sprint_ID}}</td>
+      <td>{{allTasks.estHoMP}}</td>
+      <td>{{allTasks.status}}</td>
+      <td>
+        <button *ngIf="allTasks.status=='ToDo'" type="button" class="btn btn-warning" (click)="setGo(allTasks.task_ID)">
+          Task starten
+        </button>
+        <button *ngIf="allTasks.status=='InBearbeitung'" type="button" class="btn btn-warning" (click)="clickedOnEdit(allTasks.task_ID)">
+          Zeit Aufwand eintragen
+        </button>
+        <button *ngIf="allTasks.status=='InBearbeitung'" type="button" class="btn btn-danger" (click)="setDone(allTasks.task_ID)">
+          Task schließen
+        </button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="container" *ngIf="timeentry==true">
+  <h1>Getätigten Arbeitsaufwand eingeben</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Titel</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="taskitem[editTaskID].titel" name="titel" readonly>
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="story">Story</label>
+        <textarea
+          rows="10"
+          cols="100"
+          id="story"
+          class="form form-control"
+          maxlength="600"
+          [(ngModel)]="taskitem[editTaskID].info" name="story" readonly></textarea>
+      </div>
+      <div class="col-md-5 form-group">
+        <label for="work">Arbeitszeit</label>
+        <input type="text" id="work" class="form-control" [(ngModel)]="work" name="work">
+      </div>
+      <div class="col-sm-5 form-group">
+        <label for="date">Datum</label>
+        <input type="date" id="date" class="form-control"
+               [(ngModel)]="date" name="date">
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-success" (click)="addTE(taskitem[editTaskID].task_ID)">Zeiteingabe speichern</button>
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>

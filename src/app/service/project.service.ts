@@ -102,4 +102,20 @@ export class ProjectService {
       .subscribe();
     return;
   }
+
+  updRedoBli(pid: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updRedoBli?pid=' + pid, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  updRedoTasks(pid: number): Observable<void> {
+    this.http
+      .post(this.actionUrl + '/updRedoTasks?pid=' + pid, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
 }

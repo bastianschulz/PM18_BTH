@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 
 import {TaskModel} from '../models/task.model';
 import {TaskTO} from '../models/task.TO';
+import {TeTO} from "../models/te.TO";
 
 @Injectable()
 export class TaskService {
@@ -76,6 +77,12 @@ export class TaskService {
       .map((r: Response) => r.json());
   }
 
+  getTasksTB(uid: number, pid: number): Observable<Array<TaskModel>> {
+    return this.http
+      .get(this.actionUrl + '/getTasksTB?uid=' + uid + '&pid=' + pid, this.options)
+      .map((r: Response) => r.json());
+  }
+
   freeTask(tid: number): Observable<void> {
     this.http
       .post(this.actionUrl + '/freeTask?tid=' + tid, this.options)
@@ -108,7 +115,6 @@ export class TaskService {
       erstelldatum: erstelldatum
     }) as TaskTO;
 
-
     this.http.post(this.actionUrl + '/postTask', taskTO, this.options)
       .map((r: Response) => r.json())
       .subscribe();
@@ -130,6 +136,19 @@ export class TaskService {
   updTaskStatus(tid: number, stat: number): Observable<void> {
     this.http
       .post(this.actionUrl + '/updTaskStatus?tid=' + tid + '&stat=' + stat, this.options)
+      .map((r: Response) => r.json())
+      .subscribe();
+    return;
+  }
+
+  postTE(taskid: number, date: Date, stunden: number) {
+    const teTO: TeTO = ({
+      task_ID: taskid,
+      date: date,
+      stunden: stunden
+    }) as TeTO;
+
+    this.http.post(this.actionUrl + '/postTe', teTO, this.options)
       .map((r: Response) => r.json())
       .subscribe();
     return;

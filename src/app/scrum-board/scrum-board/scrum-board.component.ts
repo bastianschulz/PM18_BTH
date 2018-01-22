@@ -30,8 +30,8 @@ export class ScrumBoardComponent implements OnInit {
   constructor(private dragula: DragulaService, private scrumService: ScrumService, private taskService: TaskService, private router: Router, private mainService: MainService) {
 
 
-  }
 
+  }
 
   ngOnInit() {
     this.mainService.authCheck();
@@ -59,10 +59,6 @@ export class ScrumBoardComponent implements OnInit {
 
 
   }
-
-
-
-
 
   loadScrumboardUsers() {
     this.scrumService.getAllUsersForSB(this.mainService.selectedProject).subscribe(
@@ -114,10 +110,5 @@ export class ScrumBoardComponent implements OnInit {
   noEdit() {
     this.taskeditor = false;
   }
-
-
-
-
-
 
 }

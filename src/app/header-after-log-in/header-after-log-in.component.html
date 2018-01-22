@@ -23,9 +23,11 @@
           <a routerLink="/BackLog">Project-Backlog</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum">
           <a routerLink="/SprintPlanning">SprintPlanning</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum">
           <a routerLink="/ScrumBoard">ScrumBoard</a></li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum || this.mainService.user">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.user">
+          <a routerLink="/TaskBoard">TaskBoard</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="this.mainService.scrum">
           <a routerLink="/PlanningPoker">PlanningPoker</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
           <a routerLink="/BurnDown">BurnDown</a></li>

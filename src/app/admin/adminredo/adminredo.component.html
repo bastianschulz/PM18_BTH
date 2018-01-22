@@ -1,4 +1,61 @@
-<p>
-  Feature in Arbeit.
-  Bitte gedulden Sie sich.
-</p>
+<div *ngIf="projecteditor == false">
+  <h1>Wiederherstellung gelöschter Elemente</h1>
+
+  <table class="table table-responsive" [mfData]="projectitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+    <tr>
+      <th title="Projekt Titel">
+        <mfDefaultSorter by="titel">Titel</mfDefaultSorter>
+      </th>
+      <th title="info">
+        <mfDefaultSorter by="info">Info</mfDefaultSorter>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let allProject of mf.data">
+      <td>{{allProject.titel}}</td>
+      <td>{{allProject.info}}</td>
+      <td>
+        <button type="button" class="btn btn-warning" (click)="clickedOnEdit(allProject.project_ID)">
+          Projekt auswählen
+        </button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div *ngIf="projecteditor == true">
+
+  <h1>Wiederherstellung gelöschter Elemente</h1>
+  <hr>
+  <form>
+    <div>
+      <div class="col-md-10 form-group">
+        <label for="titel">Name</label>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="projectitem[editProjectID].titel" name="titel" readonly>
+      </div>
+      <div class="col-md-10 form-group">
+        <label for="info">info</label>
+        <input type="text" id="info" class="form-control" [(ngModel)]="projectitem[editProjectID].info" name="start" readonly>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-group-vertical btn-danger" (click)="redoBli()">Alle Backlog Items wiederherstellen</button>
+        <button class="btn btn-group-vertical btn-danger" (click)="redoTasks()">Alle Tasks wiederherstellen</button>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-group-vertical btn-warning" (click)="noEdit()">Abbrechen</button>
+      </div>
+    </div>
+  </form>
+
+</div>

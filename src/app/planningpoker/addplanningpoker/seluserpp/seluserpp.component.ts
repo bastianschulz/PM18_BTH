@@ -6,6 +6,7 @@ import {UserModel} from '../../../models/user.model';
 import {Router} from '@angular/router';
 import {UserService} from "../../../service/user.service";
 import {PlanpoService} from "../../../service/planpo.service";
+import {PPUserModel} from "../../../models/ppuser.model";
 
 @Component({
   selector: 'app-seluserpp',
@@ -17,7 +18,7 @@ export class SeluserppComponent implements OnInit {
   users: UserModel[] = [] as UserModel[];
   selectedUser_ID: number;
   empty: number;
-  selectedUsers: UserModel[] = [] as UserModel[];
+  ppUsers: PPUserModel[] = [] as PPUserModel[];
 
   constructor(private planpoService: PlanpoService, private taskService: TaskService, private sprintService: SprintService, private router: Router, private mainService: MainService, private userService: UserService) {
 
@@ -32,6 +33,13 @@ export class SeluserppComponent implements OnInit {
   loadProjectUsers(){
     this.getProjectUsers();
 
+    var i = this.users.length;
+    for (i; i >= 0; i--) {
+      this.ppUsers.push(this.users[i]);
+    }
+    for (i; i >= 0; i--){
+      this.ppUsers[i].pp = false;
+    }
   }
 
   getProjectUsers() {
@@ -47,7 +55,11 @@ export class SeluserppComponent implements OnInit {
   }
 
   selectUser(user_ID: number){
-    this.sprintService.setSelectedUser(user_ID);
+    this.ppUsers[user_ID].pp = true;
+  }
+
+  deselectUser(user_ID: number){
+    this.ppUsers[user_ID].pp = false;
   }
 
 }

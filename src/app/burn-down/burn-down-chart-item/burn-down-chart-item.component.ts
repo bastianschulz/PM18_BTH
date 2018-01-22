@@ -25,7 +25,7 @@ export class BurnDownChartItemComponent implements OnInit {
   ngOnInit() {
     this.mainService.authCheck();
     this.loadEstHoMP();
-    //this.loadTimeEntries();
+    this.loadTimeEntries();
 
   }
 
@@ -68,9 +68,6 @@ export class BurnDownChartItemComponent implements OnInit {
   /**
    * Beispieldaten aus der HP
    *
-   * TODO ZU ENTFERNEN!!!
-   *
-   *
    * @type {{data: number[]; label: string}[]}
    */
 
@@ -79,6 +76,9 @@ export class BurnDownChartItemComponent implements OnInit {
     //{data: [100, 95, 75, 70, 63, 49, 32, 31, 25, 15, 0, 15, 0], label: 'IST-Linie'},
 
   ];
+
+
+  lineChartLabels: Array<any> = ['0','1','2','3','4','1','2','3','4','1','2','3','4','1'];
 
   fillLineChartDataGroundLine() {
 
@@ -105,10 +105,6 @@ export class BurnDownChartItemComponent implements OnInit {
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
   }
 
-
-
-
-  lineChartLabels: Array<any> = ['0','1','2','3','4','1','2','3','4','1','2','3','4','1'];
 
   lineChartOptions: any = {
     responsive: true

@@ -57,6 +57,7 @@ import {SeluserComponent} from './sprint/sprint-list-edit/tasksprint/seluser/sel
 import {SetTusComponent} from './sprint/sprint-list-edit/tasksprint/set-tus/set-tus.component';
 import {AddplanningpokerComponent} from './planningpoker/addplanningpoker/addplanningpoker.component';
 import {SeluserppComponent} from './planningpoker/addplanningpoker/seluserpp/seluserpp.component';
+import {TaskboardComponent} from './taskboard/taskboard.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -82,6 +83,7 @@ const appRoutes: Routes = [
   {path: 'PlanningPoker/Add', component: AddplanningpokerComponent},
   {path: 'StoryBacklog', component: StorybacklogComponent},
   {path: 'BacklogTask', component: BacklogTaskComponent},
+  {path: 'TaskBoard', component: TaskboardComponent},
 
 ];
 
@@ -126,6 +128,7 @@ const appRoutes: Routes = [
     SetTusComponent,
     AddplanningpokerComponent,
     SeluserppComponent,
+    TaskboardComponent,
   ],
   imports: [
     BrowserModule,
