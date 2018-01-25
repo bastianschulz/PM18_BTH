@@ -5,7 +5,7 @@
     <button class="btn btn-success" routerLink="/SprintPlanning/Add">Sprint hinzufügen</button>
   </p>
 
-  <table class="table table-responsive" [mfData]="sprintitem" #mf="mfDataTable" [mfRowsOnPage]="10">
+  <table class="table table-responsive" [mfData]="sprintitem" #mf="mfDataTable" [mfRowsOnPage]="200">
     <thead>
     <tr>
       <th data-toggle="tooltip" title="Sprint Titel">
@@ -45,11 +45,11 @@
     </tr>
     </tbody>
     <tfoot>
-    <tr>
+    <!--<tr>
       <td colspan="7">
         <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50]"></mfBootstrapPaginator>
       </td>
-    </tr>
+    </tr>-->
     </tfoot>
   </table>
 </div>
@@ -74,7 +74,14 @@
       </div>
       <div class="col-md-5 form-group">
         <label for="status">Bearbeitungs Status</label>
-        <input type="text" id="status" class="form-control" [(ngModel)]="sprintitem[editSprintID].status" name="status">
+        <select type="text" id="status" class="form-control" [(ngModel)]="sprintitem[editSprintID].status"
+                name="status">
+          <option value="offen">offen</option>
+          <option value="inBearbeitung">inBearbeitung</option>
+          <option value="abgeschlossen">abgeschlossen</option>
+        </select>
+
+
       </div>
       <div class="col-md-12">
         <button class="btn btn-success" (click)="updSprint()">Änderung speichern</button>

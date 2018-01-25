@@ -4,52 +4,62 @@
 
   <hr>
 
-
-  <table class="table table-responsive" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="50">
+  <table class="table table-bordered" [mfData]="taskitem" #mf="mfDataTable" [mfRowsOnPage]="50">
     <thead>
     <tr>
-      <th title="Entwurf">
+      <th id="0" title="Entwurf">
         Entwurf
-      </th>
-      <th title="To Do">
+        </th>
+      <th id="1" title="To Do">
         To Do
       </th>
-      <th title="In Bearbeitung">
+      <th id="2" title="In Bearbeitung">
         In Bearbeitung
       </th>
-      <th title="Zu Klärung">
+      <th id="3" title="Zu Klärung">
         Zur Klärung
       </th>
-      <th title="Fertig">
+      <th id="4" title="Fertig">
         Fertig
       </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let allTasks of mf.data; let i = index">
-      <td [dragula]="entwurf">
+      <td [dragula]="Entwurf">
         <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'Entwurf'"
-                (click)="clickedOnEdit(allTasks.task_ID)">{{allTasks.titel}}
+                (click)="clickedOnEdit(allTasks.task_ID)" id="{{taskitem[i].task_ID}}"
+
+        >
+          {{allTasks.titel}}
+
         </button>
       </td>
-      <td [dragula]="todo">
-        <button type="button" class="btn btn-warning" *ngIf="taskitem[i].status == 'ToDo'"
-                (click)="clickedOnEdit(allTasks.task_ID)" >{{allTasks.titel}}
+      <td [dragula]="ToDo">
+        <button type="button" class="btn btn-info" *ngIf="taskitem[i].status == 'ToDo'"
+                (click)="clickedOnEdit(allTasks.task_ID)"
+                id="{{taskitem[i].task_ID}}"
+        >{{allTasks.titel}}
         </button>
       </td>
-      <td [dragula]="inbearbeitung">
+      <td [dragula]="InBearbeitung">
         <button type="button" class="btn btn-default" *ngIf="taskitem[i].status == 'InBearbeitung'"
-                (click)="clickedOnEdit(allTasks.task_ID)" >{{allTasks.titel}}
+                (click)="clickedOnEdit(allTasks.task_ID)"
+                id="{{taskitem[i].task_ID}}"
+        >{{allTasks.titel}}
         </button>
       </td>
-      <td [dragula]="zuklaeren">
+      <td [dragula]="ZuKlaeren">
         <button type="button" class="btn btn-danger" *ngIf="taskitem[i].status == 'ZuKlaeren'"
-                (click)="clickedOnEdit(allTasks.task_ID)" >{{allTasks.titel}}
+                (click)="clickedOnEdit(allTasks.task_ID)"
+                id="{{taskitem[i].task_ID}}">{{allTasks.titel}}
         </button>
       </td>
-      <td [dragula]="fertig">
+      <td [dragula]="Fertig">
         <button type="button" class="btn btn-success" *ngIf="taskitem[i].status == 'Fertig'"
-                (click)="clickedOnEdit(allTasks.task_ID)" >{{allTasks.titel}}
+                (click)="clickedOnEdit(allTasks.task_ID)"
+                id="{{taskitem[i].task_ID}}"
+                >{{allTasks.titel}}
         </button>
       </td>
     </tr>
@@ -71,7 +81,8 @@
     <div>
       <div class="col-md-10 form-group">
         <label for="titel">Name</label>
-        <input type="text" id="titel" class="form-control" [(ngModel)]="taskitem[editTaskID].titel" name="titel" readonly>
+        <input type="text" id="titel" class="form-control" [(ngModel)]="taskitem[editTaskID].titel" name="titel"
+               readonly>
       </div>
       <div class="col-md-10 form-group">
         <label for="info">Information</label>
@@ -79,7 +90,16 @@
       </div>
       <div class="col-md-5 form-group">
         <label for="status">Bearbeitungs Status</label>
-        <input type="text" id="status" class="form-control" [(ngModel)]="taskitem[editTaskID].status" name="status">
+
+        <select class="form-control" id="status" [(ngModel)]="taskitem[editTaskID].status" name="status">
+          <option value="Entwurf">Entwurf</option>
+          <option value="ToDo">To Do</option>
+          <option value="InBearbeitung">In Bearbeitung</option>
+          <option value="ZuKlaeren">Zu Klären</option>
+          <option value="Fertig">Fertig</option>
+        </select>
+
+
       </div>
       <div class="col-md-5 form-group">
         <label for="erstelldatum">Erstellt am</label>

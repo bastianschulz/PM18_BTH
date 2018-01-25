@@ -16,8 +16,8 @@ import {TeTO} from "../models/te.TO";
 export class TaskService {
 
   /* Adresse abhängig von Umgebung wählen */
-  public actionUrl: string = 'http://localhost:3000/api';
-  //private actionUrl: string = 'http://10.60.67.166:3000/api';
+  //public actionUrl: string = 'http://localhost:3000/api';
+  private actionUrl: string = 'http://10.60.67.166:3000/api';
   options: RequestOptions;
 
   selectedBli: number;

@@ -5,14 +5,13 @@ import {UserModel} from '../../models/user.model';
 import {TaskService} from '../../service/task.service';
 import {Router} from '@angular/router';
 import {MainService} from '../../service/main.service';
-import {DragulaService} from "ng2-dragula";
+import {dragula, DragulaService} from "ng2-dragula";
 
 
 @Component({
   selector: 'app-scrum-board',
   templateUrl: './scrum-board.component.html',
   styleUrls: ['./scrum-board.component.css']
-
 
 
 })
@@ -25,10 +24,16 @@ export class ScrumBoardComponent implements OnInit {
   taskitem: TaskModel[] = [] as TaskModel[];
   users: UserModel[] = [] as UserModel[];
 
-  msg = '';
+  msg: string = '';
+
+  droppedID: number;
+
+  droppedStatus: number;
+
+
+
 
   constructor(private dragula: DragulaService, private scrumService: ScrumService, private taskService: TaskService, private router: Router, private mainService: MainService) {
-
 
 
   }
@@ -42,23 +47,32 @@ export class ScrumBoardComponent implements OnInit {
     this.dragula
       .drag
       .subscribe(value => {
-        this.msg = `Dragging the ${ value[1].innerText }!`;
+
       });
 
     this.dragula
       .drop
       .subscribe(value => {
-        this.msg = `Dropped the ${ value[1].innerText }!`;
-
-        // Erneuern des Status des Tasks!!!
-
+        this.droppedID = value[1].id;
+        this.onDrop(value.slice(1));
         setTimeout(() => {
           this.msg = '';
         }, 1000);
       });
 
 
+
   }
+
+
+  private onDrop(args) {
+    let [e, el] = args;
+    this.droppedStatus = el.cellIndex+1;
+    this.taskService.updTaskStatus(this.droppedID,this.droppedStatus);
+    this.loadScrumboardTasks();
+
+  }
+
 
   loadScrumboardUsers() {
     this.scrumService.getAllUsersForSB(this.mainService.selectedProject).subscribe(

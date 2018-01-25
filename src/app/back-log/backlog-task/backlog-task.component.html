@@ -82,7 +82,15 @@
       </div>
       <div class="col-md-5 form-group">
         <label for="status">Bearbeitungs Status</label>
-        <input type="text" id="status" class="form-control" [(ngModel)]="taskitem[editTaskID].status" name="status">
+        <select type="text" id="status" class="form-control" [(ngModel)]="taskitem[editTaskID].status"
+                name="status">
+          <option value="Entwurf">Entwurf</option>
+          <option value="ToDo">To Do</option>
+          <option value="InBearbeitung">In Bearbeitung</option>
+          <option value="ZuKlaeren">Zu Klären</option>
+          <option value="Fertig">Fertig</option>
+        </select>
+
       </div>
       <div class="col-md-5 form-group">
         <label for="erstelldatum">Erstellt am</label>
