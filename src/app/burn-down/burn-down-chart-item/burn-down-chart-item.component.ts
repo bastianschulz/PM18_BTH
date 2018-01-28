@@ -14,24 +14,23 @@ import {Router} from "@angular/router";
 export class BurnDownChartItemComponent implements OnInit {
 
 
-  groundLine: estHoMP[] = [] as estHoMP[];
-  timeEntries: BurnDownModel[] = [] as BurnDownModel[];
+  //groundLine: estHoMP[] = [] as estHoMP[];
+  // timeEntries: BurnDownModel[] = [] as BurnDownModel[];
 
-  constructor(private burndownservice: BurndownService, private mainService: MainService, private router:Router) {
+  constructor(private burndownservice: BurndownService, private mainService: MainService, private router: Router) {
 
   }
 
 
   ngOnInit() {
     this.mainService.authCheck();
-    this.loadEstHoMP();
-    this.loadTimeEntries();
-
   }
 
   /**
    * Array für den Chart füllen
+   * nicht erfolgreich implementiert
    */
+  /*
   loadEstHoMP() {
 
     this.burndownservice.getEstHoMpbyPid().subscribe(
@@ -47,11 +46,12 @@ export class BurnDownChartItemComponent implements OnInit {
       }
     );
 
-  }
+  }*/
 
   /**
-   *
+   * nicht erfolgreich implementiert.
    */
+  /*
   loadTimeEntries() {
     this.burndownservice.getTimeEntries().subscribe(
       data => {
@@ -62,25 +62,32 @@ export class BurnDownChartItemComponent implements OnInit {
         });
       }
     );
-  }
+  }*/
 
 
   /**
-   * Beispieldaten aus der HP
-   *
-   * @type {{data: number[]; label: string}[]}
+   *  Statische Beispieldaten für den Canvas
    */
 
-  lineChartData: Array<any> = [
-    {data: [], label: 'Ideal-Linie'},
-    //{data: [100, 95, 75, 70, 63, 49, 32, 31, 25, 15, 0, 15, 0], label: 'IST-Linie'},
 
+  public lineChartData: Array<any> = [
+    [60, 50, 40, 30, 20, 10, 0],
+    [60, 51, 37, 32, 22, ,]
   ];
 
+  public lineChartLabels: Array<any> = ['01. Januar', '08. Januar', '15. Januar', '22. Januar', '29. Januar', '05. Februar ', '12.Februar'];
 
-  lineChartLabels: Array<any> = ['0','1','2','3','4','1','2','3','4','1','2','3','4','1'];
+  public lineChartOptions: any = {
+    responsive: true
+  };
 
-  fillLineChartDataGroundLine() {
+  public lineChartType: string = 'line';
+
+
+  /**
+   * Leider nicht erfolgreich implementieren können.
+   */
+  /*fillLineChartDataGroundLine() {
 
     var base: number = this.groundLine[0].estHoMP;
     var x: Date = (this.groundLine[0].start);
@@ -108,48 +115,31 @@ export class BurnDownChartItemComponent implements OnInit {
 
   lineChartOptions: any = {
     responsive: true
-  };
-
-  lineChartColors: Array<any> = [
-    /*{ // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'lightgreen',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'red',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
+  };*/
+  /*
+    lineChartColors: Array<any> = [
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }*/
-  ];
-
-  lineChartLegend: boolean = true;
-
-  lineChartType: string = 'line';
-
-  chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public
-
-  chartHovered(e: any): void {
-    console.log(e);
-  }
-
-
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'lightgreen',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      },
+      { // dark grey
+        backgroundColor: 'rgba(77,83,96,0.2)',
+        borderColor: 'red',
+        pointBackgroundColor: 'rgba(77,83,96,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(77,83,96,1)'
+      },
+      { // grey
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      }*/
 }

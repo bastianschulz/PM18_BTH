@@ -59,6 +59,8 @@ import {AddplanningpokerComponent} from './planningpoker/addplanningpoker/addpla
 import {SeluserppComponent} from './planningpoker/addplanningpoker/seluserpp/seluserpp.component';
 import {TaskboardComponent} from './taskboard/taskboard.component';
 
+
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
@@ -84,6 +86,7 @@ const appRoutes: Routes = [
   {path: 'StoryBacklog', component: StorybacklogComponent},
   {path: 'BacklogTask', component: BacklogTaskComponent},
   {path: 'TaskBoard', component: TaskboardComponent},
+  {path: 'Roadmap', component: TimeSlotItemComponent}
 
 ];
 
@@ -129,7 +132,7 @@ const appRoutes: Routes = [
     AddplanningpokerComponent,
     SeluserppComponent,
     TaskboardComponent,
-  ],
+      ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
@@ -139,6 +142,7 @@ const appRoutes: Routes = [
     JsonpModule,
     ChartsModule,
     DragulaModule
+
   ],
   providers: [BurndownService, ProjectService, BacklogService, SprintService, TaskService,
     ScrumService, MainService, ProjectService, UserService, PlanpoService, UserstoryService],

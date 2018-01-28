@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MainService} from "../../service/main.service";
+
+
+
 
 @Component({
   selector: 'app-time-slot-item',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeSlotItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainservice: MainService) { }
 
   ngOnInit() {
+    this.mainservice.authCheck()
   }
+
+
+
 
 }
